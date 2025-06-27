@@ -86,3 +86,13 @@ def find_peaks(data):
             peak_indices.append(i)
 
     return peaks, peak_indices
+
+def parse_args(argv):
+    ##
+    # @brief function for command line argument 
+    args_dict = {}
+    for arg in argv[1:]:
+        if '=' in arg:
+            key, value = arg.split('=')
+            args_dict[key] = value
+    return args_dict

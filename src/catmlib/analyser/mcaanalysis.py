@@ -9,7 +9,7 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-import src.util as util
+import catmlib.util as util
 import plotly.express as px
 import pandas as pd
 import numpy as np
@@ -464,7 +464,6 @@ class TMultiChannelAnalyzer():
             line=dict(color='black', width=1.5), opacity=0.5))
 
     fig.show()
-
 
   def draw_gain_curve(self):
     ##

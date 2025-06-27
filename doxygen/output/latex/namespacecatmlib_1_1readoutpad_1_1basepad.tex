@@ -1,0 +1,96 @@
+\doxysection{catmlib.\+readoutpad.\+basepad Namespace Reference}
+\hypertarget{namespacecatmlib_1_1readoutpad_1_1basepad}{}\label{namespacecatmlib_1_1readoutpad_1_1basepad}\index{catmlib.readoutpad.basepad@{catmlib.readoutpad.basepad}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class}{TBase\+Pad\+Shape\+Class}}
+\item 
+class \mbox{\hyperlink{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array}{TReadout\+Pad\+Array}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1basepad_a31aeb48a81c50df471ab2ea5046e1bd3}{generate\+\_\+regular\+\_\+n\+\_\+polygon}} (n=3, length=3, theta=0, flag=True)
+\item 
+\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1basepad_a9be4753160a83b1eb3f3001172ca2839}{generate\+\_\+oblong\+\_\+4\+\_\+polygon}} (longlength=4, shortlength=2, plane=\textquotesingle{}yz\textquotesingle{}, flag=True)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespacecatmlib_1_1readoutpad_1_1basepad_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecatmlib_1_1readoutpad_1_1basepad_a9be4753160a83b1eb3f3001172ca2839}\index{catmlib.readoutpad.basepad@{catmlib.readoutpad.basepad}!generate\_oblong\_4\_polygon@{generate\_oblong\_4\_polygon}}
+\index{generate\_oblong\_4\_polygon@{generate\_oblong\_4\_polygon}!catmlib.readoutpad.basepad@{catmlib.readoutpad.basepad}}
+\doxysubsubsection{\texorpdfstring{generate\_oblong\_4\_polygon()}{generate\_oblong\_4\_polygon()}}
+{\footnotesize\ttfamily \label{namespacecatmlib_1_1readoutpad_1_1basepad_a9be4753160a83b1eb3f3001172ca2839} 
+catmlib.\+readoutpad.\+basepad.\+generate\+\_\+oblong\+\_\+4\+\_\+polygon (\begin{DoxyParamCaption}\item[{}]{longlength}{ = {\ttfamily 4}, }\item[{}]{shortlength}{ = {\ttfamily 2}, }\item[{}]{plane}{ = {\ttfamily \textquotesingle{}yz\textquotesingle{}}, }\item[{}]{flag}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{basepad_8py_source_l00249}{249}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00249\ \textcolor{keyword}{def\ }generate\_oblong\_4\_polygon(longlength=4,\ shortlength=2,\ plane='yz',\ flag=True):}
+\DoxyCodeLine{00250\ \ \ \ \ }
+\DoxyCodeLine{00257\ \ \ base\_padinfo\ =\ \mbox{\hyperlink{class_t_base_pad_shape_class}{TBasePadShapeClass}}()}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \textcolor{keywordflow}{if}\ plane==\textcolor{stringliteral}{'yz'}\ \textcolor{keywordflow}{or}\ plane==\textcolor{stringliteral}{'zy'}:}
+\DoxyCodeLine{00260\ \ \ \ \ base\_padinfo.add\_polygon([0,\ \ shortlength/2,\ \ longlength/2])}
+\DoxyCodeLine{00261\ \ \ \ \ base\_padinfo.add\_polygon([0,\ \ shortlength/2,\ -\/longlength/2])}
+\DoxyCodeLine{00262\ \ \ \ \ base\_padinfo.add\_polygon([0,\ -\/shortlength/2,\ -\/longlength/2])}
+\DoxyCodeLine{00263\ \ \ \ \ base\_padinfo.add\_polygon([0,\ -\/shortlength/2,\ \ longlength/2])}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \textcolor{keywordflow}{elif}\ plane==\textcolor{stringliteral}{'xy'}\ \textcolor{keywordflow}{or}\ plane==\textcolor{stringliteral}{'xy'}:}
+\DoxyCodeLine{00266\ \ \ \ \ base\_padinfo.add\_polygon([\ longlength/2,\ \ shortlength/2,\ 0])}
+\DoxyCodeLine{00267\ \ \ \ \ base\_padinfo.add\_polygon([\ longlength/2,\ -\/shortlength/2,\ 0])}
+\DoxyCodeLine{00268\ \ \ \ \ base\_padinfo.add\_polygon([-\/longlength/2,\ -\/shortlength/2,\ 0])}
+\DoxyCodeLine{00269\ \ \ \ \ base\_padinfo.add\_polygon([-\/longlength/2,\ \ shortlength/2,\ 0])\ \ \ \ }
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \textcolor{keywordflow}{elif}\ plane==\textcolor{stringliteral}{'xz'}\ \textcolor{keywordflow}{or}\ plane==\textcolor{stringliteral}{'xz'}:}
+\DoxyCodeLine{00272\ \ \ \ \ base\_padinfo.add\_polygon([\ longlength/2,\ 0,\ \ shortlength/2])}
+\DoxyCodeLine{00273\ \ \ \ \ base\_padinfo.add\_polygon([\ longlength/2,\ 0,\ -\/shortlength/2])}
+\DoxyCodeLine{00274\ \ \ \ \ base\_padinfo.add\_polygon([-\/longlength/2,\ 0,\ -\/shortlength/2])}
+\DoxyCodeLine{00275\ \ \ \ \ base\_padinfo.add\_polygon([-\/longlength/2,\ 0,\ \ shortlength/2])\ \ \ \ }
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \textcolor{keywordflow}{if}\ flag:}
+\DoxyCodeLine{00278\ \ \ \ \ base\_padinfo.show\_polygon(plane)}
+\DoxyCodeLine{00279\ \ \ \textcolor{keywordflow}{return}\ base\_padinfo}
+
+\end{DoxyCode}
+\Hypertarget{namespacecatmlib_1_1readoutpad_1_1basepad_a31aeb48a81c50df471ab2ea5046e1bd3}\index{catmlib.readoutpad.basepad@{catmlib.readoutpad.basepad}!generate\_regular\_n\_polygon@{generate\_regular\_n\_polygon}}
+\index{generate\_regular\_n\_polygon@{generate\_regular\_n\_polygon}!catmlib.readoutpad.basepad@{catmlib.readoutpad.basepad}}
+\doxysubsubsection{\texorpdfstring{generate\_regular\_n\_polygon()}{generate\_regular\_n\_polygon()}}
+{\footnotesize\ttfamily \label{namespacecatmlib_1_1readoutpad_1_1basepad_a31aeb48a81c50df471ab2ea5046e1bd3} 
+catmlib.\+readoutpad.\+basepad.\+generate\+\_\+regular\+\_\+n\+\_\+polygon (\begin{DoxyParamCaption}\item[{}]{n}{ = {\ttfamily 3}, }\item[{}]{length}{ = {\ttfamily 3}, }\item[{}]{theta}{ = {\ttfamily 0}, }\item[{}]{flag}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{basepad_8py_source_l00221}{221}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00221\ \textcolor{keyword}{def\ }generate\_regular\_n\_polygon(n=3,\ length=3,\ theta=0,\ flag=True):}
+\DoxyCodeLine{00222\ \ \ \ \ }
+\DoxyCodeLine{00229\ \ \ base\_padinfo\ =\ \mbox{\hyperlink{class_t_base_pad_shape_class}{TBasePadShapeClass}}()}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \textcolor{keywordflow}{if}\ n<3:}
+\DoxyCodeLine{00232\ \ \ \ \ print(\textcolor{stringliteral}{"{}n\ must\ be\ greater\ than\ 2"{}})}
+\DoxyCodeLine{00233\ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00234\ \ \ \ \ radius\ =\ length\ /\ (2\ *\ np.sin(np.pi\ /\ n))}
+\DoxyCodeLine{00235\ \ \ \ \ angles\ =\ np.linspace(0,\ 2\ *\ np.pi,\ n,\ endpoint=\textcolor{keyword}{False})}
+\DoxyCodeLine{00236\ \ \ \ \ vertices\ =\ [(radius\ *\ np.cos(angle),\ radius\ *\ np.sin(angle))\ \textcolor{keywordflow}{for}\ angle\ \textcolor{keywordflow}{in}\ angles]}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ theta\ =\ np.radians(theta)}
+\DoxyCodeLine{00239\ \ \ \ \ rotation\_matrix\ =\ np.array([[np.cos(theta),\ -\/np.sin(theta)],[np.sin(theta),\ np.cos(theta)]])}
+\DoxyCodeLine{00240\ \ \ \ \ rotated\_vertices\ =\ [np.dot(rotation\_matrix,\ vertex)\ \textcolor{keywordflow}{for}\ vertex\ \textcolor{keywordflow}{in}\ vertices]}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(vertices)):}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ base\_padinfo.add\_polygon([rotated\_vertices[i][0],\ 0,\ rotated\_vertices[i][1]])}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{if}\ flag:}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ base\_padinfo.show\_polygon(\textcolor{stringliteral}{'xz'})}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordflow}{return}\ base\_padinfo}
+\DoxyCodeLine{00248\ }
+
+\end{DoxyCode}

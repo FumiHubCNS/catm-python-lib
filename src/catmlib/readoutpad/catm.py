@@ -155,3 +155,27 @@ def get_ssd_array():
     gid += 1
 
   return pad
+
+def check_pad_view():
+    
+    import sys
+    import catmlib.util.dataforming as util
+
+    arg_dict = util.parse_args(sys.argv)
+    pad_name = (arg_dict.get("pad", "recoil-tpc"))
+    plane = (arg_dict.get("plane", "xz"))
+
+    if pad_name == 'recoil-tpc':
+      pad_array = get_recoil_tpc_array()
+
+    elif pad_name == 'beam-tpc':
+      pad_array = get_beam_tpc_array()
+
+    elif pad_name == 'ssd':
+      pad_array = get_ssd_array()
+
+    else:
+        print('experiment number does not exist')
+    
+    if pad_array is not None:
+      pad_array.show_pads(plane)

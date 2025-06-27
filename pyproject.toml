@@ -7,7 +7,19 @@ authors = [
     { name = "FumiHubCNS", email = "fendo@cns.s.u-tokyo.ac.jp" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "iminuit>=2.31.1",
+    "matplotlib>=3.10.3",
+    "numpy>=2.3.1",
+    "pandas>=2.3.0",
+    "plotly>=6.2.0",
+    "scipy>=1.16.0",
+]
+
+[project.scripts]
+catmview = "catmlib.util.catmviewer:check_catm_view"
+padview = "catmlib.readoutpad.catm:check_pad_view"
+
 
 [build-system]
 requires = ["hatchling"]

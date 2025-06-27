@@ -22,7 +22,6 @@ def find_nearest_index(array, value):
     index = np.abs(array - value).argmin() 
     return index
 
-
 def calculate_track_dipole_magnet_analytical_solution(v0=np.array([1,0,0]), x0=np.array([0,0,0]), omega=1, t=0):
     ##
     # @brief analytical solution for equation of moyion in uniform magnetic field
@@ -379,8 +378,6 @@ def plot_2d_trajectory(x=[], y=[], z=[], u=[], v=[], w=[],
     
     plt.close(fig) 
 
-
-
 def plot_2d_categories( x_lim=None, y_lim=None, z_lim=None, 
                         bpad=None, rpad=None, spad=None,
                         bid=None, rid=None, sid=None,
@@ -560,3 +557,21 @@ def plot_2d_categories( x_lim=None, y_lim=None, z_lim=None,
         fig.savefig(savepath)
     
     plt.close(fig) 
+
+def check_catm_view():
+    
+    import catmlib.readoutpad.catm as catpad
+      
+    beamtpc = catpad.get_beam_tpc_array()
+    recoiltpc = catpad.get_recoil_tpc_array()
+    ssd = catpad.get_ssd_array()
+
+    x_range = (260, -260)
+    y_range = (-100, 100)
+    z_range = (-270, 220)
+
+    bid, rid, sid = [], [], [] 
+    rlabel, blabel, slabel = [], [], []
+    user_colors=[ [], [], [] ]
+
+    plot_2d_categories( z_range, x_range, y_range, beamtpc, recoiltpc, ssd, bid, rid, sid, blabel, rlabel, slabel, True, None, user_colors, False, "catm readpad view at XZ plane")

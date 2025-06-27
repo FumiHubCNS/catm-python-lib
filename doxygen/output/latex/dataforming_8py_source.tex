@@ -1,0 +1,82 @@
+\doxysection{dataforming.\+py}
+\hypertarget{dataforming_8py_source}{}\label{dataforming_8py_source}\index{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/util/dataforming.py@{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/util/dataforming.py}}
+\mbox{\hyperlink{dataforming_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00001}\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming}{00001}}\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00007}00007\ \textcolor{keyword}{import}\ numpy\ \textcolor{keyword}{as}\ np}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00009}\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_ab50e251c56edc37809af541134cce5be}{00009}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_ab50e251c56edc37809af541134cce5be}{str\_to\_array}}(input\_str):}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00010}00010\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00015}00015\ \ \ \ \ \ \ \ \ str\_list\ =\ str(input\_str).split()\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ np.array([float(value)\ \textcolor{keywordflow}{for}\ value\ \textcolor{keywordflow}{in}\ str\_list])}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{except}\ ValueError:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00018}00018\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Skipping\ invalid\ input:\ \{input\_str\}"{}})}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ np.array([])}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00021}\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_aa94aabee6696bdaf7fd84acfc1addc99}{00021}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_aa94aabee6696bdaf7fd84acfc1addc99}{load\_numbers}}(file\_path):}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00022}00022\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00026}00026\ \ \ \ \ \textcolor{keyword}{with}\ open(file\_path,\ \textcolor{stringliteral}{'r'})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ numbers\ =\ [int(line.strip())\ \textcolor{keywordflow}{for}\ line\ \textcolor{keywordflow}{in}\ f\ \textcolor{keywordflow}{if}\ line.strip().isdigit()]\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{return}\ numbers}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00030}\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a13dbd95a6cac156a4ec8ada005783d80}{00030}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a13dbd95a6cac156a4ec8ada005783d80}{read\_spe\_file}}(file\_path):}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00031}00031\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00035}00035\ \ \ \ \ x\ =\ []}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00036}00036\ \ \ \ \ y\ =\ []}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00038}00038\ \ \ \ \ \textcolor{keyword}{with}\ open(file\_path,\ \textcolor{stringliteral}{'r'})\ \textcolor{keyword}{as}\ file:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ lines\ =\ file.readlines()}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00040}00040\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00041}00041\ \ \ \ \ data\_section\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{for}\ i,\ line\ \textcolor{keywordflow}{in}\ enumerate(lines):}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ line.strip()\ ==\ \textcolor{stringliteral}{"{}\$DATA:"{}}:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ data\_section\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ channel\_count\ =\ int(lines[i\ +\ 1].split()[1])}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ start\_idx\ =\ i\ +\ 2\ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00048}00048\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{if}\ data\_section:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(start\_idx,\ start\_idx\ +\ channel\_count):}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ lines[i].strip()\ ==\ \textcolor{stringliteral}{"{}\$ENER\_FIT:"{}}:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ y.append(int(lines[i].strip()))}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ x.append(len(x))}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{return}\ x,\ y}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00058}\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a610a67ced407ba1e31850572ee25f57e}{00058}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a610a67ced407ba1e31850572ee25f57e}{create\_histogram\_data\_from\_points}}(x,\ y):}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00059}00059\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00064}00064\ \ \ \ \ frequency\_distribution\ =\ []}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00065}00065\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00066}00066\ \ \ \ \ \textcolor{keywordflow}{for}\ x\_val,\ freq\ \textcolor{keywordflow}{in}\ zip(x,\ y):}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ frequency\_distribution.extend([x\_val]\ *\ freq)}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00068}00068\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{return}\ frequency\_distribution}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00071}\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a65c2738b149373bcba2e1600c3f93cb6}{00071}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a65c2738b149373bcba2e1600c3f93cb6}{find\_peaks}}(data):}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00072}00072\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{if}\ len(data)\ <\ 3:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0,\ []}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00079}00079\ \ \ \ \ peaks\ =\ 0}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00080}00080\ \ \ \ \ peak\_indices\ =\ []}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(1,\ len(data)\ -\/\ 1):}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ ピーク判定:\ 両隣よりも大きい}}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ data[i]\ >\ data[i\ -\/\ 1]\ \textcolor{keywordflow}{and}\ data[i]\ >\ data[i\ +\ 1]:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ peaks\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ peak\_indices.append(i)}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{return}\ peaks,\ peak\_indices}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00090}\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_ab28a38019689dd57733f2edd84b5f70b}{00090}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_ab28a38019689dd57733f2edd84b5f70b}{parse\_args}}(argv):}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00091}00091\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00093}00093\ \ \ \ \ args\_dict\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00094}00094\ \ \ \ \ \textcolor{keywordflow}{for}\ arg\ \textcolor{keywordflow}{in}\ argv[1:]:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{'='}\ \textcolor{keywordflow}{in}\ arg:}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ key,\ value\ =\ arg.split(\textcolor{stringliteral}{'='})}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ args\_dict[key]\ =\ value}
+\DoxyCodeLine{\Hypertarget{dataforming_8py_source_l00098}00098\ \ \ \ \ \textcolor{keywordflow}{return}\ args\_dict}
+
+\end{DoxyCode}
