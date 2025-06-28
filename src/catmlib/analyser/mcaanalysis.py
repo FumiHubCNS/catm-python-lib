@@ -1,9 +1,10 @@
-##
-# @file mcaanalysis.py
-# @version 1
-# @author Fumitaka ENDO
-# @date 2025-01-30T10:52:52+09:00
-# @brief analysis utilities related to MCA (Kromek)
+"""!
+@file mcaanalysis.py
+@version 1
+@author Fumitaka ENDO
+@date 2025-01-30T10:52:52+09:00
+@brief analysis utilities related to MCA (Kromek)
+"""
 import sys
 import os
 
@@ -20,45 +21,47 @@ import plotly.graph_objects as go
 import glob
 
 class TMultiChannelAnalyzer():
-  ##
-  # @class TMultiChannelAnalyzer
-  # @brief analysis package for analysing data acquired by MCA
+  """!
+  @class TMultiChannelAnalyzer
+  @brief analysis package for analysing data acquired by MCA
+  """
 
   def __init__(self):
-    ##
-    # @brief initialze object
-    # @param Qmeas calculated measured charge
-    # @param Qmeas_err calculated error of measured charge
-    # @param dEdX stopping power in certain point
-    # @param dL effective pad length
-    # @param W elecrton-ion piar creation energy
-    # @param Qe elementary charge
-    # @param G calculated gain
-    # @param G_err calculated error of gain
-    # @param E calculated theoretical energy deposit in pad
-    # @param a 1-st order term of calibration parameter 
-    # @param b 0-th order term of calibration parameter 
-    # @param calib_path calibration data path
-    # @param datas gain measurement datas 
-    # @param input_values gain measurement datas path
-    # @param calib_fit_xs data list for the data point x near each peak 
-    # @param calib_fit_ys data list for the gausian value near each peak 
-    # @param calib_means mean values list from fitting result by iminuit
-    # @param calib_sigmas sigma values list from fitting result by iminuit
-    # @param data_files list of data path
-    # @param data_files_name list of data path name 
-    # @param datas_x lits of mca data points (x)
-    # @param datas_y lits of mca data points (y)
-    # @param datas_h lits of mca data points (frequency)
-    # @param datas_peak_count list of found peak count
-    # @param datas_peak_indices list of found peak index
-    # @param datas_fit_xs list of data point x picked up mca data around peak 
-    # @param datas_fit_ys list of gausian values picked up mca data around peak 
-    # @param datas_fit_oys list of data point y picked up mca data around peak 
-    # @param datas_means list of fitted mean value
-    # @param datas_sigmas list of fitted sigma value
-    # @param voltages input voltage values
-    # @return None
+    """!
+    @brief initialze object
+    @param Qmeas calculated measured charge
+    @param Qmeas_err calculated error of measured charge
+    @param dEdX stopping power in certain point
+    @param dL effective pad length
+    @param W elecrton-ion piar creation energy
+    @param Qe elementary charge
+    @param G calculated gain
+    @param G_err calculated error of gain
+    @param E calculated theoretical energy deposit in pad
+    @param a 1-st order term of calibration parameter 
+    @param b 0-th order term of calibration parameter 
+    @param calib_path calibration data path
+    @param datas gain measurement datas 
+    @param input_values gain measurement datas path
+    @param calib_fit_xs data list for the data point x near each peak 
+    @param calib_fit_ys data list for the gausian value near each peak 
+    @param calib_means mean values list from fitting result by iminuit
+    @param calib_sigmas sigma values list from fitting result by iminuit
+    @param data_files list of data path
+    @param data_files_name list of data path name 
+    @param datas_x lits of mca data points (x)
+    @param datas_y lits of mca data points (y)
+    @param datas_h lits of mca data points (frequency)
+    @param datas_peak_count list of found peak count
+    @param datas_peak_indices list of found peak index
+    @param datas_fit_xs list of data point x picked up mca data around peak 
+    @param datas_fit_ys list of gausian values picked up mca data around peak 
+    @param datas_fit_oys list of data point y picked up mca data around peak 
+    @param datas_means list of fitted mean value
+    @param datas_sigmas list of fitted sigma value
+    @param voltages input voltage values
+    @return None
+    """
     self.Qmeas = []
     self.Qmeas_err = []
     self.dEdX = 1e6    # [eV/mm]
@@ -92,52 +95,60 @@ class TMultiChannelAnalyzer():
     self.voltages = []
   
   def get_Qmeas(self):
-    ##
-    # @brief get calculated measured charge and error 
-    # @return Qmeas and error of Qmeas ([float, float, ... , float], [float, float, ... , float])
+    """!
+    @brief get calculated measured charge and error 
+    @return Qmeas and error of Qmeas ([float, float, ... , float], [float, float, ... , float])
+    """
     return self.Qmeas, self.Qmeas_err
   
   def get_Gain(self):
-    ##
-    # @brief get calculated gain and error 
-    # @return Gain and error of Gain ([float, float, ... , float], [float, float, ... , float])
+    """!
+    @brief get calculated gain and error 
+    @return Gain and error of Gain ([float, float, ... , float], [float, float, ... , float])
+    """
     return self.G, self.G_err
 
   def set_voltages(self, val):
-    ##
-    # @brief set list of voltage value
-    # @param val reference values [float, float, ... , float]
-    # @return None
+    """!
+    @brief set list of voltage value
+    @param val reference values [float, float, ... , float]
+    @return None
+    """
     self.voltages = val
 
   def set_dEdX(self, val):
-    # @brief set energy loss in small interval at certain point
-    # @param val reference values 
-    # @return None
+    """!
+    @brief set energy loss in small interval at certain point
+    @param val reference values 
+    @return None
+    """
     self.dEdX = val 
 
   def set_dL(self, val):
-    ##
-    # @brief set effective pad length
-    # @param val reference values 
-    # @return None
+    """!
+    @brief set effective pad length
+    @param val reference values 
+    @return None
+    """
     self.dL = val
 
   def set_W(self, val):
-    ##
-    # @brief set electron-ion pair cratrion energy
-    # @param val reference values 
-    # @return None
+    """!
+    @brief set electron-ion pair cratrion energy
+    @param val reference values 
+    @return None
+    """
     self.W = val
 
   def calculate_Qmeas(self):
-    ##
-    # @brief calculate measured charge 
-    #
-    # More details: 
-    # calculation result is stored to `self.Qmeas` and `self.Qmeas_err`
-    #
-    # @return None
+    """!
+    @brief calculate measured charge 
+    
+    More details: 
+    calculation result is stored to `self.Qmeas` and `self.Qmeas_err`
+    
+    @return None
+    """
     if len(self.datas_means)*len(self.datas_sigmas)>0:
       self.Qmeas = self.linear( np.array(self.datas_means).flatten(), self.b, self.a)
       self.Qmeas_err = self.a * np.array(self.datas_sigmas).flatten()
@@ -145,13 +156,14 @@ class TMultiChannelAnalyzer():
        print('measured values are empty.') 
 
   def calculate_Gain(self):
-    ##
-    # @brief calculate gain 
-    #
-    # More details: 
-    # calculation result is stored to self.G and self.G_err
-    #
-    # @return None
+    """!
+    @brief calculate gain 
+    
+    More details: 
+    calculation result is stored to self.G and self.G_err
+    
+    @return None
+    """
     if len(self.Qmeas)*len(self.Qmeas_err)>0:
       self.G = self.Qmeas / ( self.dEdX * self.dL * self.Qe / self.W ) 
       self.G_err = self.Qmeas_err / ( self.dEdX * self.dL * self.Qe / self.W ) 
@@ -159,49 +171,54 @@ class TMultiChannelAnalyzer():
        print('measured values are empty.') 
 
   def gaussian(self, x, amplitude, mean, sigma):
-    ##
-    # @brief calculate gaussian value
-    # @param amplitude constant
-    # @param mean mean value
-    # @param sigma sigma value
-    # @return gaus(amplitude, mean, sigma)
+    """!
+    @brief calculate gaussian value
+    @param amplitude constant
+    @param mean mean value
+    @param sigma sigma value
+    @return gaus(amplitude, mean, sigma)
+    """
     return amplitude * np.exp(-0.5 * ((x - mean) / sigma) ** 2)
 
   def linear(self, x, p0, p1):
-    ##
-    # @brief calculate liner transform value
-    # @param x reference values
-    # @param p0 coefficient of 0-th order term
-    # @param p1 coefficient of 1-st order term
-    # @return gaus(amplitude, mean, sigma)
+    """!
+    @brief calculate liner transform value
+    @param x reference values
+    @param p0 coefficient of 0-th order term
+    @param p1 coefficient of 1-st order term
+    @return gaus(amplitude, mean, sigma)
+    """
     return p0 + p1 * x
   
   def set_calibration_file_path(self, file_path):
-    ##
-    # @brief set path of calibration data
-    # @param file_path file path for mca data
-    # @return None
+    """!
+    @brief set path of calibration data
+    @param file_path file path for mca data
+    @return None
+    """
     self.calib_path = file_path
 
   def set_input_values(self, values):
-    ##
-    # @brief set path of measured data
-    # @param file_path file path for mca data
-    # @return None
+    """!
+    @brief set path of measured data
+    @param file_path file path for mca data
+    @return None
+    """
     self.input_values = values
   
   def find_peak(self, smooth_parameter=3, input_label='calib' ,debug=False):
-    ##
-    # @brief search peaks for calibraion data
-    #
-    # More details: 
-    # should be set before executinf this function. 
-    # result id stored to, self.calib_data_peak_count and self.calib_data_peak_indices for calibration, self.datas_peak_count, self.datas_peak_indices for data
-    #
-    # @param smooth_parameter smear parameter for original histogram
-    # @param input_label label for data (calibration:'calib', data list:'data')
-    # @param debug debug flag. if true, dump peak finding result (default:False)
-    # @return None
+    """!
+    @brief search peaks for calibraion data
+    
+    More details: 
+    should be set before executinf this function. 
+    result id stored to, self.calib_data_peak_count and self.calib_data_peak_indices for calibration, self.datas_peak_count, self.datas_peak_indices for data
+    
+    @param smooth_parameter smear parameter for original histogram
+    @param input_label label for data (calibration:'calib', data list:'data')
+    @param debug debug flag. if true, dump peak finding result (default:False)
+    @return None
+    """
     if input_label == 'calib':
       self.calib_data_x, self.calib_data_y = util.dataforming.read_spe_file(self.calib_path)
       self.calib_data_h = util.dataforming.create_histogram_data_from_points(self.calib_data_x, self.calib_data_y)
@@ -231,16 +248,17 @@ class TMultiChannelAnalyzer():
           print("(data) :", i, " number of peak:", data_peak_count, ", index of peak:", data_peak_indices)
 
   def fit_calibration_data(self, width=30, initial_sigma=10, plot_flag=False):
-    ##
-    # @brief peak fitting for calibration data
-    #
-    # More details: 
-    # fitting result is stored to `self.calib_fit_xs`, `self.calib_fit_ys`, `self.calib_means`,  `self.calib_sigmas`
-    #
-    # @param width fitting range from center position (`self.calib_data_x[self.calib_data_peak_indices[i]]`)
-    # @param initial_sigma initial value for using iminuit fitting 
-    # @param plot_flag plot flag. if true, draw data by plotly (default:False)
-    # @return None
+    """!
+    @brief peak fitting for calibration data
+    
+    More details: 
+    fitting result is stored to `self.calib_fit_xs`, `self.calib_fit_ys`, `self.calib_means`,  `self.calib_sigmas`
+    
+    @param width fitting range from center position (`self.calib_data_x[self.calib_data_peak_indices[i]]`)
+    @param initial_sigma initial value for using iminuit fitting 
+    @param plot_flag plot flag. if true, draw data by plotly (default:False)
+    @return None
+    """
     for i in range(len(self.calib_data_peak_indices)):
       xarr = np.array(self.calib_data_x)
       yarr = np.array(self.calib_data_y)
@@ -277,17 +295,18 @@ class TMultiChannelAnalyzer():
       fig.show()
 
   def calculate_calibration_parameters(self, plot_flag=False):
-    ##
-    # @brief calculate calibration paramters 
-    #
-    # More details: 
-    # calibraion paramter is determined by iminuit fitting.
-    #
-    # his function sould be executed after executing `self.fit_calibration_data()`.
-    # fitting result is stored to `self.a`(1st), `self.b`(0th)
+    """!
+    @brief calculate calibration paramters 
+    
+    More details: 
+    calibraion paramter is determined by iminuit fitting.
+    
+    his function sould be executed after executing `self.fit_calibration_data()`.
+    fitting result is stored to `self.a`(1st), `self.b`(0th)
 
-    # @param plot_flag plot flag. if true, draw data by plotly (default:False)
-    # @return None
+    @param plot_flag plot flag. if true, draw data by plotly (default:False)
+    @return None
+    """
     if len(self.calib_sigmas) == len(self.input_values):
       self.calib_means_err = []
       for i in range(len(self.calib_means)):
@@ -320,11 +339,12 @@ class TMultiChannelAnalyzer():
       print('calibration parameter calculation process wad skipped.')
       
   def remove_fitted_peak(self, list_label='calib', index_list=[]):
-    ##
-    # @brief remove specific peak
-    # @param list_label label for data (calibration:'calib', data list:'data')
-    # @param index_list list of index to be deleted
-    # @return None
+    """!
+    @brief remove specific peak
+    @param list_label label for data (calibration:'calib', data list:'data')
+    @param index_list list of index to be deleted
+    @return None
+    """
     if list_label == 'calib':
       for index in sorted(index_list, reverse=True):
           if 0 <= index < len(self.calib_sigmas):  
@@ -356,47 +376,51 @@ class TMultiChannelAnalyzer():
                   del self.datas_sigmas[i][index]
 
   def get_data_file_path_list(self, filepath='./*spe'):
-    ##
-    # @brief sort and set data file list
-    #
-    # More details: 
-    # can use wildcard with input path  
-    #
-    # @param filepath file path
-    # @return None
+    """!
+    @brief sort and set data file list
+    
+    More details: 
+    can use wildcard with input path  
+    
+    @param filepath file path
+    @return None
+    """
     self.data_files = sorted(glob.glob(filepath))
   
   def add_data_file_path_list(self, filepath='./*spe'):
-    ##
-    # @brief sort and add data file list
-    #
-    # More details: 
-    # can use wildcard with input path  
-    #
-    # @param filepath file path
-    # @return None
+    """!
+    @brief sort and add data file list
+    
+    More details: 
+    can use wildcard with input path  
+    
+    @param filepath file path
+    @return None
+    """
     add_files = sorted(glob.glob(filepath))
     for i in range(len(add_files)):
       self.data_files.append(add_files[i])
   
   def check_data_file(self):
-    ##
-    # @brief dump load file list
-    # @return None
+    """!
+    @brief dump load file list
+    @return None
+    """
     for i in range(len(self.data_files)):
       print(self.data_files[i])
 
       
   def fit_data(self, width=30, initial_sigma=10):
-    ##
-    # @brief peak fitting for list of mca data
-    #
-    # More details: 
-    # fitting result is stored to `self.datas_fit_xs`, `self.datas_fit_ys`, `self.datas_fit_oys`, `self.datas_means`, `self.datas_sigmas`
-    #
-    # @param width fitting range from center position (`self.calib_data_x[self.calib_data_peak_indices[i]]`)
-    # @param initial_sigma initial value for using iminuit fitting 
-    # @return None
+    """!
+    @brief peak fitting for list of mca data
+    
+    More details: 
+    fitting result is stored to `self.datas_fit_xs`, `self.datas_fit_ys`, `self.datas_fit_oys`, `self.datas_means`, `self.datas_sigmas`
+    
+    @param width fitting range from center position (`self.calib_data_x[self.calib_data_peak_indices[i]]`)
+    @param initial_sigma initial value for using iminuit fitting 
+    @return None
+    """
     for j in range(len(self.datas_x)):
 
       data_fit_xs = []
@@ -432,9 +456,10 @@ class TMultiChannelAnalyzer():
       self.datas_sigmas.append(data_sigmas)
       
   def draw_fitted_datas(self):
-    ##
-    # @brief draw fitting result for list of mca data
-    # @return None
+    """!
+    @brief draw fitting result for list of mca data
+    @return None
+    """
     k = 0
     
     for i in range(len(self.datas_fit_xs)):
@@ -466,22 +491,19 @@ class TMultiChannelAnalyzer():
     fig.show()
 
   def draw_gain_curve(self):
-    ##
-    # @brief draw fitting result for list of mca data
-    #
-    # More details: 
-    # this function should be executed after executing `self.draw_fitted_datas()`, `self.calculate_Qmeas()`, `self.calculate_Gain()`
-    #
-    # @return None
+    """!
+    @brief draw fitting result for list of mca data
+    
+    More details: 
+    this function should be executed after executing `self.draw_fitted_datas()`, `self.calculate_Qmeas()`, `self.calculate_Gain()`
+    
+    @return None
+    """
     fig = go.Figure(
       data = go.Scatter(
         x=self.voltages, y=self.G, 
         error_y=dict(type='data', array=self.G_err, thickness=2, width=5, visible=True),
         name='fitted data plot'))
     fig.update_layout(title='Gain Curve', yaxis_title='Gain', xaxis_title='Voltage [V]', title_x=0.05, title_font=dict(size=20))
-    # fig.add_trace(
-    #   go.Scatter(
-    #     x=np.array(self.calib_means), y=self.linear(np.array(self.calib_means), self.b , self.a), mode='lines', 
-    #     name=f"{self.b:.3f}+{self.a:.3f}x", 
-    #     line=dict(color='red', width=2), opacity=0.5))
+
     fig.show()

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['e_0',['E',['../classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer.html#a9e9fe17532f38716e43e5f33e6befd22',1,'catmlib::analyser::mcaanalysis::TMultiChannelAnalyzer']]]
+  ['find_5fnearest_5findex_0',['find_nearest_index',['../catmviewer_8py.html#a4c203962612317f66aa2dd45da401a71',1,'catmlib::util::catmviewer']]],
+  ['find_5fpeaks_1',['find_peaks',['../dataforming_8py.html#a65c2738b149373bcba2e1600c3f93cb6',1,'catmlib::util::dataforming']]]
 ];

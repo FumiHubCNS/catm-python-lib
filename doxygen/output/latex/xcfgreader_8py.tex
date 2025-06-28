@@ -1,0 +1,258 @@
+\doxysection{/\+Users/fendo/\+Work/\+Program/uv-\/python/catmlib/src/catmlib/util/xcfgreader.py File Reference}
+\hypertarget{xcfgreader_8py}{}\label{xcfgreader_8py}\index{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/util/xcfgreader.py@{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/util/xcfgreader.py}}
+
+
+reading utillities for configuration file of GET electronics  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{xcfgreader_8py_ad0cae6f26da14a94b40572db3b710d1c}{catmlib.\+util.\+xcfgreader.\+classify\+\_\+indices}} (values)
+\begin{DoxyCompactList}\small\item\em Classify indices by values in a list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{xcfgreader_8py_a7286f928b502b4cfbb092bc77e9309bf}{catmlib.\+util.\+xcfgreader.\+get\+\_\+tree}} (input\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Parse an XML configuration file and return its root element. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{xcfgreader_8py_a1018de2a87504795f532d8cfba883d23}{catmlib.\+util.\+xcfgreader.\+get\+\_\+node}} (root, node\+\_\+id\+\_\+name=\textquotesingle{}Co\+Bo\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Retrieve a specific $<$\+Node$>$ element by its ID from the XML tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{xcfgreader_8py_ab138127a8bb1e0c25bfe3726c4d954df}{catmlib.\+util.\+xcfgreader.\+get\+\_\+instance}} (node, instance\+\_\+id\+\_\+name=\textquotesingle{} \texorpdfstring{$\ast$}{*}\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Retrieve a specific $<$\+Instance$>$ element by its ID within a given $<$\+Node$>$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{xcfgreader_8py_a6261806fefca49e9b416beb79f035db5}{catmlib.\+util.\+xcfgreader.\+get\+\_\+block}} (instance, label\+\_\+name=\textquotesingle{}As\+Ad\textquotesingle{}, block\+\_\+name=\textquotesingle{}0\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Retrieve a specific block element (e.\+g., As\+Ad or Aget) by tag and ID within an Instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{xcfgreader_8py_a1751479c8af6ec9c7e34cdac9d8f4f7c}{catmlib.\+util.\+xcfgreader.\+print\+\_\+tree}} (element, indent=0, indent\+\_\+label=1)
+\begin{DoxyCompactList}\small\item\em Recursively print elements at a specified depth level in an XML tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{xcfgreader_8py_af8e4b922e4f79767f963e369649fde8d}{catmlib.\+util.\+xcfgreader.\+write\+\_\+text}} (input\+\_\+path, output\+\_\+path)
+\item 
+\mbox{\hyperlink{xcfgreader_8py_a37aa79c252d86a2519a2417f868afae5}{catmlib.\+util.\+xcfgreader.\+read\+\_\+text}} (intput\+\_\+path=None)
+\begin{DoxyCompactList}\small\item\em Reads a tab-\/separated text file into a pandas Data\+Frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{xcfgreader_8py_a0a505809ae6ec0125b01051a3e3e537c}{catmlib.\+util.\+xcfgreader.\+get\+\_\+matching\+\_\+indices}} (data, cobo\+\_\+value, asad\+\_\+value, aget\+\_\+value, channel\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Get indices of rows in a Data\+Frame that match specified values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+reading utillities for configuration file of GET electronics 
+
+\begin{DoxyVersion}{Version}
+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Fumitaka ENDO 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/06-\/28T04\+:42\+:00+09\+:00 
+\end{DoxyDate}
+
+
+Definition in file \mbox{\hyperlink{xcfgreader_8py_source}{xcfgreader.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{xcfgreader_8py_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{xcfgreader_8py_ad0cae6f26da14a94b40572db3b710d1c}\index{xcfgreader.py@{xcfgreader.py}!classify\_indices@{classify\_indices}}
+\index{classify\_indices@{classify\_indices}!xcfgreader.py@{xcfgreader.py}}
+\doxysubsubsection{\texorpdfstring{classify\_indices()}{classify\_indices()}}
+{\footnotesize\ttfamily \label{xcfgreader_8py_ad0cae6f26da14a94b40572db3b710d1c} 
+catmlib.\+util.\+xcfgreader.\+classify\+\_\+indices (\begin{DoxyParamCaption}\item[{}]{values}{}\end{DoxyParamCaption})}
+
+
+
+Classify indices by values in a list. 
+
+This function groups the indices of elements in the input list by their values.
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & A list of values to be classified. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dictionary where each key is a unique value and the value is a list of indices where it occurs. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{xcfgreader_8py_source_l00015}{15}} of file \mbox{\hyperlink{xcfgreader_8py_source}{xcfgreader.\+py}}.
+
+\Hypertarget{xcfgreader_8py_a6261806fefca49e9b416beb79f035db5}\index{xcfgreader.py@{xcfgreader.py}!get\_block@{get\_block}}
+\index{get\_block@{get\_block}!xcfgreader.py@{xcfgreader.py}}
+\doxysubsubsection{\texorpdfstring{get\_block()}{get\_block()}}
+{\footnotesize\ttfamily \label{xcfgreader_8py_a6261806fefca49e9b416beb79f035db5} 
+catmlib.\+util.\+xcfgreader.\+get\+\_\+block (\begin{DoxyParamCaption}\item[{}]{instance}{, }\item[{}]{label\+\_\+name}{ = {\ttfamily \textquotesingle{}AsAd\textquotesingle{}}, }\item[{}]{block\+\_\+name}{ = {\ttfamily \textquotesingle{}0\textquotesingle{}}}\end{DoxyParamCaption})}
+
+
+
+Retrieve a specific block element (e.\+g., As\+Ad or Aget) by tag and ID within an Instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance} & The parent Instance element. \\
+\hline
+{\em label\+\_\+name} & The tag name of the block to find (e.\+g., \textquotesingle{}As\+Ad\textquotesingle{}, \textquotesingle{}Aget\textquotesingle{}). \\
+\hline
+{\em block\+\_\+name} & ID attribute of the block element to retrieve (default is \textquotesingle{}0\textquotesingle{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The block element if found; otherwise, None. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{xcfgreader_8py_source_l00063}{63}} of file \mbox{\hyperlink{xcfgreader_8py_source}{xcfgreader.\+py}}.
+
+\Hypertarget{xcfgreader_8py_ab138127a8bb1e0c25bfe3726c4d954df}\index{xcfgreader.py@{xcfgreader.py}!get\_instance@{get\_instance}}
+\index{get\_instance@{get\_instance}!xcfgreader.py@{xcfgreader.py}}
+\doxysubsubsection{\texorpdfstring{get\_instance()}{get\_instance()}}
+{\footnotesize\ttfamily \label{xcfgreader_8py_ab138127a8bb1e0c25bfe3726c4d954df} 
+catmlib.\+util.\+xcfgreader.\+get\+\_\+instance (\begin{DoxyParamCaption}\item[{}]{node}{, }\item[{}]{instance\+\_\+id\+\_\+name}{ = {\ttfamily \textquotesingle{}\texorpdfstring{$\ast$}{*}\textquotesingle{}}}\end{DoxyParamCaption})}
+
+
+
+Retrieve a specific $<$\+Instance$>$ element by its ID within a given $<$\+Node$>$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The parent Node element. \\
+\hline
+{\em instance\+\_\+id\+\_\+name} & ID attribute value of the desired Instance element (default is \textquotesingle{}\texorpdfstring{$\ast$}{*}\textquotesingle{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Instance element if found; otherwise, None. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{xcfgreader_8py_source_l00052}{52}} of file \mbox{\hyperlink{xcfgreader_8py_source}{xcfgreader.\+py}}.
+
+\Hypertarget{xcfgreader_8py_a0a505809ae6ec0125b01051a3e3e537c}\index{xcfgreader.py@{xcfgreader.py}!get\_matching\_indices@{get\_matching\_indices}}
+\index{get\_matching\_indices@{get\_matching\_indices}!xcfgreader.py@{xcfgreader.py}}
+\doxysubsubsection{\texorpdfstring{get\_matching\_indices()}{get\_matching\_indices()}}
+{\footnotesize\ttfamily \label{xcfgreader_8py_a0a505809ae6ec0125b01051a3e3e537c} 
+catmlib.\+util.\+xcfgreader.\+get\+\_\+matching\+\_\+indices (\begin{DoxyParamCaption}\item[{}]{data}{, }\item[{}]{cobo\+\_\+value}{, }\item[{}]{asad\+\_\+value}{, }\item[{}]{aget\+\_\+value}{, }\item[{}]{channel\+\_\+value}{}\end{DoxyParamCaption})}
+
+
+
+Get indices of rows in a Data\+Frame that match specified values. 
+
+Each parameter can be set to a specific value (non-\/negative) to filter, or a negative value to ignore the filter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pandas Data\+Frame that contains columns\+: {\ttfamily cobos}, {\ttfamily asads}, {\ttfamily agets}, {\ttfamily channels}. \\
+\hline
+{\em cobo\+\_\+value} & Integer. Cobo value to match (set \texorpdfstring{$<$}{<} 0 to ignore). \\
+\hline
+{\em asad\+\_\+value} & Integer. Asad value to match (set \texorpdfstring{$<$}{<} 0 to ignore). \\
+\hline
+{\em aget\+\_\+value} & Integer. Aget value to match (set \texorpdfstring{$<$}{<} 0 to ignore). \\
+\hline
+{\em channel\+\_\+value} & Integer. Channel value to match (set \texorpdfstring{$<$}{<} 0 to ignore). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of indices in the Data\+Frame where all specified values match. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{xcfgreader_8py_source_l00151}{151}} of file \mbox{\hyperlink{xcfgreader_8py_source}{xcfgreader.\+py}}.
+
+\Hypertarget{xcfgreader_8py_a1018de2a87504795f532d8cfba883d23}\index{xcfgreader.py@{xcfgreader.py}!get\_node@{get\_node}}
+\index{get\_node@{get\_node}!xcfgreader.py@{xcfgreader.py}}
+\doxysubsubsection{\texorpdfstring{get\_node()}{get\_node()}}
+{\footnotesize\ttfamily \label{xcfgreader_8py_a1018de2a87504795f532d8cfba883d23} 
+catmlib.\+util.\+xcfgreader.\+get\+\_\+node (\begin{DoxyParamCaption}\item[{}]{root}{, }\item[{}]{node\+\_\+id\+\_\+name}{ = {\ttfamily \textquotesingle{}CoBo\textquotesingle{}}}\end{DoxyParamCaption})}
+
+
+
+Retrieve a specific $<$\+Node$>$ element by its ID from the XML tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Root element of the XML tree. \\
+\hline
+{\em node\+\_\+id\+\_\+name} & ID attribute value of the desired Node element (default is \textquotesingle{}Co\+Bo\textquotesingle{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Node element if found; otherwise, None. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{xcfgreader_8py_source_l00040}{40}} of file \mbox{\hyperlink{xcfgreader_8py_source}{xcfgreader.\+py}}.
+
+\Hypertarget{xcfgreader_8py_a7286f928b502b4cfbb092bc77e9309bf}\index{xcfgreader.py@{xcfgreader.py}!get\_tree@{get\_tree}}
+\index{get\_tree@{get\_tree}!xcfgreader.py@{xcfgreader.py}}
+\doxysubsubsection{\texorpdfstring{get\_tree()}{get\_tree()}}
+{\footnotesize\ttfamily \label{xcfgreader_8py_a7286f928b502b4cfbb092bc77e9309bf} 
+catmlib.\+util.\+xcfgreader.\+get\+\_\+tree (\begin{DoxyParamCaption}\item[{}]{input\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Parse an XML configuration file and return its root element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+path} & Path to the XML configuration file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Root element of the parsed XML tree. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{xcfgreader_8py_source_l00029}{29}} of file \mbox{\hyperlink{xcfgreader_8py_source}{xcfgreader.\+py}}.
+
+\Hypertarget{xcfgreader_8py_a1751479c8af6ec9c7e34cdac9d8f4f7c}\index{xcfgreader.py@{xcfgreader.py}!print\_tree@{print\_tree}}
+\index{print\_tree@{print\_tree}!xcfgreader.py@{xcfgreader.py}}
+\doxysubsubsection{\texorpdfstring{print\_tree()}{print\_tree()}}
+{\footnotesize\ttfamily \label{xcfgreader_8py_a1751479c8af6ec9c7e34cdac9d8f4f7c} 
+catmlib.\+util.\+xcfgreader.\+print\+\_\+tree (\begin{DoxyParamCaption}\item[{}]{element}{, }\item[{}]{indent}{ = {\ttfamily 0}, }\item[{}]{indent\+\_\+label}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+
+
+Recursively print elements at a specified depth level in an XML tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em element} & The current element to print. \\
+\hline
+{\em indent} & Current recursion depth (used internally). \\
+\hline
+{\em indent\+\_\+label} & Target depth level at which to print elements. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{xcfgreader_8py_source_l00075}{75}} of file \mbox{\hyperlink{xcfgreader_8py_source}{xcfgreader.\+py}}.
+
+\Hypertarget{xcfgreader_8py_a37aa79c252d86a2519a2417f868afae5}\index{xcfgreader.py@{xcfgreader.py}!read\_text@{read\_text}}
+\index{read\_text@{read\_text}!xcfgreader.py@{xcfgreader.py}}
+\doxysubsubsection{\texorpdfstring{read\_text()}{read\_text()}}
+{\footnotesize\ttfamily \label{xcfgreader_8py_a37aa79c252d86a2519a2417f868afae5} 
+catmlib.\+util.\+xcfgreader.\+read\+\_\+text (\begin{DoxyParamCaption}\item[{}]{intput\+\_\+path}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Reads a tab-\/separated text file into a pandas Data\+Frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em intput\+\_\+path} & The path to the text file. If None, the function returns None. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pandas Data\+Frame containing the loaded data, or None if no path is given. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{xcfgreader_8py_source_l00140}{140}} of file \mbox{\hyperlink{xcfgreader_8py_source}{xcfgreader.\+py}}.
+
+\Hypertarget{xcfgreader_8py_af8e4b922e4f79767f963e369649fde8d}\index{xcfgreader.py@{xcfgreader.py}!write\_text@{write\_text}}
+\index{write\_text@{write\_text}!xcfgreader.py@{xcfgreader.py}}
+\doxysubsubsection{\texorpdfstring{write\_text()}{write\_text()}}
+{\footnotesize\ttfamily \label{xcfgreader_8py_af8e4b922e4f79767f963e369649fde8d} 
+catmlib.\+util.\+xcfgreader.\+write\+\_\+text (\begin{DoxyParamCaption}\item[{}]{input\+\_\+path}{, }\item[{}]{output\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{xcfgreader_8py_source_l00089}{89}} of file \mbox{\hyperlink{xcfgreader_8py_source}{xcfgreader.\+py}}.
+

@@ -5,26 +5,17 @@
 CATM readout pad generation package.  
 
 
-\doxysubsubsection*{Namespaces}
-\begin{DoxyCompactItemize}
-\item 
-namespace \mbox{\hyperlink{namespacecatmlib}{catmlib}}
-\item 
-namespace \mbox{\hyperlink{namespacecatmlib_1_1readoutpad}{catmlib.\+readoutpad}}
-\item 
-namespace \mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm}{catmlib.\+readoutpad.\+catm}}
-\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a6abad57f7924efa6d6211dca373af65e}{catmlib.\+readoutpad.\+catm.\+get\+\_\+beam\+\_\+tpc\+\_\+array}} ()
-\item 
-\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_ad1c9b4deea3068498d75b02c30040945}{catmlib.\+readoutpad.\+catm.\+get\+\_\+recoil\+\_\+tpc\+\_\+array}} ()
-\item 
-\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a58644e030dc48d7f16f759ceefc51942}{catmlib.\+readoutpad.\+catm.\+get\+\_\+ssd\+\_\+array}} ()
-\item 
-\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a6d079989a3ffaf7b13338c985db59d41}{catmlib.\+readoutpad.\+catm.\+check\+\_\+pad\+\_\+view}} ()
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{catm_8py_a6abad57f7924efa6d6211dca373af65e}{catmlib.\+readoutpad.\+catm.\+get\+\_\+beam\+\_\+tpc\+\_\+array}} ()
+\begin{DoxyCompactList}\small\item\em get beam tpc pad array @detail pad length withou gap = 5. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{catm_8py_ad1c9b4deea3068498d75b02c30040945}{catmlib.\+readoutpad.\+catm.\+get\+\_\+recoil\+\_\+tpc\+\_\+array}} ()
+\begin{DoxyCompactList}\small\item\em get recoil tpc pad array @detail pad length withou gap = 7. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{catm_8py_a58644e030dc48d7f16f759ceefc51942}{catmlib.\+readoutpad.\+catm.\+get\+\_\+ssd\+\_\+array}} ()
+\begin{DoxyCompactList}\small\item\em get ssd pad array \end{DoxyCompactList}\item 
+\mbox{\hyperlink{catm_8py_a6d079989a3ffaf7b13338c985db59d41}{catmlib.\+readoutpad.\+catm.\+check\+\_\+pad\+\_\+view}} ()
+\begin{DoxyCompactList}\small\item\em check each pad configuration \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -42,4 +33,78 @@ Fumitaka ENDO
 
 
 Definition in file \mbox{\hyperlink{catm_8py_source}{catm.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{catm_8py_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{catm_8py_a6d079989a3ffaf7b13338c985db59d41}\index{catm.py@{catm.py}!check\_pad\_view@{check\_pad\_view}}
+\index{check\_pad\_view@{check\_pad\_view}!catm.py@{catm.py}}
+\doxysubsubsection{\texorpdfstring{check\_pad\_view()}{check\_pad\_view()}}
+{\footnotesize\ttfamily \label{catm_8py_a6d079989a3ffaf7b13338c985db59d41} 
+catmlib.\+readoutpad.\+catm.\+check\+\_\+pad\+\_\+view (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+check each pad configuration 
+
+draw pad alignment using matplotlib
+
+CLI argument\+: \begin{DoxyItemize}
+\item -\/pad select detector (beam tpc, recoil tpc, ssd). default is recoil-\/tpc \item -\/plane select draw plane. default is xz \end{DoxyItemize}
+
+
+Definition at line \mbox{\hyperlink{catm_8py_source_l00164}{164}} of file \mbox{\hyperlink{catm_8py_source}{catm.\+py}}.
+
+\Hypertarget{catm_8py_a6abad57f7924efa6d6211dca373af65e}\index{catm.py@{catm.py}!get\_beam\_tpc\_array@{get\_beam\_tpc\_array}}
+\index{get\_beam\_tpc\_array@{get\_beam\_tpc\_array}!catm.py@{catm.py}}
+\doxysubsubsection{\texorpdfstring{get\_beam\_tpc\_array()}{get\_beam\_tpc\_array()}}
+{\footnotesize\ttfamily \label{catm_8py_a6abad57f7924efa6d6211dca373af65e} 
+catmlib.\+readoutpad.\+catm.\+get\+\_\+beam\+\_\+tpc\+\_\+array (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+get beam tpc pad array @detail pad length withou gap = 5. 
+
+number of pad = 22 (11 x 2) \begin{DoxyReturn}{Returns}
+beam tpc pad array (\doxylink{class_t_readout_pad_array}{TReadout\+Pad\+Array}) 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{catm_8py_source_l00014}{14}} of file \mbox{\hyperlink{catm_8py_source}{catm.\+py}}.
+
+\Hypertarget{catm_8py_ad1c9b4deea3068498d75b02c30040945}\index{catm.py@{catm.py}!get\_recoil\_tpc\_array@{get\_recoil\_tpc\_array}}
+\index{get\_recoil\_tpc\_array@{get\_recoil\_tpc\_array}!catm.py@{catm.py}}
+\doxysubsubsection{\texorpdfstring{get\_recoil\_tpc\_array()}{get\_recoil\_tpc\_array()}}
+{\footnotesize\ttfamily \label{catm_8py_ad1c9b4deea3068498d75b02c30040945} 
+catmlib.\+readoutpad.\+catm.\+get\+\_\+recoil\+\_\+tpc\+\_\+array (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+get recoil tpc pad array @detail pad length withou gap = 7. 
+
+number of pad = 4048 ( (23x2) x 88 ) \begin{DoxyReturn}{Returns}
+recoil tpc pad array (\doxylink{class_t_readout_pad_array}{TReadout\+Pad\+Array}) 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{catm_8py_source_l00038}{38}} of file \mbox{\hyperlink{catm_8py_source}{catm.\+py}}.
+
+\Hypertarget{catm_8py_a58644e030dc48d7f16f759ceefc51942}\index{catm.py@{catm.py}!get\_ssd\_array@{get\_ssd\_array}}
+\index{get\_ssd\_array@{get\_ssd\_array}!catm.py@{catm.py}}
+\doxysubsubsection{\texorpdfstring{get\_ssd\_array()}{get\_ssd\_array()}}
+{\footnotesize\ttfamily \label{catm_8py_a58644e030dc48d7f16f759ceefc51942} 
+catmlib.\+readoutpad.\+catm.\+get\+\_\+ssd\+\_\+array (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+get ssd pad array 
+
+\begin{DoxyReturn}{Returns}
+ssd pad array (\doxylink{class_t_readout_pad_array}{TReadout\+Pad\+Array}) 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{catm_8py_source_l00099}{99}} of file \mbox{\hyperlink{catm_8py_source}{catm.\+py}}.
 

@@ -51,16 +51,6 @@ catmlib.\+readoutpad.\+basepad.\+TBase\+Pad\+Shape\+Class.\+\_\+\+\_\+init\+\_\+
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00019}{19}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self):}
-\DoxyCodeLine{00020\ \ \ \ \ }
-\DoxyCodeLine{00026\ \ \ \ \ self.mapping\ =\ \{\textcolor{stringliteral}{'x'}:\ 0,\ \textcolor{stringliteral}{'y'}:\ 1,\ \textcolor{stringliteral}{'z'}:\ 2\}}
-\DoxyCodeLine{00027\ \ \ \ \ self.center\ =\ [0,\ 0,\ 0]}
-\DoxyCodeLine{00028\ \ \ \ \ self.polygon\ =\ []}
-\DoxyCodeLine{00029\ }
-
-\end{DoxyCode}
-
 
 \label{doc-func-members}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class_doc-func-members}
@@ -75,14 +65,6 @@ catmlib.\+readoutpad.\+basepad.\+TBase\+Pad\+Shape\+Class.\+add\+\_\+polygon (\b
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00036}{36}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{def\ }add\_polygon(self,\ position):}
-\DoxyCodeLine{00037\ \ \ \ \ }
-\DoxyCodeLine{00040\ \ \ \ \ self.polygon.append(position)}
-\DoxyCodeLine{00041\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class_aa4c6a7af45586cb23af1bdb77ec1406b}\index{catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}!get\_center@{get\_center}}
 \index{get\_center@{get\_center}!catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}}
 \doxysubsubsection{\texorpdfstring{get\_center()}{get\_center()}}
@@ -93,14 +75,6 @@ catmlib.\+readoutpad.\+basepad.\+TBase\+Pad\+Shape\+Class.\+get\+\_\+center (\be
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00042}{42}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{def\ }get\_center(self):}
-\DoxyCodeLine{00043\ \ \ \ \ }
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ self.center}
-\DoxyCodeLine{00047\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class_a34be30140c8b825ad17f8f892511db8c}\index{catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}!get\_center\_polygon\_distance@{get\_center\_polygon\_distance}}
 \index{get\_center\_polygon\_distance@{get\_center\_polygon\_distance}!catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}}
 \doxysubsubsection{\texorpdfstring{get\_center\_polygon\_distance()}{get\_center\_polygon\_distance()}}
@@ -111,22 +85,6 @@ catmlib.\+readoutpad.\+basepad.\+TBase\+Pad\+Shape\+Class.\+get\+\_\+center\+\_\
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00054}{54}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{def\ }get\_center\_polygon\_distance(self):}
-\DoxyCodeLine{00055\ \ \ \ \ }
-\DoxyCodeLine{00058\ \ \ \ \ distances\ =\ []}
-\DoxyCodeLine{00059\ \ \ \ \ }
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.polygon)):}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ dx\ =\ self.center[0]\ -\/\ self.polygon[i][0]}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ dy\ =\ self.center[1]\ -\/\ self.polygon[i][1]}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ dz\ =\ self.center[2]\ -\/\ self.polygon[i][2]}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ distances.append(\ np.sqrt(dx**2\ +\ dy**2\ +\ dz**2)\ )}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ distances}
-\DoxyCodeLine{00067\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class_a461992ec60819592e2a925a748f5c773}\index{catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}!get\_polygon@{get\_polygon}}
 \index{get\_polygon@{get\_polygon}!catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}}
 \doxysubsubsection{\texorpdfstring{get\_polygon()}{get\_polygon()}}
@@ -137,14 +95,6 @@ catmlib.\+readoutpad.\+basepad.\+TBase\+Pad\+Shape\+Class.\+get\+\_\+polygon (\b
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00048}{48}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{def\ }get\_polygon(self):}
-\DoxyCodeLine{00049\ \ \ \ \ }
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ self.polygon}
-\DoxyCodeLine{00053\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class_a9ec33d0f3953591f2df99d84f628b0dc}\index{catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}!get\_polygon\_vertex\_distance@{get\_polygon\_vertex\_distance}}
 \index{get\_polygon\_vertex\_distance@{get\_polygon\_vertex\_distance}!catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}}
 \doxysubsubsection{\texorpdfstring{get\_polygon\_vertex\_distance()}{get\_polygon\_vertex\_distance()}}
@@ -155,21 +105,6 @@ catmlib.\+readoutpad.\+basepad.\+TBase\+Pad\+Shape\+Class.\+get\+\_\+polygon\+\_
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00068}{68}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{def\ }get\_polygon\_vertex\_distance(self):}
-\DoxyCodeLine{00069\ \ \ \ \ }
-\DoxyCodeLine{00072\ \ \ \ \ distances\ =\ []}
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.polygon)):}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(i+1,\ len(self.polygon)):}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ dx\ =\ self.polygon[i][0]\ -\/\ self.polygon[j][0]}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ dy\ =\ self.polygon[i][1]\ -\/\ self.polygon[j][1]}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ dz\ =\ self.polygon[i][2]\ -\/\ self.polygon[j][2]}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ distances.append(\ np.sqrt(dx**2\ +\ dy**2\ +\ dz**2)\ )}
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ distances}
-\DoxyCodeLine{00080\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class_a526c471c964a7a71918d36f9f34a75b3}\index{catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}!set\_center@{set\_center}}
 \index{set\_center@{set\_center}!catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}}
 \doxysubsubsection{\texorpdfstring{set\_center()}{set\_center()}}
@@ -180,14 +115,6 @@ catmlib.\+readoutpad.\+basepad.\+TBase\+Pad\+Shape\+Class.\+set\+\_\+center (\be
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00030}{30}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{def\ }set\_center(self,\ x,\ y,\ z):}
-\DoxyCodeLine{00031\ \ \ \ \ }
-\DoxyCodeLine{00034\ \ \ \ \ self.center\ =\ [x,\ y,\ z]}
-\DoxyCodeLine{00035\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class_a7d50b27d01b461aa6b6fc811de2469ac}\index{catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}!show\_polygon@{show\_polygon}}
 \index{show\_polygon@{show\_polygon}!catmlib.readoutpad.basepad.TBasePadShapeClass@{catmlib.readoutpad.basepad.TBasePadShapeClass}}
 \doxysubsubsection{\texorpdfstring{show\_polygon()}{show\_polygon()}}
@@ -198,28 +125,6 @@ catmlib.\+readoutpad.\+basepad.\+TBase\+Pad\+Shape\+Class.\+show\+\_\+polygon (\
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00081}{81}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{def\ }show\_polygon(self,\ plane='xz'):}
-\DoxyCodeLine{00082\ \ \ \ \ }
-\DoxyCodeLine{00086\ \ \ \ \ index1\ =\ self.mapping.get(plane[0],\ 0)}
-\DoxyCodeLine{00087\ \ \ \ \ index2\ =\ self.mapping.get(plane[1],\ 0)}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ xs\ =\ [vertex[index1]\ \textcolor{keywordflow}{for}\ vertex\ \textcolor{keywordflow}{in}\ self.polygon\ ]}
-\DoxyCodeLine{00090\ \ \ \ \ ys\ =\ [vertex[index2]\ \textcolor{keywordflow}{for}\ vertex\ \textcolor{keywordflow}{in}\ self.polygon\ ]}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \ \ \ \ fig=plt.figure(figsize=(6,\ 5))}
-\DoxyCodeLine{00093\ \ \ \ \ ax\ =\ fig.add\_subplot(111)}
-\DoxyCodeLine{00094\ \ \ \ \ fig.patch.set\_alpha(0.)}
-\DoxyCodeLine{00095\ \ \ \ \ ax.fill(xs,\ ys,\ edgecolor=\textcolor{stringliteral}{'black'},\ facecolor=\textcolor{stringliteral}{'\#d3d3d3'})}
-\DoxyCodeLine{00096\ \ \ \ \ ax.set\_aspect(\textcolor{stringliteral}{'equal'})}
-\DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ \ \ \ \ plt.xlabel(str(plane[0])+\textcolor{stringliteral}{"{}position\ [mm]"{}})}
-\DoxyCodeLine{00099\ \ \ \ \ plt.ylabel(str(plane[1])+\textcolor{stringliteral}{"{}position\ [mm]"{}})}
-\DoxyCodeLine{00100\ \ \ \ \ plt.show()}
-\DoxyCodeLine{00101\ }
-
-\end{DoxyCode}
 
 
 \label{doc-variable-members}

@@ -116,13 +116,13 @@ list \mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channe
 \begin{DoxyCompactList}\small\item\em set list of voltage value \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9486ee23f04ebee079448a36d0de3d14}{calib\+\_\+data\+\_\+x}}
 \item 
-\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a06fa36e8437c086663706828b3c2a8f5}{calib\+\_\+data\+\_\+y}} = \mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a13dbd95a6cac156a4ec8ada005783d80}{util.\+dataforming.\+read\+\_\+spe\+\_\+file}}(self.\+calib\+\_\+path)
+\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a06fa36e8437c086663706828b3c2a8f5}{calib\+\_\+data\+\_\+y}} = util.\+dataforming.\+read\+\_\+spe\+\_\+file(self.\+calib\+\_\+path)
 \item 
-\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab5de031b2c4b7a4189b4956fae36fccb}{calib\+\_\+data\+\_\+h}} = \mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a610a67ced407ba1e31850572ee25f57e}{util.\+dataforming.\+create\+\_\+histogram\+\_\+data\+\_\+from\+\_\+points}}(self.\+calib\+\_\+data\+\_\+x, self.\+calib\+\_\+data\+\_\+y)
+\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab5de031b2c4b7a4189b4956fae36fccb}{calib\+\_\+data\+\_\+h}} = util.\+dataforming.\+create\+\_\+histogram\+\_\+data\+\_\+from\+\_\+points(self.\+calib\+\_\+data\+\_\+x, self.\+calib\+\_\+data\+\_\+y)
 \item 
 \mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a200466ca9d3a7493adcdfe9e3f077f2b}{calib\+\_\+data\+\_\+peak\+\_\+count}}
 \item 
-\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab0b4d5c3a1a193341e0c73fdae054cdc}{calib\+\_\+data\+\_\+peak\+\_\+indices}} = \mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a65c2738b149373bcba2e1600c3f93cb6}{util.\+dataforming.\+find\+\_\+peaks}}(smoothed\+\_\+data)
+\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab0b4d5c3a1a193341e0c73fdae054cdc}{calib\+\_\+data\+\_\+peak\+\_\+indices}} = util.\+dataforming.\+find\+\_\+peaks(smoothed\+\_\+data)
 \begin{DoxyCompactList}\small\item\em peak fitting for calibration data \end{DoxyCompactList}\item 
 list \mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5cf2a0020ecdfb9c083897ca1c8b3fce}{calib\+\_\+means\+\_\+err}} = \mbox{[}$\,$\mbox{]}
 \end{DoxyCompactItemize}
@@ -149,44 +149,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+\_\+\+\_\+init\+\
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00027}{27}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self):}
-\DoxyCodeLine{00028\ \ \ \ \ }
-\DoxyCodeLine{00062\ \ \ \ \ self.Qmeas\ =\ []}
-\DoxyCodeLine{00063\ \ \ \ \ self.Qmeas\_err\ =\ []}
-\DoxyCodeLine{00064\ \ \ \ \ self.dEdX\ =\ 1e6\ \ \ \ \textcolor{comment}{\#\ [eV/mm]}}
-\DoxyCodeLine{00065\ \ \ \ \ self.dL\ =\ 12\ \ \ \ \ \ \ \textcolor{comment}{\#\ [mm]}}
-\DoxyCodeLine{00066\ \ \ \ \ self.W\ =\ 26\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ [eV]}}
-\DoxyCodeLine{00067\ \ \ \ \ self.Qe\ =\ 1.602e-\/7\ \textcolor{comment}{\#\ [pC]}}
-\DoxyCodeLine{00068\ \ \ \ \ self.G\ =\ []}
-\DoxyCodeLine{00069\ \ \ \ \ self.G\_err\ =\ []}
-\DoxyCodeLine{00070\ \ \ \ \ self.E\ =\ 1\ }
-\DoxyCodeLine{00071\ \ \ \ \ self.a\ =\ 1}
-\DoxyCodeLine{00072\ \ \ \ \ self.b\ =\ 0}
-\DoxyCodeLine{00073\ \ \ \ \ self.calib\_path\ =\ \textcolor{keywordtype}{None}}
-\DoxyCodeLine{00074\ \ \ \ \ self.datas\ =\ []}
-\DoxyCodeLine{00075\ \ \ \ \ self.input\_values\ =\ []}
-\DoxyCodeLine{00076\ \ \ \ \ self.calib\_fit\_xs\ =\ []}
-\DoxyCodeLine{00077\ \ \ \ \ self.calib\_fit\_ys\ =[]}
-\DoxyCodeLine{00078\ \ \ \ \ self.calib\_means\ =\ []}
-\DoxyCodeLine{00079\ \ \ \ \ self.calib\_sigmas\ =\ []}
-\DoxyCodeLine{00080\ \ \ \ \ self.data\_files\ =\ []}
-\DoxyCodeLine{00081\ \ \ \ \ self.data\_files\_name\ =\ []}
-\DoxyCodeLine{00082\ \ \ \ \ self.datas\_x\ =\ []}
-\DoxyCodeLine{00083\ \ \ \ \ self.datas\_y\ =\ []}
-\DoxyCodeLine{00084\ \ \ \ \ self.datas\_h\ =\ []}
-\DoxyCodeLine{00085\ \ \ \ \ self.datas\_peak\_count\ =\ []}
-\DoxyCodeLine{00086\ \ \ \ \ self.datas\_peak\_indices\ =\ []}
-\DoxyCodeLine{00087\ \ \ \ \ self.datas\_fit\_xs\ =\ []}
-\DoxyCodeLine{00088\ \ \ \ \ self.datas\_fit\_ys\ =\ []}
-\DoxyCodeLine{00089\ \ \ \ \ self.datas\_fit\_oys\ =\ []}
-\DoxyCodeLine{00090\ \ \ \ \ self.datas\_means\ =\ []}
-\DoxyCodeLine{00091\ \ \ \ \ self.datas\_sigmas\ =\ []}
-\DoxyCodeLine{00092\ \ \ \ \ self.voltages\ =\ []}
-\DoxyCodeLine{00093\ \ \ }
-
-\end{DoxyCode}
-
 
 \label{doc-func-members}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_doc-func-members}
@@ -201,16 +163,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+add\+\_\+data\+\_
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00369}{369}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00369\ \ \ \textcolor{keyword}{def\ }add\_data\_file\_path\_list(self,\ filepath='./*spe'):}
-\DoxyCodeLine{00370\ \ \ \ \ }
-\DoxyCodeLine{00378\ \ \ \ \ add\_files\ =\ sorted(glob.glob(filepath))}
-\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(add\_files)):}
-\DoxyCodeLine{00380\ \ \ \ \ \ \ self.data\_files.append(add\_files[i])}
-\DoxyCodeLine{00381\ \ \ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a375c8936a662748b7af17995345045c8}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!calculate\_calibration\_parameters@{calculate\_calibration\_parameters}}
 \index{calculate\_calibration\_parameters@{calculate\_calibration\_parameters}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{calculate\_calibration\_parameters()}{calculate\_calibration\_parameters()}}
@@ -221,46 +173,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+calculate\+\_\+ca
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00279}{279}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00279\ \ \ \textcolor{keyword}{def\ }calculate\_calibration\_parameters(self,\ plot\_flag=False):}
-\DoxyCodeLine{00280\ \ \ \ \ }
-\DoxyCodeLine{00288\ }
-\DoxyCodeLine{00289\ \ \ \ \ \textcolor{comment}{\#\ @param\ plot\_flag\ plot\ flag.\ if\ true,\ draw\ data\ by\ plotly\ (default:False)}}
-\DoxyCodeLine{00290\ \ \ \ \ \textcolor{comment}{\#\ @return\ None}}
-\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.calib\_sigmas)\ ==\ len(self.input\_values):}
-\DoxyCodeLine{00292\ \ \ \ \ \ \ self.calib\_means\_err\ =\ []}
-\DoxyCodeLine{00293\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.calib\_means)):}
-\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ self.calib\_means\_err.append(self.calib\_sigmas[i]/self.calib\_means[i])}
-\DoxyCodeLine{00295\ }
-\DoxyCodeLine{00296\ \ \ \ \ \ \ least\_squares\ =\ LeastSquares(self.input\_values,\ self.calib\_means,\ self.calib\_means\_err,\ self.linear)}
-\DoxyCodeLine{00297\ \ \ \ \ \ \ m\ =\ Minuit(least\_squares,\ p0=0,\ p1=100)}
-\DoxyCodeLine{00298\ \ \ \ \ \ \ m.errordef\ =\ 1}
-\DoxyCodeLine{00299\ \ \ \ \ \ \ m.migrad()}
-\DoxyCodeLine{00300\ \ \ \ \ \ \ params\ =\ m.values}
-\DoxyCodeLine{00301\ }
-\DoxyCodeLine{00302\ \ \ \ \ \ \ self.b\ =\ -\/params[\textcolor{stringliteral}{'p0'}]/params[\textcolor{stringliteral}{'p1'}]}
-\DoxyCodeLine{00303\ \ \ \ \ \ \ self.a\ =\ 1/params[\textcolor{stringliteral}{'p1'}]\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00304\ }
-\DoxyCodeLine{00305\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ plot\_flag:}
-\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ fig\ =\ go.Figure(}
-\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ data\ =\ go.Scatter(}
-\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ y=self.input\_values,\ x=self.calib\_means,\ }
-\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ error\_x=dict(type=\textcolor{stringliteral}{'data'},\ array=self.calib\_means\_err,\ thickness=2,\ width=5,\ visible=\textcolor{keyword}{True}),}
-\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ mode=\textcolor{stringliteral}{'markers'},\ name=\textcolor{stringliteral}{'fitted\ data\ plot'}))}
-\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ fig.update\_layout(title=\textcolor{stringliteral}{'Input\ Values\ vs\ Fitted\ Values'},\ yaxis\_title=\textcolor{stringliteral}{'Input\ values'},\ xaxis\_title=\textcolor{stringliteral}{'Fitted\ value'},\ title\_x=0.05,\ title\_font=dict(size=20))}
-\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ fig.add\_trace(}
-\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ go.Scatter(}
-\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ x=np.array(self.calib\_means),\ y=self.linear(np.array(self.calib\_means),\ self.b\ ,\ self.a),\ mode=\textcolor{stringliteral}{'lines'},\ }
-\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ name=f\textcolor{stringliteral}{"{}\{self.b:.3f\}+\{self.a:.3f\}x"{}},\ }
-\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ line=dict(color=\textcolor{stringliteral}{'red'},\ width=2),\ opacity=0.5))}
-\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ fig.show()}
-\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{00319\ \ \ \ \ \ \ print(\textcolor{stringliteral}{'peak\ number\ does\ not\ match\ input\ list.'})}
-\DoxyCodeLine{00320\ \ \ \ \ \ \ print(\textcolor{stringliteral}{'calibration\ parameter\ calculation\ process\ wad\ skipped.'})}
-\DoxyCodeLine{00321\ \ \ \ \ \ \ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a54ada8110eaef5f1c01e157a9726e47c}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!calculate\_Gain@{calculate\_Gain}}
 \index{calculate\_Gain@{calculate\_Gain}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{calculate\_Gain()}{calculate\_Gain()}}
@@ -271,18 +183,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+calculate\+\_\+\+
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00147}{147}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00147\ \ \ \textcolor{keyword}{def\ }calculate\_Gain(self):}
-\DoxyCodeLine{00148\ \ \ \ \ }
-\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.Qmeas)*len(self.Qmeas\_err)>0:}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ self.G\ =\ self.Qmeas\ /\ (\ self.dEdX\ *\ self.dL\ *\ self.Qe\ /\ self.W\ )\ }
-\DoxyCodeLine{00157\ \ \ \ \ \ \ self.G\_err\ =\ self.Qmeas\_err\ /\ (\ self.dEdX\ *\ self.dL\ *\ self.Qe\ /\ self.W\ )\ }
-\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{'measured\ values\ are\ empty.'})\ }
-\DoxyCodeLine{00160\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a3ea4c90ff287ee262c3e86edc78649ac}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!calculate\_Qmeas@{calculate\_Qmeas}}
 \index{calculate\_Qmeas@{calculate\_Qmeas}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{calculate\_Qmeas()}{calculate\_Qmeas()}}
@@ -293,18 +193,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+calculate\+\_\+\+
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00133}{133}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00133\ \ \ \textcolor{keyword}{def\ }calculate\_Qmeas(self):}
-\DoxyCodeLine{00134\ \ \ \ \ }
-\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.datas\_means)*len(self.datas\_sigmas)>0:}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ self.Qmeas\ =\ self.linear(\ np.array(self.datas\_means).flatten(),\ self.b,\ self.a)}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ self.Qmeas\_err\ =\ self.a\ *\ np.array(self.datas\_sigmas).flatten()}
-\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{'measured\ values\ are\ empty.'})\ }
-\DoxyCodeLine{00146\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8bedc887ec3de0f7b50e361a391313cc}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!check\_data\_file@{check\_data\_file}}
 \index{check\_data\_file@{check\_data\_file}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{check\_data\_file()}{check\_data\_file()}}
@@ -315,16 +203,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+check\+\_\+data\+
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00382}{382}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00382\ \ \ \textcolor{keyword}{def\ }check\_data\_file(self):}
-\DoxyCodeLine{00383\ \ \ \ \ }
-\DoxyCodeLine{00386\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.data\_files)):}
-\DoxyCodeLine{00387\ \ \ \ \ \ \ print(self.data\_files[i])}
-\DoxyCodeLine{00388\ }
-\DoxyCodeLine{00389\ \ \ \ \ \ \ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a99b8f1035c8851ef70115a8d3458534a}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!draw\_fitted\_datas@{draw\_fitted\_datas}}
 \index{draw\_fitted\_datas@{draw\_fitted\_datas}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{draw\_fitted\_datas()}{draw\_fitted\_datas()}}
@@ -335,42 +213,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+draw\+\_\+fitted\
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00434}{434}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00434\ \ \ \textcolor{keyword}{def\ }draw\_fitted\_datas(self):}
-\DoxyCodeLine{00435\ \ \ \ \ }
-\DoxyCodeLine{00438\ \ \ \ \ k\ =\ 0}
-\DoxyCodeLine{00439\ \ \ \ \ }
-\DoxyCodeLine{00440\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.datas\_fit\_xs)):}
-\DoxyCodeLine{00441\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(self.datas\_fit\_xs[i])):}
-\DoxyCodeLine{00442\ }
-\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ data\_h\ =\ util.dataforming.create\_histogram\_data\_from\_points(self.datas\_fit\_xs[i][j],\ self.datas\_fit\_oys[i][j])}
-\DoxyCodeLine{00444\ }
-\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ k\ ==\ 0:}
-\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ categories\ =\ [f\textcolor{stringliteral}{"{}\{self.data\_files\_name[i]\},\ FID:\{i\},\ HID:\{j\}"{}}]\ *\ len(data\_h)}
-\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ histograms\ =\ data\_h}
-\DoxyCodeLine{00448\ }
-\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ categories\ =\ categories\ +\ [f\textcolor{stringliteral}{"{}\{self.data\_files\_name[i]\},\ FID:\{i\},\ HID:\{j\}"{}}]\ *\ len(data\_h)}
-\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ histograms\ =\ histograms\ +\ data\_h}
-\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ k\ =\ k\ +\ 1}
-\DoxyCodeLine{00454\ \ \ \ \ }
-\DoxyCodeLine{00455\ \ \ \ \ df\ =\ pd.DataFrame(\{\textcolor{stringliteral}{'Value'}:\ histograms,\ \textcolor{stringliteral}{'Category'}:\ categories\})}
-\DoxyCodeLine{00456\ \ \ \ \ fig\ =\ px.histogram(df,\ x=\textcolor{stringliteral}{"{}Value"{}},\ color=\textcolor{stringliteral}{"{}Category"{}},\ nbins=1023,\ opacity=0.75)}
-\DoxyCodeLine{00457\ }
-\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.datas\_fit\_xs)):}
-\DoxyCodeLine{00459\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(self.datas\_fit\_xs[i])):}
-\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ fig.add\_trace(}
-\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ go.Scatter(}
-\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ x=self.datas\_fit\_xs[i][j],\ y=self.datas\_fit\_ys[i][j],\ mode=\textcolor{stringliteral}{'lines'},\ }
-\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ name=f\textcolor{stringliteral}{"{}FID:\{i\},\ HID:\{j\},\ (\{self.calib\_means[i]:3.2f\},\ \{self.calib\_sigmas[i]:3.2f\})"{}},\ }
-\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ line=dict(color=\textcolor{stringliteral}{'black'},\ width=1.5),\ opacity=0.5))}
-\DoxyCodeLine{00465\ }
-\DoxyCodeLine{00466\ \ \ \ \ fig.show()}
-\DoxyCodeLine{00467\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4167ef1d85c186d2ba00a19d4e07c617}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!draw\_gain\_curve@{draw\_gain\_curve}}
 \index{draw\_gain\_curve@{draw\_gain\_curve}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{draw\_gain\_curve()}{draw\_gain\_curve()}}
@@ -381,24 +223,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+draw\+\_\+gain\+\
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00468}{468}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00468\ \ \ \textcolor{keyword}{def\ }draw\_gain\_curve(self):}
-\DoxyCodeLine{00469\ \ \ \ \ }
-\DoxyCodeLine{00476\ \ \ \ \ fig\ =\ go.Figure(}
-\DoxyCodeLine{00477\ \ \ \ \ \ \ data\ =\ go.Scatter(}
-\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ x=self.voltages,\ y=self.G,\ }
-\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ error\_y=dict(type=\textcolor{stringliteral}{'data'},\ array=self.G\_err,\ thickness=2,\ width=5,\ visible=\textcolor{keyword}{True}),}
-\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{'fitted\ data\ plot'}))}
-\DoxyCodeLine{00481\ \ \ \ \ fig.update\_layout(title=\textcolor{stringliteral}{'Gain\ Curve'},\ yaxis\_title=\textcolor{stringliteral}{'Gain'},\ xaxis\_title=\textcolor{stringliteral}{'Voltage\ [V]'},\ title\_x=0.05,\ title\_font=dict(size=20))}
-\DoxyCodeLine{00482\ \ \ \ \ \textcolor{comment}{\#\ fig.add\_trace(}}
-\DoxyCodeLine{00483\ \ \ \ \ \textcolor{comment}{\#\ \ \ go.Scatter(}}
-\DoxyCodeLine{00484\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ x=np.array(self.calib\_means),\ y=self.linear(np.array(self.calib\_means),\ self.b\ ,\ self.a),\ mode='lines',\ }}
-\DoxyCodeLine{00485\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ name=f"{}\{self.b:.3f\}+\{self.a:.3f\}x"{},\ }}
-\DoxyCodeLine{00486\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ line=dict(color='red',\ width=2),\ opacity=0.5))}}
-\DoxyCodeLine{00487\ \ \ \ \ fig.show()}
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_af767d7af60cacab14955ba8c127bae01}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!find\_peak@{find\_peak}}
 \index{find\_peak@{find\_peak}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{find\_peak()}{find\_peak()}}
@@ -409,40 +233,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+find\+\_\+peak (\
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00193}{193}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00193\ \ \ \textcolor{keyword}{def\ }find\_peak(self,\ smooth\_parameter=3,\ input\_label='calib'\ ,debug=False):}
-\DoxyCodeLine{00194\ \ \ \ \ }
-\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{if}\ input\_label\ ==\ \textcolor{stringliteral}{'calib'}:}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ self.calib\_data\_x,\ self.calib\_data\_y\ =\ util.dataforming.read\_spe\_file(self.calib\_path)}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ self.calib\_data\_h\ =\ util.dataforming.create\_histogram\_data\_from\_points(self.calib\_data\_x,\ self.calib\_data\_y)}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ smoothed\_data\ =\ gaussian\_filter(self.calib\_data\_y,\ smooth\_parameter)}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ self.calib\_data\_peak\_count,\ self.calib\_data\_peak\_indices\ =\ util.dataforming.find\_peaks(smoothed\_data)}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ }
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ debug:}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}(calibration)\ number\ of\ peak:"{}},\ self.calib\_data\_peak\_count,\textcolor{stringliteral}{"{},\ index\ of\ peak:"{}},\ self.calib\_data\_peak\_indices)}
-\DoxyCodeLine{00213\ }
-\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.data\_files)):}
-\DoxyCodeLine{00216\ }
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ file\_name\ =\ os.path.basename(self.data\_files[i])}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ data\_x,\ data\_y\ =\ util.dataforming.read\_spe\_file(self.data\_files[i])}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ data\_h\ =\ util.dataforming.create\_histogram\_data\_from\_points(data\_x,\ data\_y)}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ smoothed\_data\ =\ gaussian\_filter(data\_y,\ smooth\_parameter)}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ data\_peak\_count,\ data\_peak\_indices\ =\ util.dataforming.find\_peaks(smoothed\_data)}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ self.datas\_x.append(data\_x)}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ self.datas\_y.append(data\_y)}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ self.datas\_h.append(data\_h)}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ self.datas\_peak\_count.append(data\_peak\_count)}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ self.datas\_peak\_indices.append(data\_peak\_indices)}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ self.data\_files\_name.append(os.path.splitext(file\_name)[0])}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ debug:}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}(data)\ :"{}},\ i,\ \textcolor{stringliteral}{"{}\ number\ of\ peak:"{}},\ data\_peak\_count,\ \textcolor{stringliteral}{"{},\ index\ of\ peak:"{}},\ data\_peak\_indices)}
-\DoxyCodeLine{00232\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a3e0d7858932b1010c54c0c7187e652cf}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!fit\_calibration\_data@{fit\_calibration\_data}}
 \index{fit\_calibration\_data@{fit\_calibration\_data}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{fit\_calibration\_data()}{fit\_calibration\_data()}}
@@ -453,47 +243,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+fit\+\_\+calibrat
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00233}{233}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00233\ \ \ \textcolor{keyword}{def\ }fit\_calibration\_data(self,\ width=30,\ initial\_sigma=10,\ plot\_flag=False):}
-\DoxyCodeLine{00234\ \ \ \ \ }
-\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.calib\_data\_peak\_indices)):}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ xarr\ =\ np.array(self.calib\_data\_x)}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ yarr\ =\ np.array(self.calib\_data\_y)}
-\DoxyCodeLine{00247\ }
-\DoxyCodeLine{00248\ \ \ \ \ \ \ fit\_min,\ fit\_max\ =\ self.calib\_data\_x[self.calib\_data\_peak\_indices[i]]\ -\/\ width,\ self.calib\_data\_x[self.calib\_data\_peak\_indices[i]]\ +\ width\ }
-\DoxyCodeLine{00249\ \ \ \ \ \ \ mask\ =\ (xarr\ >=\ fit\_min)\ \&\ (xarr\ <=\ fit\_max)}
-\DoxyCodeLine{00250\ \ \ \ \ \ \ xarr\_mask\ =\ xarr[mask]}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ yarr\_mask\ =\ yarr[mask]}
-\DoxyCodeLine{00252\ }
-\DoxyCodeLine{00253\ }
-\DoxyCodeLine{00254\ \ \ \ \ \ \ least\_squares\ =\ LeastSquares(xarr\_mask,\ yarr\_mask,\ np.ones\_like(yarr\_mask),\ self.gaussian)}
-\DoxyCodeLine{00255\ \ \ \ \ \ \ m\ =\ Minuit(least\_squares,\ amplitude=self.calib\_data\_y[self.calib\_data\_peak\_indices[i]],\ \ mean=self.calib\_data\_x[self.calib\_data\_peak\_indices[i]],\ sigma=initial\_sigma)}
-\DoxyCodeLine{00256\ \ \ \ \ \ \ m.errordef\ =\ 1}
-\DoxyCodeLine{00257\ \ \ \ \ \ \ m.migrad()}
-\DoxyCodeLine{00258\ }
-\DoxyCodeLine{00259\ \ \ \ \ \ \ self.calib\_fit\_xs.append(xarr\_mask)}
-\DoxyCodeLine{00260\ \ \ \ \ \ \ self.calib\_fit\_ys.append(self.gaussian(xarr\_mask,\ m.values[\textcolor{stringliteral}{'amplitude'}],\ m.values[\textcolor{stringliteral}{'mean'}],\ m.values[\textcolor{stringliteral}{'sigma'}]))}
-\DoxyCodeLine{00261\ }
-\DoxyCodeLine{00262\ \ \ \ \ \ \ self.calib\_means.append(m.values[\textcolor{stringliteral}{'mean'}])}
-\DoxyCodeLine{00263\ \ \ \ \ \ \ self.calib\_sigmas.append(m.values[\textcolor{stringliteral}{'sigma'}])}
-\DoxyCodeLine{00264\ }
-\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{if}\ plot\_flag:}
-\DoxyCodeLine{00266\ \ \ \ \ \ \ categories\ =\ [\textcolor{stringliteral}{"{}mca"{}}]\ *\ len(self.calib\_data\_h)\ }
-\DoxyCodeLine{00267\ \ \ \ \ \ \ df\ =\ pd.DataFrame(\{\textcolor{stringliteral}{'Value'}:\ self.calib\_data\_h,\ \textcolor{stringliteral}{'Category'}:\ categories\})}
-\DoxyCodeLine{00268\ \ \ \ \ \ \ fig\ =\ px.histogram(df,\ x=\textcolor{stringliteral}{'Value'},\ color=\textcolor{stringliteral}{'Category'},\ nbins=1023,\ labels=\{\textcolor{stringliteral}{'Value'}:\ \textcolor{stringliteral}{'Channel'}\},\ title=\textcolor{stringliteral}{'MCA\ Histogram'})}
-\DoxyCodeLine{00269\ }
-\DoxyCodeLine{00270\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.calib\_means)):}
-\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ fig.add\_trace(}
-\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ go.Scatter(}
-\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x=self.calib\_fit\_xs[i],\ y=self.calib\_fit\_ys[i],\ mode=\textcolor{stringliteral}{'lines'},\ }
-\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name=f\textcolor{stringliteral}{"{}FID:\{i\},\ (\{self.calib\_means[i]:3.2f\},\ \{self.calib\_sigmas[i]:3.2f\})"{}},\ }
-\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line=dict(color=\textcolor{stringliteral}{'red'},\ width=1.5),\ opacity=0.5))}
-\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00277\ \ \ \ \ \ \ fig.show()}
-\DoxyCodeLine{00278\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a40cb95c444fc86dd287b7233a17e0a25}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!fit\_data@{fit\_data}}
 \index{fit\_data@{fit\_data}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{fit\_data()}{fit\_data()}}
@@ -504,46 +253,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+fit\+\_\+data (\b
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00390}{390}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00390\ \ \ \textcolor{keyword}{def\ }fit\_data(self,\ width=30,\ initial\_sigma=10):}
-\DoxyCodeLine{00391\ \ \ \ \ }
-\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(self.datas\_x)):}
-\DoxyCodeLine{00401\ }
-\DoxyCodeLine{00402\ \ \ \ \ \ \ data\_fit\_xs\ =\ []}
-\DoxyCodeLine{00403\ \ \ \ \ \ \ data\_fit\_ys\ =\ []}
-\DoxyCodeLine{00404\ \ \ \ \ \ \ data\_fit\_oys\ =\ []}
-\DoxyCodeLine{00405\ \ \ \ \ \ \ data\_means\ =\ []}
-\DoxyCodeLine{00406\ \ \ \ \ \ \ data\_sigmas\ =\ []}
-\DoxyCodeLine{00407\ \ \ \ \ \ \ }
-\DoxyCodeLine{00408\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.datas\_peak\_indices[j])):}
-\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ xarr\ =\ np.array(self.datas\_x[j])}
-\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ yarr\ =\ np.array(self.datas\_y[j])}
-\DoxyCodeLine{00411\ }
-\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ fit\_min,\ fit\_max\ =\ self.datas\_x[j][self.datas\_peak\_indices[j][i]]\ -\/\ width,\ self.datas\_x[j][self.datas\_peak\_indices[j][i]]\ +\ width\ }
-\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ mask\ =\ (xarr\ >=\ fit\_min)\ \&\ (xarr\ <=\ fit\_max)}
-\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ xarr\_mask\ =\ xarr[mask]}
-\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ yarr\_mask\ =\ yarr[mask]}
-\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ least\_squares\ =\ LeastSquares(xarr\_mask,\ yarr\_mask,\ np.ones\_like(yarr\_mask),\ self.gaussian)}
-\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ m\ =\ Minuit(least\_squares,\ amplitude=self.datas\_y[j][self.datas\_peak\_indices[j][i]],\ \ mean=self.datas\_x[j][self.datas\_peak\_indices[j][i]],\ sigma=initial\_sigma)}
-\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ m.errordef\ =\ 1}
-\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ m.migrad()}
-\DoxyCodeLine{00421\ }
-\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ data\_fit\_xs.append(xarr\_mask)}
-\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ data\_fit\_ys.append(self.gaussian(xarr\_mask,\ m.values[\textcolor{stringliteral}{'amplitude'}],\ m.values[\textcolor{stringliteral}{'mean'}],\ m.values[\textcolor{stringliteral}{'sigma'}]))}
-\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ data\_fit\_oys.append(yarr\_mask)}
-\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ data\_means.append(m.values[\textcolor{stringliteral}{'mean'}])}
-\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ data\_sigmas.append(m.values[\textcolor{stringliteral}{'sigma'}])}
-\DoxyCodeLine{00427\ \ \ \ \ \ \ }
-\DoxyCodeLine{00428\ \ \ \ \ \ \ self.datas\_fit\_xs.append(data\_fit\_xs)}
-\DoxyCodeLine{00429\ \ \ \ \ \ \ self.datas\_fit\_ys.append(data\_fit\_ys)}
-\DoxyCodeLine{00430\ \ \ \ \ \ \ self.datas\_fit\_oys.append(data\_fit\_oys)}
-\DoxyCodeLine{00431\ \ \ \ \ \ \ self.datas\_means.append(data\_means)}
-\DoxyCodeLine{00432\ \ \ \ \ \ \ self.datas\_sigmas.append(data\_sigmas)}
-\DoxyCodeLine{00433\ \ \ \ \ \ \ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_af56e284882ffb6edc2b4b63aa4b84ea8}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!gaussian@{gaussian}}
 \index{gaussian@{gaussian}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{gaussian()}{gaussian()}}
@@ -554,14 +263,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+gaussian (\begin{
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00161}{161}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00161\ \ \ \textcolor{keyword}{def\ }gaussian(self,\ x,\ amplitude,\ mean,\ sigma):}
-\DoxyCodeLine{00162\ \ \ \ \ }
-\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{return}\ amplitude\ *\ np.exp(-\/0.5\ *\ ((x\ -\/\ mean)\ /\ sigma)\ **\ 2)}
-\DoxyCodeLine{00169\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a3d5f7c7ed22f86e05949d4bb597e8cdd}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!get\_data\_file\_path\_list@{get\_data\_file\_path\_list}}
 \index{get\_data\_file\_path\_list@{get\_data\_file\_path\_list}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{get\_data\_file\_path\_list()}{get\_data\_file\_path\_list()}}
@@ -572,14 +273,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+get\+\_\+data\+\_
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00358}{358}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00358\ \ \ \textcolor{keyword}{def\ }get\_data\_file\_path\_list(self,\ filepath='./*spe'):}
-\DoxyCodeLine{00359\ \ \ \ \ }
-\DoxyCodeLine{00367\ \ \ \ \ self.data\_files\ =\ sorted(glob.glob(filepath))}
-\DoxyCodeLine{00368\ \ \ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a312cd90663db8c349893e45d42c87ccf}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!get\_Gain@{get\_Gain}}
 \index{get\_Gain@{get\_Gain}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{get\_Gain()}{get\_Gain()}}
@@ -590,14 +283,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+get\+\_\+\+Gain (
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00100}{100}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00100\ \ \ \textcolor{keyword}{def\ }get\_Gain(self):}
-\DoxyCodeLine{00101\ \ \ \ \ }
-\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ self.G,\ self.G\_err}
-\DoxyCodeLine{00105\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a686b74ecea6effbbb3f5000b050c01a4}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!get\_Qmeas@{get\_Qmeas}}
 \index{get\_Qmeas@{get\_Qmeas}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{get\_Qmeas()}{get\_Qmeas()}}
@@ -608,14 +293,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+get\+\_\+\+Qmeas 
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00094}{94}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00094\ \ \ \textcolor{keyword}{def\ }get\_Qmeas(self):}
-\DoxyCodeLine{00095\ \ \ \ \ }
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ self.Qmeas,\ self.Qmeas\_err}
-\DoxyCodeLine{00099\ \ \ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_acbbee1f993454e13253f9472defcfadc}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!linear@{linear}}
 \index{linear@{linear}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{linear()}{linear()}}
@@ -626,14 +303,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+linear (\begin{Do
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00170}{170}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00170\ \ \ \textcolor{keyword}{def\ }linear(self,\ x,\ p0,\ p1):}
-\DoxyCodeLine{00171\ \ \ \ \ }
-\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{return}\ p0\ +\ p1\ *\ x}
-\DoxyCodeLine{00178\ \ \ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a170e769125666d78312a8584f1aed3eb}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!remove\_fitted\_peak@{remove\_fitted\_peak}}
 \index{remove\_fitted\_peak@{remove\_fitted\_peak}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{remove\_fitted\_peak()}{remove\_fitted\_peak()}}
@@ -644,42 +313,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+remove\+\_\+fitte
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00322}{322}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00322\ \ \ \textcolor{keyword}{def\ }remove\_fitted\_peak(self,\ list\_label='calib',\ index\_list=[]):}
-\DoxyCodeLine{00323\ \ \ \ \ }
-\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keywordflow}{if}\ list\_label\ ==\ \textcolor{stringliteral}{'calib'}:}
-\DoxyCodeLine{00329\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list,\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.calib\_sigmas):\ \ }
-\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.calib\_sigmas[index]}
-\DoxyCodeLine{00332\ \ \ \ \ \ \ }
-\DoxyCodeLine{00333\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list,\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.calib\_means):\ \ }
-\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.calib\_means[index]}
-\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.datas\_means)):}
-\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.datas\_fit\_xs[i]):\ \ }
-\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.datas\_fit\_xs[i][index]}
-\DoxyCodeLine{00341\ }
-\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.datas\_fit\_ys[i]):\ \ }
-\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.datas\_fit\_ys[i][index]}
-\DoxyCodeLine{00345\ }
-\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.datas\_fit\_oys[i]):\ \ }
-\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.datas\_fit\_oys[i][index]}
-\DoxyCodeLine{00349\ }
-\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.datas\_means[i]):\ \ }
-\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.datas\_means[i][index]}
-\DoxyCodeLine{00353\ }
-\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.datas\_sigmas[i]):\ \ }
-\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.datas\_sigmas[i][index]}
-\DoxyCodeLine{00357\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_aa420285eb094bcdbdba98ed689004800}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!set\_calibration\_file\_path@{set\_calibration\_file\_path}}
 \index{set\_calibration\_file\_path@{set\_calibration\_file\_path}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{set\_calibration\_file\_path()}{set\_calibration\_file\_path()}}
@@ -690,14 +323,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+set\+\_\+calibrat
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00179}{179}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00179\ \ \ \textcolor{keyword}{def\ }set\_calibration\_file\_path(self,\ file\_path):}
-\DoxyCodeLine{00180\ \ \ \ \ }
-\DoxyCodeLine{00184\ \ \ \ \ self.calib\_path\ =\ file\_path}
-\DoxyCodeLine{00185\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a0dafa367e0f6b71f3d0eac03710c34b9}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!set\_dEdX@{set\_dEdX}}
 \index{set\_dEdX@{set\_dEdX}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{set\_dEdX()}{set\_dEdX()}}
@@ -708,16 +333,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+set\+\_\+d\+EdX (
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00113}{113}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00113\ \ \ \textcolor{keyword}{def\ }set\_dEdX(self,\ val):}
-\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{\#\ @brief\ set\ energy\ loss\ in\ small\ interval\ at\ certain\ point}}
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{\#\ @param\ val\ reference\ values\ }}
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{\#\ @return\ None}}
-\DoxyCodeLine{00117\ \ \ \ \ self.dEdX\ =\ val\ }
-\DoxyCodeLine{00118\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8ca26b603c7895ba65002ddd48436a2b}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!set\_dL@{set\_dL}}
 \index{set\_dL@{set\_dL}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{set\_dL()}{set\_dL()}}
@@ -728,14 +343,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+set\+\_\+dL (\beg
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00119}{119}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00119\ \ \ \textcolor{keyword}{def\ }set\_dL(self,\ val):}
-\DoxyCodeLine{00120\ \ \ \ \ }
-\DoxyCodeLine{00124\ \ \ \ \ self.dL\ =\ val}
-\DoxyCodeLine{00125\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_aa26f327f5d74521ffc302d02396aa309}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!set\_input\_values@{set\_input\_values}}
 \index{set\_input\_values@{set\_input\_values}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{set\_input\_values()}{set\_input\_values()}}
@@ -746,14 +353,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+set\+\_\+input\+\
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00186}{186}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00186\ \ \ \textcolor{keyword}{def\ }set\_input\_values(self,\ values):}
-\DoxyCodeLine{00187\ \ \ \ \ }
-\DoxyCodeLine{00191\ \ \ \ \ self.input\_values\ =\ values}
-\DoxyCodeLine{00192\ \ \ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a92e9fb4bf16d71b1223ca30ae8125827}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!set\_voltages@{set\_voltages}}
 \index{set\_voltages@{set\_voltages}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{set\_voltages()}{set\_voltages()}}
@@ -764,14 +363,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+set\+\_\+voltages
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00106}{106}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00106\ \ \ \textcolor{keyword}{def\ }set\_voltages(self,\ val):}
-\DoxyCodeLine{00107\ \ \ \ \ }
-\DoxyCodeLine{00111\ \ \ \ \ self.voltages\ =\ val}
-\DoxyCodeLine{00112\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae96426d1ee09ce4abe023f3c47f137b9}\index{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}!set\_W@{set\_W}}
 \index{set\_W@{set\_W}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{set\_W()}{set\_W()}}
@@ -782,14 +373,6 @@ catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+set\+\_\+W (\begi
 
 Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00126}{126}} of file \mbox{\hyperlink{mcaanalysis_8py_source}{mcaanalysis.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00126\ \ \ \textcolor{keyword}{def\ }set\_W(self,\ val):}
-\DoxyCodeLine{00127\ \ \ \ \ }
-\DoxyCodeLine{00131\ \ \ \ \ self.W\ =\ val}
-\DoxyCodeLine{00132\ }
-
-\end{DoxyCode}
 
 
 \label{doc-variable-members}
@@ -819,7 +402,7 @@ Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00072}{72}} of file 
 \index{calib\_data\_h@{calib\_data\_h}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{calib\_data\_h}{calib\_data\_h}}
 {\footnotesize\ttfamily \label{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab5de031b2c4b7a4189b4956fae36fccb} 
-catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+calib\+\_\+data\+\_\+h = \mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a610a67ced407ba1e31850572ee25f57e}{util.\+dataforming.\+create\+\_\+histogram\+\_\+data\+\_\+from\+\_\+points}}(self.\+calib\+\_\+data\+\_\+x, self.\+calib\+\_\+data\+\_\+y)}
+catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+calib\+\_\+data\+\_\+h = util.\+dataforming.\+create\+\_\+histogram\+\_\+data\+\_\+from\+\_\+points(self.\+calib\+\_\+data\+\_\+x, self.\+calib\+\_\+data\+\_\+y)}
 
 
 
@@ -839,7 +422,7 @@ Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00209}{209}} of file
 \index{calib\_data\_peak\_indices@{calib\_data\_peak\_indices}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{calib\_data\_peak\_indices}{calib\_data\_peak\_indices}}
 {\footnotesize\ttfamily \label{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab0b4d5c3a1a193341e0c73fdae054cdc} 
-catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+calib\+\_\+data\+\_\+peak\+\_\+indices = \mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a65c2738b149373bcba2e1600c3f93cb6}{util.\+dataforming.\+find\+\_\+peaks}}(smoothed\+\_\+data)}
+catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+calib\+\_\+data\+\_\+peak\+\_\+indices = util.\+dataforming.\+find\+\_\+peaks(smoothed\+\_\+data)}
 
 
 
@@ -877,7 +460,7 @@ Definition at line \mbox{\hyperlink{mcaanalysis_8py_source_l00206}{206}} of file
 \index{calib\_data\_y@{calib\_data\_y}!catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer@{catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer}}
 \doxysubsubsection{\texorpdfstring{calib\_data\_y}{calib\_data\_y}}
 {\footnotesize\ttfamily \label{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a06fa36e8437c086663706828b3c2a8f5} 
-catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+calib\+\_\+data\+\_\+y = \mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming_a13dbd95a6cac156a4ec8ada005783d80}{util.\+dataforming.\+read\+\_\+spe\+\_\+file}}(self.\+calib\+\_\+path)}
+catmlib.\+analyser.\+mcaanalysis.\+TMulti\+Channel\+Analyzer.\+calib\+\_\+data\+\_\+y = util.\+dataforming.\+read\+\_\+spe\+\_\+file(self.\+calib\+\_\+path)}
 
 
 

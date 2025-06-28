@@ -1,0 +1,21 @@
+[base]
+base_path = "example"
+use_flag = "true"
+
+[paths]
+artemis_map_dir = "artemis-map"
+get_config_dir = "get-config"
+mca_data_dir = "mca-sample"
+
+[artemis_map]
+beam = "catm-beamtpc-sample.map"
+recoil = "catm-recoiltpc-sample.map"
+ssd = "catm-ssd-sample.map"
+
+[get_config]
+soap1 = "config-sample-001.xcfg"
+soap2 = "config-sample-002.xcfg"
+
+[mca_data]
+calibration = "calibration.spe"
+spectrum = "*dv*.spe"

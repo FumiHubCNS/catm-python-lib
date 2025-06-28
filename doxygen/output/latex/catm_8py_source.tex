@@ -2,173 +2,200 @@
 \hypertarget{catm_8py_source}{}\label{catm_8py_source}\index{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/readoutpad/catm.py@{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/readoutpad/catm.py}}
 \mbox{\hyperlink{catm_8py}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00001}\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm}{00001}}\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00007}00007\ \textcolor{keyword}{import}\ numpy\ \textcolor{keyword}{as}\ np}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00008}00008\ \textcolor{keyword}{from}\ .basepad\ \textcolor{keyword}{import}\ TReadoutPadArray}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00009}00009\ \textcolor{keyword}{from}\ .basepad\ \textcolor{keyword}{import}\ generate\_oblong\_4\_polygon}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00010}00010\ \textcolor{keyword}{from}\ .basepad\ \textcolor{keyword}{import}\ generate\_regular\_n\_polygon}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00011}00011\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00012}\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a6abad57f7924efa6d6211dca373af65e}{00012}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a6abad57f7924efa6d6211dca373af65e}{get\_beam\_tpc\_array}}():\ \ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00013}00013\ \ \ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00017}00017\ \ \ base\_padinfo\ =\ generate\_regular\_n\_polygon(3,\ 4.74,\ 90,\ \textcolor{keyword}{False})}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00018}00018\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00019}00019\ \ \ pad\ =\ \mbox{\hyperlink{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array}{TReadoutPadArray}}()}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00020}00020\ \ \ pad.add\_basepad(base\_padinfo)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00021}00021\ \ \ PADDISTANCE\ =\ 5\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00022}00022\ \ \ gid\ =\ 0\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00023}00023\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00024}00024\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(11):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00025}00025\ \ \ \ \ pad.add\_pads([i*PADDISTANCE/2-\/12.5,\ -\/99,\ PADDISTANCE/np.sqrt(3)/2*((i-\/1)\%2)-\/2.886751345948129-\/255],\ 0,\ 0,\ 180*((i-\/1)\%2),\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00026}00026\ \ \ \ \ pad.id\ =\ gid\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00027}00027\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00028}00028\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(11):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00029}00029\ \ \ \ \ pad.add\_pads([(i)*PADDISTANCE/2-\/12.5,\ -\/99,\ PADDISTANCE/np.sqrt(3)/2*((i)\%2)\ +\ np.sqrt(3)*PADDISTANCE/2-\/2.886751345948129-\/255],\ 0,\ 0,\ 180*((i)\%2),\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00030}00030\ \ \ \ \ pad.id\ =\ gid\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00031}00031\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00032}00032\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00033}00033\ \ \ \textcolor{keywordflow}{return}\ pad\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00034}00034\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00035}\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_ad1c9b4deea3068498d75b02c30040945}{00035}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_ad1c9b4deea3068498d75b02c30040945}{get\_recoil\_tpc\_array}}():}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00036}00036\ \ \ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00040}00040\ \ \ base\_padinfo\ =\ generate\_regular\_n\_polygon(3,\ 6.9133974596,\ 90,\ \textcolor{keyword}{False})}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00041}00041\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00042}00042\ \ \ pad\ =\ \mbox{\hyperlink{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array}{TReadoutPadArray}}()}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00043}00043\ \ \ pad.add\_basepad(base\_padinfo)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00044}00044\ \ \ PADDISTANCE\ =\ 7}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00045}00045\ \ \ gid\ =\ 0\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00046}00046\ \ \ zoffset\ =\ -\/152.25}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00047}00047\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00048}00048\ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(44):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00049}00049\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(23):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00051}00051\ \ \ \ \ \ \ h\ =\ PADDISTANCE*np.sqrt(3)/2}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00052}00052\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\%2\ ==\ 0:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ x\ =\ -\/i*h\ -\/h/3}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00054}00054\ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ x\ =\ -\/i*h\ -\/h/3\ -\/h/3}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00056}00056\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00057}00057\ \ \ \ \ \ \ pad.add\_pads([x,\ -\/99,\ PADDISTANCE*j\ +\ zoffset],\ 0,\ 0,\ -\/90*((-\/1)**i),\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00058}00058\ \ \ \ \ \ \ pad.id\ =\ gid\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00059}00059\ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00001}00001\ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00002}00002\ \textcolor{stringliteral}{@file\ catm.py}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00003}00003\ \textcolor{stringliteral}{@version\ 1}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00004}00004\ \textcolor{stringliteral}{@author\ Fumitaka\ ENDO}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00005}00005\ \textcolor{stringliteral}{@date\ 2025-\/01-\/28T12:05:12+09:00}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00006}00006\ \textcolor{stringliteral}{@brief\ CATM\ readout\ pad\ generation\ package\ }}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00007}00007\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00008}00008\ \textcolor{keyword}{import}\ numpy\ \textcolor{keyword}{as}\ np}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00009}00009\ \textcolor{keyword}{from}\ .basepad\ \textcolor{keyword}{import}\ TReadoutPadArray}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00010}00010\ \textcolor{keyword}{from}\ .basepad\ \textcolor{keyword}{import}\ generate\_oblong\_4\_polygon}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00011}00011\ \textcolor{keyword}{from}\ .basepad\ \textcolor{keyword}{import}\ generate\_regular\_n\_polygon}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00012}00012\ \textcolor{keyword}{import}\ argparse\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00014}00014\ \textcolor{keyword}{def\ }get\_beam\_tpc\_array():\ \ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00015}00015\ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00016}00016\ \textcolor{stringliteral}{\ \ @brief\ get\ beam\ tpc\ pad\ array}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00017}00017\ \textcolor{stringliteral}{\ \ @detail\ pad\ length\ withou\ gap\ =\ 5.\ number\ of\ pad\ =\ 22\ (11\ x\ 2)}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00018}00018\ \textcolor{stringliteral}{\ \ @return\ beam\ tpc\ pad\ array\ (TReadoutPadArray)}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00019}00019\ \textcolor{stringliteral}{\ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00020}00020\ \ \ base\_padinfo\ =\ generate\_regular\_n\_polygon(3,\ 4.74,\ 90,\ \textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00022}00022\ \ \ pad\ =\ \mbox{\hyperlink{class_t_readout_pad_array}{TReadoutPadArray}}()}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00023}00023\ \ \ pad.add\_basepad(base\_padinfo)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00024}00024\ \ \ PADDISTANCE\ =\ 5\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00025}00025\ \ \ gid\ =\ 0\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00027}00027\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(11):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00028}00028\ \ \ \ \ pad.add\_pads([i*PADDISTANCE/2-\/12.5,\ -\/99,\ PADDISTANCE/np.sqrt(3)/2*((i-\/1)\%2)-\/2.886751345948129-\/255],\ 0,\ 0,\ 180*((i-\/1)\%2),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00029}00029\ \ \ \ \ pad.id\ =\ gid\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00030}00030\ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00031}00031\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(11):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00032}00032\ \ \ \ \ pad.add\_pads([(i)*PADDISTANCE/2-\/12.5,\ -\/99,\ PADDISTANCE/np.sqrt(3)/2*((i)\%2)\ +\ np.sqrt(3)*PADDISTANCE/2-\/2.886751345948129-\/255],\ 0,\ 0,\ 180*((i)\%2),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00033}00033\ \ \ \ \ pad.id\ =\ gid\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00034}00034\ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00036}00036\ \ \ \textcolor{keywordflow}{return}\ pad\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00038}00038\ \textcolor{keyword}{def\ }get\_recoil\_tpc\_array():}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00039}00039\ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00040}00040\ \textcolor{stringliteral}{\ \ @brief\ get\ recoil\ tpc\ pad\ array}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00041}00041\ \textcolor{stringliteral}{\ \ @detail\ pad\ length\ withou\ gap\ =\ 7.\ number\ of\ pad\ =\ 4048\ (\ (23x2)\ x\ 88\ )}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00042}00042\ \textcolor{stringliteral}{\ \ @return\ recoil\ tpc\ pad\ array\ (TReadoutPadArray)}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00043}00043\ \textcolor{stringliteral}{\ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00044}00044\ \ \ base\_padinfo\ =\ generate\_regular\_n\_polygon(3,\ 6.9133974596,\ 90,\ \textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00046}00046\ \ \ pad\ =\ \mbox{\hyperlink{class_t_readout_pad_array}{TReadoutPadArray}}()}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00047}00047\ \ \ pad.add\_basepad(base\_padinfo)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00048}00048\ \ \ PADDISTANCE\ =\ 7}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00049}00049\ \ \ gid\ =\ 0\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00050}00050\ \ \ zoffset\ =\ -\/152.25}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00052}00052\ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(44):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(23):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00055}00055\ \ \ \ \ \ \ h\ =\ PADDISTANCE*np.sqrt(3)/2}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00056}00056\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\%2\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ x\ =\ -\/i*h\ -\/h/3}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00058}00058\ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ x\ =\ -\/i*h\ -\/h/3\ -\/h/3}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00060}00060\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(23):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00062}00062\ \ \ \ \ \ \ h\ =\ PADDISTANCE*np.sqrt(3)/2}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00063}00063\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\%2\ ==\ 0:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ x\ =\ -\/i*h\ -\/\ h*2/3}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00065}00065\ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ x\ =\ -\/i*h\ -\/\ h/3\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00067}00067\ \ \ \ \ \ \ pad.add\_pads([x,\ -\/99,\ PADDISTANCE/2+PADDISTANCE*j\ +\ zoffset],\ 0,\ 0,\ -\/90*((-\/1)**(i+1)),\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00068}00068\ \ \ \ \ \ \ pad.id\ =\ gid\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00069}00069\ \ \ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00070}00070\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00071}00071\ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(44):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(23):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00073}00073\ \ \ \ \ \ \ h\ =\ PADDISTANCE*np.sqrt(3)/2}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00074}00074\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\%2\ ==\ 0:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ x\ =\ i*h\ +\ h/3}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00076}00076\ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ x\ =\ i*h\ +\ h*2/3}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00078}00078\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00079}00079\ \ \ \ \ \ \ pad.add\_pads([x,\ -\/99,\ PADDISTANCE*j\ +\ zoffset],\ 0,\ 0,\ -\/90*((-\/1)**(i+1)),\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00080}00080\ \ \ \ \ \ \ pad.id\ =\ gid\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00081}00081\ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00061}00061\ \ \ \ \ \ \ pad.add\_pads([x,\ -\/99,\ PADDISTANCE*j\ +\ zoffset],\ 0,\ 0,\ -\/90*((-\/1)**i),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00062}00062\ \ \ \ \ \ \ pad.id\ =\ gid\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00063}00063\ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(23):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00066}00066\ \ \ \ \ \ \ h\ =\ PADDISTANCE*np.sqrt(3)/2}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00067}00067\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\%2\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ x\ =\ -\/i*h\ -\/\ h*2/3}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00069}00069\ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ x\ =\ -\/i*h\ -\/\ h/3\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00071}00071\ \ \ \ \ \ \ pad.add\_pads([x,\ -\/99,\ PADDISTANCE/2+PADDISTANCE*j\ +\ zoffset],\ 0,\ 0,\ -\/90*((-\/1)**(i+1)),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00072}00072\ \ \ \ \ \ \ pad.id\ =\ gid\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00073}00073\ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00075}00075\ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(44):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(23):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00077}00077\ \ \ \ \ \ \ h\ =\ PADDISTANCE*np.sqrt(3)/2}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00078}00078\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\%2\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ x\ =\ i*h\ +\ h/3}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00080}00080\ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ x\ =\ i*h\ +\ h*2/3}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00082}00082\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(23):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00084}00084\ \ \ \ \ \ \ h\ =\ PADDISTANCE*np.sqrt(3)/2}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00085}00085\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\%2\ ==\ 0:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ x\ =\ i*h\ +\ h*2/3}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00087}00087\ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ x\ =\ i*h\ +\ h/3}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00089}00089\ \ \ \ \ \ \ pad.add\_pads([x,\ -\/99,\ PADDISTANCE/2+PADDISTANCE*j\ +\ zoffset],\ 0,\ 0,\ -\/90*((-\/1)**(i)),\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00090}00090\ \ \ \ \ \ \ pad.id\ =\ gid\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00091}00091\ \ \ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00093}00093\ \ \ \textcolor{keywordflow}{return}\ pad\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00094}00094\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00095}\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a58644e030dc48d7f16f759ceefc51942}{00095}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a58644e030dc48d7f16f759ceefc51942}{get\_ssd\_array}}():}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00096}00096\ \ \ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00099}00099\ \ \ base\_padinfo\ =\ generate\_oblong\_4\_polygon(90.6/8,\ 90.6,\textcolor{stringliteral}{'yz'},\textcolor{keyword}{False})}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00100}00100\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00101}00101\ \ \ pad\ =\ \mbox{\hyperlink{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array}{TReadoutPadArray}}()}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00102}00102\ \ \ pad.add\_basepad(base\_padinfo)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00103}00103\ \ \ gid\ =\ 0}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00104}00104\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00105}00105\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00106}00106\ \ \ \ \ pad.add\_pads([-\/255\ ,\ 54,\ -\/42.55\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00107}00107\ \ \ \ \ pad.id\ =\ gid}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00108}00108\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00109}00109\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00110}00110\ \ \ \ \ pad.add\_pads([-\/255\ ,\ 54,\ \ 65.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00111}00111\ \ \ \ \ pad.id\ =\ gid}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00112}00112\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00113}00113\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00114}00114\ \ \ \ \ pad.add\_pads([-\/255\ ,\ 54,\ 168.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00115}00115\ \ \ \ \ pad.id\ =\ gid}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00116}00116\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00117}00117\ \ \ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00083}00083\ \ \ \ \ \ \ pad.add\_pads([x,\ -\/99,\ PADDISTANCE*j\ +\ zoffset],\ 0,\ 0,\ -\/90*((-\/1)**(i+1)),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00084}00084\ \ \ \ \ \ \ pad.id\ =\ gid\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00085}00085\ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(23):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00088}00088\ \ \ \ \ \ \ h\ =\ PADDISTANCE*np.sqrt(3)/2}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00089}00089\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\%2\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ x\ =\ i*h\ +\ h*2/3}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00091}00091\ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ x\ =\ i*h\ +\ h/3}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00093}00093\ \ \ \ \ \ \ pad.add\_pads([x,\ -\/99,\ PADDISTANCE/2+PADDISTANCE*j\ +\ zoffset],\ 0,\ 0,\ -\/90*((-\/1)**(i)),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00094}00094\ \ \ \ \ \ \ pad.id\ =\ gid\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00095}00095\ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00097}00097\ \ \ \textcolor{keywordflow}{return}\ pad\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00099}00099\ \textcolor{keyword}{def\ }get\_ssd\_array():}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00100}00100\ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00101}00101\ \textcolor{stringliteral}{\ \ @brief\ get\ ssd\ pad\ array}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00102}00102\ \textcolor{stringliteral}{\ \ @return\ ssd\ pad\ array\ (TReadoutPadArray)}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00103}00103\ \textcolor{stringliteral}{\ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00104}00104\ \ \ base\_padinfo\ =\ generate\_oblong\_4\_polygon(90.6/8,\ 90.6,\textcolor{stringliteral}{'yz'},\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00106}00106\ \ \ pad\ =\ \mbox{\hyperlink{class_t_readout_pad_array}{TReadoutPadArray}}()}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00107}00107\ \ \ pad.add\_basepad(base\_padinfo)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00108}00108\ \ \ gid\ =\ 0}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00110}00110\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00111}00111\ \ \ \ \ pad.add\_pads([-\/255\ ,\ 54,\ -\/42.55\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00112}00112\ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00113}00113\ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00114}00114\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00115}00115\ \ \ \ \ pad.add\_pads([-\/255\ ,\ 54,\ \ 65.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00116}00116\ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00117}00117\ \ \ \ \ gid\ +=\ 1}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00118}00118\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00119}00119\ \ \ \ \ pad.add\_pads([-\/255\ ,\ -\/54,\ -\/42.55\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00119}00119\ \ \ \ \ pad.add\_pads([-\/255\ ,\ 54,\ 168.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00120}00120\ \ \ \ \ pad.id\ =\ gid}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00121}00121\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00122}00122\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00123}00123\ \ \ \ \ pad.add\_pads([-\/255\ ,\ -\/54,\ \ 65.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00124}00124\ \ \ \ \ pad.id\ =\ gid}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00125}00125\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00126}00126\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00127}00127\ \ \ \ \ pad.add\_pads([-\/255\ ,\ -\/54,\ 168.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00128}00128\ \ \ \ \ pad.id\ =\ gid}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00129}00129\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00122}00122\ \ \ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00123}00123\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00124}00124\ \ \ \ \ pad.add\_pads([-\/255\ ,\ -\/54,\ -\/42.55\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00125}00125\ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00126}00126\ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00127}00127\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00128}00128\ \ \ \ \ pad.add\_pads([-\/255\ ,\ -\/54,\ \ 65.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00129}00129\ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00130}00130\ \ \ \ \ gid\ +=\ 1}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00131}00131\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00132}00132\ \ \ \ \ pad.add\_pads([255\ ,\ 54,\ -\/42.55\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00132}00132\ \ \ \ \ pad.add\_pads([-\/255\ ,\ -\/54,\ 168.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00133}00133\ \ \ \ \ pad.id\ =\ gid}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00134}00134\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00135}00135\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00136}00136\ \ \ \ \ pad.add\_pads([255\ ,\ 54,\ \ 65.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00137}00137\ \ \ \ \ pad.id\ =\ gid}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00138}00138\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00139}00139\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00140}00140\ \ \ \ \ pad.add\_pads([255\ ,\ 54,\ 168.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00141}00141\ \ \ \ \ pad.id\ =\ gid}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00142}00142\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00143}00143\ \ \ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00136}00136\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00137}00137\ \ \ \ \ pad.add\_pads([255\ ,\ 54,\ -\/42.55\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00138}00138\ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00139}00139\ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00140}00140\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00141}00141\ \ \ \ \ pad.add\_pads([255\ ,\ 54,\ \ 65.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00142}00142\ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00143}00143\ \ \ \ \ gid\ +=\ 1}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00144}00144\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00145}00145\ \ \ \ \ pad.add\_pads([255\ ,\ -\/54,\ -\/42.55\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00145}00145\ \ \ \ \ pad.add\_pads([255\ ,\ 54,\ 168.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00146}00146\ \ \ \ \ pad.id\ =\ gid}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00147}00147\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00148}00148\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00149}00149\ \ \ \ \ pad.add\_pads([255\ ,\ -\/54,\ \ 65.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00150}00150\ \ \ \ \ pad.id\ =\ gid}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00151}00151\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00152}00152\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00153}00153\ \ \ \ \ pad.add\_pads([255\ ,\ -\/54,\ 168.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00154}00154\ \ \ \ \ pad.id\ =\ gid}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00155}00155\ \ \ \ \ gid\ +=\ 1}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00156}00156\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00157}00157\ \ \ \textcolor{keywordflow}{return}\ pad}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00158}00158\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00159}\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a6d079989a3ffaf7b13338c985db59d41}{00159}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a6d079989a3ffaf7b13338c985db59d41}{check\_pad\_view}}():}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00160}00160\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00161}00161\ \ \ \ \ \textcolor{keyword}{import}\ sys}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00162}00162\ \ \ \ \ \textcolor{keyword}{import}\ \mbox{\hyperlink{namespacecatmlib_1_1util_1_1dataforming}{catmlib.util.dataforming}}\ \textcolor{keyword}{as}\ util}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00148}00148\ \ \ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00149}00149\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00150}00150\ \ \ \ \ pad.add\_pads([255\ ,\ -\/54,\ -\/42.55\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00151}00151\ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00152}00152\ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00153}00153\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00154}00154\ \ \ \ \ pad.add\_pads([255\ ,\ -\/54,\ \ 65.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00155}00155\ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00156}00156\ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00157}00157\ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(8):}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00158}00158\ \ \ \ \ pad.add\_pads([255\ ,\ -\/54,\ 168.45\ +\ 90.6/8*i\ -\/\ 90.6/2\ ],\ 0,\ 0,\ 0,\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00159}00159\ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00160}00160\ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00162}00162\ \ \ \textcolor{keywordflow}{return}\ pad}
 \DoxyCodeLine{\Hypertarget{catm_8py_source_l00163}00163\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00164}00164\ \ \ \ \ arg\_dict\ =\ util.parse\_args(sys.argv)}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00165}00165\ \ \ \ \ pad\_name\ =\ (arg\_dict.get(\textcolor{stringliteral}{"{}pad"{}},\ \textcolor{stringliteral}{"{}recoil-\/tpc"{}}))}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00166}00166\ \ \ \ \ plane\ =\ (arg\_dict.get(\textcolor{stringliteral}{"{}plane"{}},\ \textcolor{stringliteral}{"{}xz"{}}))}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00167}00167\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00168}00168\ \ \ \ \ \textcolor{keywordflow}{if}\ pad\_name\ ==\ \textcolor{stringliteral}{'recoil-\/tpc'}:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00169}00169\ \ \ \ \ \ \ pad\_array\ =\ \mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_ad1c9b4deea3068498d75b02c30040945}{get\_recoil\_tpc\_array}}()}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00170}00170\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00171}00171\ \ \ \ \ \textcolor{keywordflow}{elif}\ pad\_name\ ==\ \textcolor{stringliteral}{'beam-\/tpc'}:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00172}00172\ \ \ \ \ \ \ pad\_array\ =\ \mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a6abad57f7924efa6d6211dca373af65e}{get\_beam\_tpc\_array}}()}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00173}00173\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00174}00174\ \ \ \ \ \textcolor{keywordflow}{elif}\ pad\_name\ ==\ \textcolor{stringliteral}{'ssd'}:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00175}00175\ \ \ \ \ \ \ pad\_array\ =\ \mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1catm_a58644e030dc48d7f16f759ceefc51942}{get\_ssd\_array}}()}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00176}00176\ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00177}00177\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{'experiment\ number\ does\ not\ exist'})}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00179}00179\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00180}00180\ \ \ \ \ \textcolor{keywordflow}{if}\ pad\_array\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
-\DoxyCodeLine{\Hypertarget{catm_8py_source_l00181}00181\ \ \ \ \ \ \ pad\_array.show\_pads(plane)}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00164}00164\ \textcolor{keyword}{def\ }check\_pad\_view():}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00165}00165\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00166}00166\ \textcolor{stringliteral}{\ \ \ \ @brief\ check\ each\ pad\ configuration}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00167}00167\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00168}00168\ \textcolor{stringliteral}{\ \ \ \ @details\ draw\ pad\ alignment\ using\ matplotlib}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00169}00169\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00170}00170\ \textcolor{stringliteral}{\ \ \ \ CLI\ argument:}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00171}00171\ \textcolor{stringliteral}{\ \ \ \ @arg\ -\/pad\ select\ detector\ (beam\ tpc,\ recoil\ tpc,\ ssd).\ default\ is\ recoil-\/tpc}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00172}00172\ \textcolor{stringliteral}{\ \ \ \ @arg\ -\/plane\ select\ draw\ plane.\ default\ is\ xz}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00173}00173\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00174}00174\ \ \ \ \ parser\ =\ argparse.ArgumentParser()}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00175}00175\ \ \ \ \ parser.add\_argument(\textcolor{stringliteral}{"{}-\/pad"{}},\ help=\textcolor{stringliteral}{"{}pad\ type\ (beam-\/tpc\ or\ recoil-\/tpc\ or\ ssd)\ default\ =\ recoil-\/tpc"{}},\ type=str,\ default=\textcolor{stringliteral}{"{}recoil-\/tpc"{}})}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00176}00176\ \ \ \ \ parser.add\_argument(\textcolor{stringliteral}{"{}-\/plane"{}},\ help=\textcolor{stringliteral}{"{}choose\ draw\ plane.\ default\ =\ xz"{}},\ type=str,\ default=\textcolor{stringliteral}{"{}xz"{}})}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00178}00178\ \ \ \ \ args\ =\ parser.parse\_args()}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00179}00179\ \ \ \ \ pad\_name:\ str\ =\ args.pad}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00180}00180\ \ \ \ \ plane:\ str\ =\ args.plane}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00182}00182\ \ \ \ \ \textcolor{keywordflow}{if}\ pad\_name\ ==\ \textcolor{stringliteral}{'recoil-\/tpc'}:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00183}00183\ \ \ \ \ \ \ pad\_array\ =\ get\_recoil\_tpc\_array()}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00185}00185\ \ \ \ \ \textcolor{keywordflow}{elif}\ pad\_name\ ==\ \textcolor{stringliteral}{'beam-\/tpc'}:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00186}00186\ \ \ \ \ \ \ pad\_array\ =\ get\_beam\_tpc\_array()}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00188}00188\ \ \ \ \ \textcolor{keywordflow}{elif}\ pad\_name\ ==\ \textcolor{stringliteral}{'ssd'}:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00189}00189\ \ \ \ \ \ \ pad\_array\ =\ get\_ssd\_array()}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00191}00191\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{'experiment\ number\ does\ not\ exist'})}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00193}00193\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00194}00194\ \ \ \ \ \textcolor{keywordflow}{if}\ pad\_array\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{catm_8py_source_l00195}00195\ \ \ \ \ \ \ pad\_array.show\_pads(plane)}
 
 \end{DoxyCode}

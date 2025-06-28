@@ -166,10 +166,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ac7ec4c3e66f37706b483e8e0ae322569" id="r_ac7ec4c3e66f37706b483e8e0ae322569"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7ec4c3e66f37706b483e8e0ae322569">voltages</a> = []</td></tr>
 <tr class="memdesc:ac7ec4c3e66f37706b483e8e0ae322569"><td class="mdescLeft">&#160;</td><td class="mdescRight">set list of voltage value  <br /></td></tr>
 <tr class="memitem:a9486ee23f04ebee079448a36d0de3d14" id="r_a9486ee23f04ebee079448a36d0de3d14"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9486ee23f04ebee079448a36d0de3d14">calib_data_x</a></td></tr>
-<tr class="memitem:a06fa36e8437c086663706828b3c2a8f5" id="r_a06fa36e8437c086663706828b3c2a8f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06fa36e8437c086663706828b3c2a8f5">calib_data_y</a> = <a class="el" href="namespacecatmlib_1_1util_1_1dataforming.html#a13dbd95a6cac156a4ec8ada005783d80">util.dataforming.read_spe_file</a>(self.calib_path)</td></tr>
-<tr class="memitem:ab5de031b2c4b7a4189b4956fae36fccb" id="r_ab5de031b2c4b7a4189b4956fae36fccb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5de031b2c4b7a4189b4956fae36fccb">calib_data_h</a> = <a class="el" href="namespacecatmlib_1_1util_1_1dataforming.html#a610a67ced407ba1e31850572ee25f57e">util.dataforming.create_histogram_data_from_points</a>(self.calib_data_x, self.calib_data_y)</td></tr>
+<tr class="memitem:a06fa36e8437c086663706828b3c2a8f5" id="r_a06fa36e8437c086663706828b3c2a8f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06fa36e8437c086663706828b3c2a8f5">calib_data_y</a> = util.dataforming.read_spe_file(self.calib_path)</td></tr>
+<tr class="memitem:ab5de031b2c4b7a4189b4956fae36fccb" id="r_ab5de031b2c4b7a4189b4956fae36fccb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5de031b2c4b7a4189b4956fae36fccb">calib_data_h</a> = util.dataforming.create_histogram_data_from_points(self.calib_data_x, self.calib_data_y)</td></tr>
 <tr class="memitem:a200466ca9d3a7493adcdfe9e3f077f2b" id="r_a200466ca9d3a7493adcdfe9e3f077f2b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a200466ca9d3a7493adcdfe9e3f077f2b">calib_data_peak_count</a></td></tr>
-<tr class="memitem:ab0b4d5c3a1a193341e0c73fdae054cdc" id="r_ab0b4d5c3a1a193341e0c73fdae054cdc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0b4d5c3a1a193341e0c73fdae054cdc">calib_data_peak_indices</a> = <a class="el" href="namespacecatmlib_1_1util_1_1dataforming.html#a65c2738b149373bcba2e1600c3f93cb6">util.dataforming.find_peaks</a>(smoothed_data)</td></tr>
+<tr class="memitem:ab0b4d5c3a1a193341e0c73fdae054cdc" id="r_ab0b4d5c3a1a193341e0c73fdae054cdc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0b4d5c3a1a193341e0c73fdae054cdc">calib_data_peak_indices</a> = util.dataforming.find_peaks(smoothed_data)</td></tr>
 <tr class="memdesc:ab0b4d5c3a1a193341e0c73fdae054cdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">peak fitting for calibration data  <br /></td></tr>
 <tr class="memitem:a5cf2a0020ecdfb9c083897ca1c8b3fce" id="r_a5cf2a0020ecdfb9c083897ca1c8b3fce"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cf2a0020ecdfb9c083897ca1c8b3fce">calib_means_err</a> = []</td></tr>
 </table>
@@ -193,41 +193,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00027">27</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   27</span>  <span class="keyword">def </span>__init__(self):</div>
-<div class="line"><span class="lineno">   28</span>    </div>
-<div class="line"><span class="lineno">   62</span>    self.Qmeas = []</div>
-<div class="line"><span class="lineno">   63</span>    self.Qmeas_err = []</div>
-<div class="line"><span class="lineno">   64</span>    self.dEdX = 1e6    <span class="comment"># [eV/mm]</span></div>
-<div class="line"><span class="lineno">   65</span>    self.dL = 12       <span class="comment"># [mm]</span></div>
-<div class="line"><span class="lineno">   66</span>    self.W = 26        <span class="comment"># [eV]</span></div>
-<div class="line"><span class="lineno">   67</span>    self.Qe = 1.602e-7 <span class="comment"># [pC]</span></div>
-<div class="line"><span class="lineno">   68</span>    self.G = []</div>
-<div class="line"><span class="lineno">   69</span>    self.G_err = []</div>
-<div class="line"><span class="lineno">   70</span>    self.E = 1 </div>
-<div class="line"><span class="lineno">   71</span>    self.a = 1</div>
-<div class="line"><span class="lineno">   72</span>    self.b = 0</div>
-<div class="line"><span class="lineno">   73</span>    self.calib_path = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">   74</span>    self.datas = []</div>
-<div class="line"><span class="lineno">   75</span>    self.input_values = []</div>
-<div class="line"><span class="lineno">   76</span>    self.calib_fit_xs = []</div>
-<div class="line"><span class="lineno">   77</span>    self.calib_fit_ys =[]</div>
-<div class="line"><span class="lineno">   78</span>    self.calib_means = []</div>
-<div class="line"><span class="lineno">   79</span>    self.calib_sigmas = []</div>
-<div class="line"><span class="lineno">   80</span>    self.data_files = []</div>
-<div class="line"><span class="lineno">   81</span>    self.data_files_name = []</div>
-<div class="line"><span class="lineno">   82</span>    self.datas_x = []</div>
-<div class="line"><span class="lineno">   83</span>    self.datas_y = []</div>
-<div class="line"><span class="lineno">   84</span>    self.datas_h = []</div>
-<div class="line"><span class="lineno">   85</span>    self.datas_peak_count = []</div>
-<div class="line"><span class="lineno">   86</span>    self.datas_peak_indices = []</div>
-<div class="line"><span class="lineno">   87</span>    self.datas_fit_xs = []</div>
-<div class="line"><span class="lineno">   88</span>    self.datas_fit_ys = []</div>
-<div class="line"><span class="lineno">   89</span>    self.datas_fit_oys = []</div>
-<div class="line"><span class="lineno">   90</span>    self.datas_means = []</div>
-<div class="line"><span class="lineno">   91</span>    self.datas_sigmas = []</div>
-<div class="line"><span class="lineno">   92</span>    self.voltages = []</div>
-<div class="line"><span class="lineno">   93</span>  </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -251,13 +217,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00369">369</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  369</span>  <span class="keyword">def </span>add_data_file_path_list(self, filepath=&#39;./*spe&#39;):</div>
-<div class="line"><span class="lineno">  370</span>    </div>
-<div class="line"><span class="lineno">  378</span>    add_files = sorted(glob.glob(filepath))</div>
-<div class="line"><span class="lineno">  379</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(add_files)):</div>
-<div class="line"><span class="lineno">  380</span>      self.data_files.append(add_files[i])</div>
-<div class="line"><span class="lineno">  381</span>  </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a375c8936a662748b7af17995345045c8" name="a375c8936a662748b7af17995345045c8"></a>
@@ -280,43 +240,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00279">279</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  279</span>  <span class="keyword">def </span>calculate_calibration_parameters(self, plot_flag=False):</div>
-<div class="line"><span class="lineno">  280</span>    </div>
-<div class="line"><span class="lineno">  288</span> </div>
-<div class="line"><span class="lineno">  289</span>    <span class="comment"># @param plot_flag plot flag. if true, draw data by plotly (default:False)</span></div>
-<div class="line"><span class="lineno">  290</span>    <span class="comment"># @return None</span></div>
-<div class="line"><span class="lineno">  291</span>    <span class="keywordflow">if</span> len(self.calib_sigmas) == len(self.input_values):</div>
-<div class="line"><span class="lineno">  292</span>      self.calib_means_err = []</div>
-<div class="line"><span class="lineno">  293</span>      <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.calib_means)):</div>
-<div class="line"><span class="lineno">  294</span>          self.calib_means_err.append(self.calib_sigmas[i]/self.calib_means[i])</div>
-<div class="line"><span class="lineno">  295</span> </div>
-<div class="line"><span class="lineno">  296</span>      least_squares = LeastSquares(self.input_values, self.calib_means, self.calib_means_err, self.linear)</div>
-<div class="line"><span class="lineno">  297</span>      m = Minuit(least_squares, p0=0, p1=100)</div>
-<div class="line"><span class="lineno">  298</span>      m.errordef = 1</div>
-<div class="line"><span class="lineno">  299</span>      m.migrad()</div>
-<div class="line"><span class="lineno">  300</span>      params = m.values</div>
-<div class="line"><span class="lineno">  301</span> </div>
-<div class="line"><span class="lineno">  302</span>      self.b = -params[<span class="stringliteral">&#39;p0&#39;</span>]/params[<span class="stringliteral">&#39;p1&#39;</span>]</div>
-<div class="line"><span class="lineno">  303</span>      self.a = 1/params[<span class="stringliteral">&#39;p1&#39;</span>]         </div>
-<div class="line"><span class="lineno">  304</span> </div>
-<div class="line"><span class="lineno">  305</span>      <span class="keywordflow">if</span> plot_flag:</div>
-<div class="line"><span class="lineno">  306</span>        fig = go.Figure(</div>
-<div class="line"><span class="lineno">  307</span>          data = go.Scatter(</div>
-<div class="line"><span class="lineno">  308</span>            y=self.input_values, x=self.calib_means, </div>
-<div class="line"><span class="lineno">  309</span>            error_x=dict(type=<span class="stringliteral">&#39;data&#39;</span>, array=self.calib_means_err, thickness=2, width=5, visible=<span class="keyword">True</span>),</div>
-<div class="line"><span class="lineno">  310</span>            mode=<span class="stringliteral">&#39;markers&#39;</span>, name=<span class="stringliteral">&#39;fitted data plot&#39;</span>))</div>
-<div class="line"><span class="lineno">  311</span>        fig.update_layout(title=<span class="stringliteral">&#39;Input Values vs Fitted Values&#39;</span>, yaxis_title=<span class="stringliteral">&#39;Input values&#39;</span>, xaxis_title=<span class="stringliteral">&#39;Fitted value&#39;</span>, title_x=0.05, title_font=dict(size=20))</div>
-<div class="line"><span class="lineno">  312</span>        fig.add_trace(</div>
-<div class="line"><span class="lineno">  313</span>          go.Scatter(</div>
-<div class="line"><span class="lineno">  314</span>            x=np.array(self.calib_means), y=self.linear(np.array(self.calib_means), self.b , self.a), mode=<span class="stringliteral">&#39;lines&#39;</span>, </div>
-<div class="line"><span class="lineno">  315</span>            name=f<span class="stringliteral">&quot;{self.b:.3f}+{self.a:.3f}x&quot;</span>, </div>
-<div class="line"><span class="lineno">  316</span>            line=dict(color=<span class="stringliteral">&#39;red&#39;</span>, width=2), opacity=0.5))</div>
-<div class="line"><span class="lineno">  317</span>        fig.show()</div>
-<div class="line"><span class="lineno">  318</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  319</span>      print(<span class="stringliteral">&#39;peak number does not match input list.&#39;</span>)</div>
-<div class="line"><span class="lineno">  320</span>      print(<span class="stringliteral">&#39;calibration parameter calculation process wad skipped.&#39;</span>)</div>
-<div class="line"><span class="lineno">  321</span>      </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a54ada8110eaef5f1c01e157a9726e47c" name="a54ada8110eaef5f1c01e157a9726e47c"></a>
@@ -335,15 +259,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00147">147</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  147</span>  <span class="keyword">def </span>calculate_Gain(self):</div>
-<div class="line"><span class="lineno">  148</span>    </div>
-<div class="line"><span class="lineno">  155</span>    <span class="keywordflow">if</span> len(self.Qmeas)*len(self.Qmeas_err)&gt;0:</div>
-<div class="line"><span class="lineno">  156</span>      self.G = self.Qmeas / ( self.dEdX * self.dL * self.Qe / self.W ) </div>
-<div class="line"><span class="lineno">  157</span>      self.G_err = self.Qmeas_err / ( self.dEdX * self.dL * self.Qe / self.W ) </div>
-<div class="line"><span class="lineno">  158</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  159</span>       print(<span class="stringliteral">&#39;measured values are empty.&#39;</span>) </div>
-<div class="line"><span class="lineno">  160</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a3ea4c90ff287ee262c3e86edc78649ac" name="a3ea4c90ff287ee262c3e86edc78649ac"></a>
@@ -362,15 +278,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00133">133</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  133</span>  <span class="keyword">def </span>calculate_Qmeas(self):</div>
-<div class="line"><span class="lineno">  134</span>    </div>
-<div class="line"><span class="lineno">  141</span>    <span class="keywordflow">if</span> len(self.datas_means)*len(self.datas_sigmas)&gt;0:</div>
-<div class="line"><span class="lineno">  142</span>      self.Qmeas = self.linear( np.array(self.datas_means).flatten(), self.b, self.a)</div>
-<div class="line"><span class="lineno">  143</span>      self.Qmeas_err = self.a * np.array(self.datas_sigmas).flatten()</div>
-<div class="line"><span class="lineno">  144</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  145</span>       print(<span class="stringliteral">&#39;measured values are empty.&#39;</span>) </div>
-<div class="line"><span class="lineno">  146</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a8bedc887ec3de0f7b50e361a391313cc" name="a8bedc887ec3de0f7b50e361a391313cc"></a>
@@ -389,13 +297,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00382">382</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  382</span>  <span class="keyword">def </span>check_data_file(self):</div>
-<div class="line"><span class="lineno">  383</span>    </div>
-<div class="line"><span class="lineno">  386</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.data_files)):</div>
-<div class="line"><span class="lineno">  387</span>      print(self.data_files[i])</div>
-<div class="line"><span class="lineno">  388</span> </div>
-<div class="line"><span class="lineno">  389</span>      </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a99b8f1035c8851ef70115a8d3458534a" name="a99b8f1035c8851ef70115a8d3458534a"></a>
@@ -414,39 +316,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00434">434</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  434</span>  <span class="keyword">def </span>draw_fitted_datas(self):</div>
-<div class="line"><span class="lineno">  435</span>    </div>
-<div class="line"><span class="lineno">  438</span>    k = 0</div>
-<div class="line"><span class="lineno">  439</span>    </div>
-<div class="line"><span class="lineno">  440</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.datas_fit_xs)):</div>
-<div class="line"><span class="lineno">  441</span>      <span class="keywordflow">for</span> j <span class="keywordflow">in</span> range(len(self.datas_fit_xs[i])):</div>
-<div class="line"><span class="lineno">  442</span> </div>
-<div class="line"><span class="lineno">  443</span>        data_h = util.dataforming.create_histogram_data_from_points(self.datas_fit_xs[i][j], self.datas_fit_oys[i][j])</div>
-<div class="line"><span class="lineno">  444</span> </div>
-<div class="line"><span class="lineno">  445</span>        <span class="keywordflow">if</span> k == 0:</div>
-<div class="line"><span class="lineno">  446</span>          categories = [f<span class="stringliteral">&quot;{self.data_files_name[i]}, FID:{i}, HID:{j}&quot;</span>] * len(data_h)</div>
-<div class="line"><span class="lineno">  447</span>          histograms = data_h</div>
-<div class="line"><span class="lineno">  448</span> </div>
-<div class="line"><span class="lineno">  449</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  450</span>          categories = categories + [f<span class="stringliteral">&quot;{self.data_files_name[i]}, FID:{i}, HID:{j}&quot;</span>] * len(data_h)</div>
-<div class="line"><span class="lineno">  451</span>          histograms = histograms + data_h</div>
-<div class="line"><span class="lineno">  452</span>        </div>
-<div class="line"><span class="lineno">  453</span>        k = k + 1</div>
-<div class="line"><span class="lineno">  454</span>    </div>
-<div class="line"><span class="lineno">  455</span>    df = pd.DataFrame({<span class="stringliteral">&#39;Value&#39;</span>: histograms, <span class="stringliteral">&#39;Category&#39;</span>: categories})</div>
-<div class="line"><span class="lineno">  456</span>    fig = px.histogram(df, x=<span class="stringliteral">&quot;Value&quot;</span>, color=<span class="stringliteral">&quot;Category&quot;</span>, nbins=1023, opacity=0.75)</div>
-<div class="line"><span class="lineno">  457</span> </div>
-<div class="line"><span class="lineno">  458</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.datas_fit_xs)):</div>
-<div class="line"><span class="lineno">  459</span>      <span class="keywordflow">for</span> j <span class="keywordflow">in</span> range(len(self.datas_fit_xs[i])):</div>
-<div class="line"><span class="lineno">  460</span>        fig.add_trace(</div>
-<div class="line"><span class="lineno">  461</span>          go.Scatter(</div>
-<div class="line"><span class="lineno">  462</span>            x=self.datas_fit_xs[i][j], y=self.datas_fit_ys[i][j], mode=<span class="stringliteral">&#39;lines&#39;</span>, </div>
-<div class="line"><span class="lineno">  463</span>            name=f<span class="stringliteral">&quot;FID:{i}, HID:{j}, ({self.calib_means[i]:3.2f}, {self.calib_sigmas[i]:3.2f})&quot;</span>, </div>
-<div class="line"><span class="lineno">  464</span>            line=dict(color=<span class="stringliteral">&#39;black&#39;</span>, width=1.5), opacity=0.5))</div>
-<div class="line"><span class="lineno">  465</span> </div>
-<div class="line"><span class="lineno">  466</span>    fig.show()</div>
-<div class="line"><span class="lineno">  467</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a4167ef1d85c186d2ba00a19d4e07c617" name="a4167ef1d85c186d2ba00a19d4e07c617"></a>
@@ -465,21 +335,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00468">468</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  468</span>  <span class="keyword">def </span>draw_gain_curve(self):</div>
-<div class="line"><span class="lineno">  469</span>    </div>
-<div class="line"><span class="lineno">  476</span>    fig = go.Figure(</div>
-<div class="line"><span class="lineno">  477</span>      data = go.Scatter(</div>
-<div class="line"><span class="lineno">  478</span>        x=self.voltages, y=self.G, </div>
-<div class="line"><span class="lineno">  479</span>        error_y=dict(type=<span class="stringliteral">&#39;data&#39;</span>, array=self.G_err, thickness=2, width=5, visible=<span class="keyword">True</span>),</div>
-<div class="line"><span class="lineno">  480</span>        name=<span class="stringliteral">&#39;fitted data plot&#39;</span>))</div>
-<div class="line"><span class="lineno">  481</span>    fig.update_layout(title=<span class="stringliteral">&#39;Gain Curve&#39;</span>, yaxis_title=<span class="stringliteral">&#39;Gain&#39;</span>, xaxis_title=<span class="stringliteral">&#39;Voltage [V]&#39;</span>, title_x=0.05, title_font=dict(size=20))</div>
-<div class="line"><span class="lineno">  482</span>    <span class="comment"># fig.add_trace(</span></div>
-<div class="line"><span class="lineno">  483</span>    <span class="comment">#   go.Scatter(</span></div>
-<div class="line"><span class="lineno">  484</span>    <span class="comment">#     x=np.array(self.calib_means), y=self.linear(np.array(self.calib_means), self.b , self.a), mode=&#39;lines&#39;, </span></div>
-<div class="line"><span class="lineno">  485</span>    <span class="comment">#     name=f&quot;{self.b:.3f}+{self.a:.3f}x&quot;, </span></div>
-<div class="line"><span class="lineno">  486</span>    <span class="comment">#     line=dict(color=&#39;red&#39;, width=2), opacity=0.5))</span></div>
-<div class="line"><span class="lineno">  487</span>    fig.show()</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="af767d7af60cacab14955ba8c127bae01" name="af767d7af60cacab14955ba8c127bae01"></a>
@@ -512,37 +368,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00193">193</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  193</span>  <span class="keyword">def </span>find_peak(self, smooth_parameter=3, input_label=&#39;calib&#39; ,debug=False):</div>
-<div class="line"><span class="lineno">  194</span>    </div>
-<div class="line"><span class="lineno">  205</span>    <span class="keywordflow">if</span> input_label == <span class="stringliteral">&#39;calib&#39;</span>:</div>
-<div class="line"><span class="lineno">  206</span>      self.calib_data_x, self.calib_data_y = util.dataforming.read_spe_file(self.calib_path)</div>
-<div class="line"><span class="lineno">  207</span>      self.calib_data_h = util.dataforming.create_histogram_data_from_points(self.calib_data_x, self.calib_data_y)</div>
-<div class="line"><span class="lineno">  208</span>      smoothed_data = gaussian_filter(self.calib_data_y, smooth_parameter)</div>
-<div class="line"><span class="lineno">  209</span>      self.calib_data_peak_count, self.calib_data_peak_indices = util.dataforming.find_peaks(smoothed_data)</div>
-<div class="line"><span class="lineno">  210</span>      </div>
-<div class="line"><span class="lineno">  211</span>      <span class="keywordflow">if</span> debug:</div>
-<div class="line"><span class="lineno">  212</span>        print(<span class="stringliteral">&quot;(calibration) number of peak:&quot;</span>, self.calib_data_peak_count,<span class="stringliteral">&quot;, index of peak:&quot;</span>, self.calib_data_peak_indices)</div>
-<div class="line"><span class="lineno">  213</span> </div>
-<div class="line"><span class="lineno">  214</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  215</span>      <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.data_files)):</div>
-<div class="line"><span class="lineno">  216</span> </div>
-<div class="line"><span class="lineno">  217</span>        file_name = os.path.basename(self.data_files[i])</div>
-<div class="line"><span class="lineno">  218</span>        data_x, data_y = util.dataforming.read_spe_file(self.data_files[i])</div>
-<div class="line"><span class="lineno">  219</span>        data_h = util.dataforming.create_histogram_data_from_points(data_x, data_y)</div>
-<div class="line"><span class="lineno">  220</span>        smoothed_data = gaussian_filter(data_y, smooth_parameter)</div>
-<div class="line"><span class="lineno">  221</span>        data_peak_count, data_peak_indices = util.dataforming.find_peaks(smoothed_data)</div>
-<div class="line"><span class="lineno">  222</span>                </div>
-<div class="line"><span class="lineno">  223</span>        self.datas_x.append(data_x)</div>
-<div class="line"><span class="lineno">  224</span>        self.datas_y.append(data_y)</div>
-<div class="line"><span class="lineno">  225</span>        self.datas_h.append(data_h)</div>
-<div class="line"><span class="lineno">  226</span>        self.datas_peak_count.append(data_peak_count)</div>
-<div class="line"><span class="lineno">  227</span>        self.datas_peak_indices.append(data_peak_indices)</div>
-<div class="line"><span class="lineno">  228</span>        self.data_files_name.append(os.path.splitext(file_name)[0])</div>
-<div class="line"><span class="lineno">  229</span> </div>
-<div class="line"><span class="lineno">  230</span>        <span class="keywordflow">if</span> debug:</div>
-<div class="line"><span class="lineno">  231</span>          print(<span class="stringliteral">&quot;(data) :&quot;</span>, i, <span class="stringliteral">&quot; number of peak:&quot;</span>, data_peak_count, <span class="stringliteral">&quot;, index of peak:&quot;</span>, data_peak_indices)</div>
-<div class="line"><span class="lineno">  232</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a3e0d7858932b1010c54c0c7187e652cf" name="a3e0d7858932b1010c54c0c7187e652cf"></a>
@@ -575,44 +401,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00233">233</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  233</span>  <span class="keyword">def </span>fit_calibration_data(self, width=30, initial_sigma=10, plot_flag=False):</div>
-<div class="line"><span class="lineno">  234</span>    </div>
-<div class="line"><span class="lineno">  244</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.calib_data_peak_indices)):</div>
-<div class="line"><span class="lineno">  245</span>      xarr = np.array(self.calib_data_x)</div>
-<div class="line"><span class="lineno">  246</span>      yarr = np.array(self.calib_data_y)</div>
-<div class="line"><span class="lineno">  247</span> </div>
-<div class="line"><span class="lineno">  248</span>      fit_min, fit_max = self.calib_data_x[self.calib_data_peak_indices[i]] - width, self.calib_data_x[self.calib_data_peak_indices[i]] + width </div>
-<div class="line"><span class="lineno">  249</span>      mask = (xarr &gt;= fit_min) &amp; (xarr &lt;= fit_max)</div>
-<div class="line"><span class="lineno">  250</span>      xarr_mask = xarr[mask]</div>
-<div class="line"><span class="lineno">  251</span>      yarr_mask = yarr[mask]</div>
-<div class="line"><span class="lineno">  252</span> </div>
-<div class="line"><span class="lineno">  253</span> </div>
-<div class="line"><span class="lineno">  254</span>      least_squares = LeastSquares(xarr_mask, yarr_mask, np.ones_like(yarr_mask), self.gaussian)</div>
-<div class="line"><span class="lineno">  255</span>      m = Minuit(least_squares, amplitude=self.calib_data_y[self.calib_data_peak_indices[i]],  mean=self.calib_data_x[self.calib_data_peak_indices[i]], sigma=initial_sigma)</div>
-<div class="line"><span class="lineno">  256</span>      m.errordef = 1</div>
-<div class="line"><span class="lineno">  257</span>      m.migrad()</div>
-<div class="line"><span class="lineno">  258</span> </div>
-<div class="line"><span class="lineno">  259</span>      self.calib_fit_xs.append(xarr_mask)</div>
-<div class="line"><span class="lineno">  260</span>      self.calib_fit_ys.append(self.gaussian(xarr_mask, m.values[<span class="stringliteral">&#39;amplitude&#39;</span>], m.values[<span class="stringliteral">&#39;mean&#39;</span>], m.values[<span class="stringliteral">&#39;sigma&#39;</span>]))</div>
-<div class="line"><span class="lineno">  261</span> </div>
-<div class="line"><span class="lineno">  262</span>      self.calib_means.append(m.values[<span class="stringliteral">&#39;mean&#39;</span>])</div>
-<div class="line"><span class="lineno">  263</span>      self.calib_sigmas.append(m.values[<span class="stringliteral">&#39;sigma&#39;</span>])</div>
-<div class="line"><span class="lineno">  264</span> </div>
-<div class="line"><span class="lineno">  265</span>    <span class="keywordflow">if</span> plot_flag:</div>
-<div class="line"><span class="lineno">  266</span>      categories = [<span class="stringliteral">&quot;mca&quot;</span>] * len(self.calib_data_h) </div>
-<div class="line"><span class="lineno">  267</span>      df = pd.DataFrame({<span class="stringliteral">&#39;Value&#39;</span>: self.calib_data_h, <span class="stringliteral">&#39;Category&#39;</span>: categories})</div>
-<div class="line"><span class="lineno">  268</span>      fig = px.histogram(df, x=<span class="stringliteral">&#39;Value&#39;</span>, color=<span class="stringliteral">&#39;Category&#39;</span>, nbins=1023, labels={<span class="stringliteral">&#39;Value&#39;</span>: <span class="stringliteral">&#39;Channel&#39;</span>}, title=<span class="stringliteral">&#39;MCA Histogram&#39;</span>)</div>
-<div class="line"><span class="lineno">  269</span> </div>
-<div class="line"><span class="lineno">  270</span>      <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.calib_means)):</div>
-<div class="line"><span class="lineno">  271</span>          fig.add_trace(</div>
-<div class="line"><span class="lineno">  272</span>            go.Scatter(</div>
-<div class="line"><span class="lineno">  273</span>              x=self.calib_fit_xs[i], y=self.calib_fit_ys[i], mode=<span class="stringliteral">&#39;lines&#39;</span>, </div>
-<div class="line"><span class="lineno">  274</span>              name=f<span class="stringliteral">&quot;FID:{i}, ({self.calib_means[i]:3.2f}, {self.calib_sigmas[i]:3.2f})&quot;</span>, </div>
-<div class="line"><span class="lineno">  275</span>              line=dict(color=<span class="stringliteral">&#39;red&#39;</span>, width=1.5), opacity=0.5))</div>
-<div class="line"><span class="lineno">  276</span>          </div>
-<div class="line"><span class="lineno">  277</span>      fig.show()</div>
-<div class="line"><span class="lineno">  278</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a40cb95c444fc86dd287b7233a17e0a25" name="a40cb95c444fc86dd287b7233a17e0a25"></a>
@@ -640,43 +429,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00390">390</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  390</span>  <span class="keyword">def </span>fit_data(self, width=30, initial_sigma=10):</div>
-<div class="line"><span class="lineno">  391</span>    </div>
-<div class="line"><span class="lineno">  400</span>    <span class="keywordflow">for</span> j <span class="keywordflow">in</span> range(len(self.datas_x)):</div>
-<div class="line"><span class="lineno">  401</span> </div>
-<div class="line"><span class="lineno">  402</span>      data_fit_xs = []</div>
-<div class="line"><span class="lineno">  403</span>      data_fit_ys = []</div>
-<div class="line"><span class="lineno">  404</span>      data_fit_oys = []</div>
-<div class="line"><span class="lineno">  405</span>      data_means = []</div>
-<div class="line"><span class="lineno">  406</span>      data_sigmas = []</div>
-<div class="line"><span class="lineno">  407</span>      </div>
-<div class="line"><span class="lineno">  408</span>      <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.datas_peak_indices[j])):</div>
-<div class="line"><span class="lineno">  409</span>        xarr = np.array(self.datas_x[j])</div>
-<div class="line"><span class="lineno">  410</span>        yarr = np.array(self.datas_y[j])</div>
-<div class="line"><span class="lineno">  411</span> </div>
-<div class="line"><span class="lineno">  412</span>        fit_min, fit_max = self.datas_x[j][self.datas_peak_indices[j][i]] - width, self.datas_x[j][self.datas_peak_indices[j][i]] + width </div>
-<div class="line"><span class="lineno">  413</span>        mask = (xarr &gt;= fit_min) &amp; (xarr &lt;= fit_max)</div>
-<div class="line"><span class="lineno">  414</span>        xarr_mask = xarr[mask]</div>
-<div class="line"><span class="lineno">  415</span>        yarr_mask = yarr[mask]</div>
-<div class="line"><span class="lineno">  416</span>        </div>
-<div class="line"><span class="lineno">  417</span>        least_squares = LeastSquares(xarr_mask, yarr_mask, np.ones_like(yarr_mask), self.gaussian)</div>
-<div class="line"><span class="lineno">  418</span>        m = Minuit(least_squares, amplitude=self.datas_y[j][self.datas_peak_indices[j][i]],  mean=self.datas_x[j][self.datas_peak_indices[j][i]], sigma=initial_sigma)</div>
-<div class="line"><span class="lineno">  419</span>        m.errordef = 1</div>
-<div class="line"><span class="lineno">  420</span>        m.migrad()</div>
-<div class="line"><span class="lineno">  421</span> </div>
-<div class="line"><span class="lineno">  422</span>        data_fit_xs.append(xarr_mask)</div>
-<div class="line"><span class="lineno">  423</span>        data_fit_ys.append(self.gaussian(xarr_mask, m.values[<span class="stringliteral">&#39;amplitude&#39;</span>], m.values[<span class="stringliteral">&#39;mean&#39;</span>], m.values[<span class="stringliteral">&#39;sigma&#39;</span>]))</div>
-<div class="line"><span class="lineno">  424</span>        data_fit_oys.append(yarr_mask)</div>
-<div class="line"><span class="lineno">  425</span>        data_means.append(m.values[<span class="stringliteral">&#39;mean&#39;</span>])</div>
-<div class="line"><span class="lineno">  426</span>        data_sigmas.append(m.values[<span class="stringliteral">&#39;sigma&#39;</span>])</div>
-<div class="line"><span class="lineno">  427</span>      </div>
-<div class="line"><span class="lineno">  428</span>      self.datas_fit_xs.append(data_fit_xs)</div>
-<div class="line"><span class="lineno">  429</span>      self.datas_fit_ys.append(data_fit_ys)</div>
-<div class="line"><span class="lineno">  430</span>      self.datas_fit_oys.append(data_fit_oys)</div>
-<div class="line"><span class="lineno">  431</span>      self.datas_means.append(data_means)</div>
-<div class="line"><span class="lineno">  432</span>      self.datas_sigmas.append(data_sigmas)</div>
-<div class="line"><span class="lineno">  433</span>      </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="af56e284882ffb6edc2b4b63aa4b84ea8" name="af56e284882ffb6edc2b4b63aa4b84ea8"></a>
@@ -714,11 +467,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00161">161</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  161</span>  <span class="keyword">def </span>gaussian(self, x, amplitude, mean, sigma):</div>
-<div class="line"><span class="lineno">  162</span>    </div>
-<div class="line"><span class="lineno">  168</span>    <span class="keywordflow">return</span> amplitude * np.exp(-0.5 * ((x - mean) / sigma) ** 2)</div>
-<div class="line"><span class="lineno">  169</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a3d5f7c7ed22f86e05949d4bb597e8cdd" name="a3d5f7c7ed22f86e05949d4bb597e8cdd"></a>
@@ -741,11 +490,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00358">358</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  358</span>  <span class="keyword">def </span>get_data_file_path_list(self, filepath=&#39;./*spe&#39;):</div>
-<div class="line"><span class="lineno">  359</span>    </div>
-<div class="line"><span class="lineno">  367</span>    self.data_files = sorted(glob.glob(filepath))</div>
-<div class="line"><span class="lineno">  368</span>  </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a312cd90663db8c349893e45d42c87ccf" name="a312cd90663db8c349893e45d42c87ccf"></a>
@@ -764,11 +509,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00100">100</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  100</span>  <span class="keyword">def </span>get_Gain(self):</div>
-<div class="line"><span class="lineno">  101</span>    </div>
-<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">return</span> self.G, self.G_err</div>
-<div class="line"><span class="lineno">  105</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a686b74ecea6effbbb3f5000b050c01a4" name="a686b74ecea6effbbb3f5000b050c01a4"></a>
@@ -787,11 +528,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00094">94</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   94</span>  <span class="keyword">def </span>get_Qmeas(self):</div>
-<div class="line"><span class="lineno">   95</span>    </div>
-<div class="line"><span class="lineno">   98</span>    <span class="keywordflow">return</span> self.Qmeas, self.Qmeas_err</div>
-<div class="line"><span class="lineno">   99</span>  </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="acbbee1f993454e13253f9472defcfadc" name="acbbee1f993454e13253f9472defcfadc"></a>
@@ -824,11 +561,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00170">170</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  170</span>  <span class="keyword">def </span>linear(self, x, p0, p1):</div>
-<div class="line"><span class="lineno">  171</span>    </div>
-<div class="line"><span class="lineno">  177</span>    <span class="keywordflow">return</span> p0 + p1 * x</div>
-<div class="line"><span class="lineno">  178</span>  </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a170e769125666d78312a8584f1aed3eb" name="a170e769125666d78312a8584f1aed3eb"></a>
@@ -856,39 +589,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00322">322</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  322</span>  <span class="keyword">def </span>remove_fitted_peak(self, list_label=&#39;calib&#39;, index_list=[]):</div>
-<div class="line"><span class="lineno">  323</span>    </div>
-<div class="line"><span class="lineno">  328</span>    <span class="keywordflow">if</span> list_label == <span class="stringliteral">&#39;calib&#39;</span>:</div>
-<div class="line"><span class="lineno">  329</span>      <span class="keywordflow">for</span> index <span class="keywordflow">in</span> sorted(index_list, reverse=<span class="keyword">True</span>):</div>
-<div class="line"><span class="lineno">  330</span>          <span class="keywordflow">if</span> 0 &lt;= index &lt; len(self.calib_sigmas):  </div>
-<div class="line"><span class="lineno">  331</span>              del self.calib_sigmas[index]</div>
-<div class="line"><span class="lineno">  332</span>      </div>
-<div class="line"><span class="lineno">  333</span>      <span class="keywordflow">for</span> index <span class="keywordflow">in</span> sorted(index_list, reverse=<span class="keyword">True</span>):</div>
-<div class="line"><span class="lineno">  334</span>          <span class="keywordflow">if</span> 0 &lt;= index &lt; len(self.calib_means):  </div>
-<div class="line"><span class="lineno">  335</span>              del self.calib_means[index]</div>
-<div class="line"><span class="lineno">  336</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  337</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.datas_means)):</div>
-<div class="line"><span class="lineno">  338</span>          <span class="keywordflow">for</span> index <span class="keywordflow">in</span> sorted(index_list[i], reverse=<span class="keyword">True</span>):</div>
-<div class="line"><span class="lineno">  339</span>              <span class="keywordflow">if</span> 0 &lt;= index &lt; len(self.datas_fit_xs[i]):  </div>
-<div class="line"><span class="lineno">  340</span>                  del self.datas_fit_xs[i][index]</div>
-<div class="line"><span class="lineno">  341</span> </div>
-<div class="line"><span class="lineno">  342</span>          <span class="keywordflow">for</span> index <span class="keywordflow">in</span> sorted(index_list[i], reverse=<span class="keyword">True</span>):</div>
-<div class="line"><span class="lineno">  343</span>              <span class="keywordflow">if</span> 0 &lt;= index &lt; len(self.datas_fit_ys[i]):  </div>
-<div class="line"><span class="lineno">  344</span>                  del self.datas_fit_ys[i][index]</div>
-<div class="line"><span class="lineno">  345</span> </div>
-<div class="line"><span class="lineno">  346</span>          <span class="keywordflow">for</span> index <span class="keywordflow">in</span> sorted(index_list[i], reverse=<span class="keyword">True</span>):</div>
-<div class="line"><span class="lineno">  347</span>              <span class="keywordflow">if</span> 0 &lt;= index &lt; len(self.datas_fit_oys[i]):  </div>
-<div class="line"><span class="lineno">  348</span>                  del self.datas_fit_oys[i][index]</div>
-<div class="line"><span class="lineno">  349</span> </div>
-<div class="line"><span class="lineno">  350</span>          <span class="keywordflow">for</span> index <span class="keywordflow">in</span> sorted(index_list[i], reverse=<span class="keyword">True</span>):</div>
-<div class="line"><span class="lineno">  351</span>              <span class="keywordflow">if</span> 0 &lt;= index &lt; len(self.datas_means[i]):  </div>
-<div class="line"><span class="lineno">  352</span>                  del self.datas_means[i][index]</div>
-<div class="line"><span class="lineno">  353</span> </div>
-<div class="line"><span class="lineno">  354</span>          <span class="keywordflow">for</span> index <span class="keywordflow">in</span> sorted(index_list[i], reverse=<span class="keyword">True</span>):</div>
-<div class="line"><span class="lineno">  355</span>              <span class="keywordflow">if</span> 0 &lt;= index &lt; len(self.datas_sigmas[i]):  </div>
-<div class="line"><span class="lineno">  356</span>                  del self.datas_sigmas[i][index]</div>
-<div class="line"><span class="lineno">  357</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="aa420285eb094bcdbdba98ed689004800" name="aa420285eb094bcdbdba98ed689004800"></a>
@@ -911,11 +612,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00179">179</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  179</span>  <span class="keyword">def </span>set_calibration_file_path(self, file_path):</div>
-<div class="line"><span class="lineno">  180</span>    </div>
-<div class="line"><span class="lineno">  184</span>    self.calib_path = file_path</div>
-<div class="line"><span class="lineno">  185</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a0dafa367e0f6b71f3d0eac03710c34b9" name="a0dafa367e0f6b71f3d0eac03710c34b9"></a>
@@ -938,13 +635,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00113">113</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  113</span>  <span class="keyword">def </span>set_dEdX(self, val):</div>
-<div class="line"><span class="lineno">  114</span>    <span class="comment"># @brief set energy loss in small interval at certain point</span></div>
-<div class="line"><span class="lineno">  115</span>    <span class="comment"># @param val reference values </span></div>
-<div class="line"><span class="lineno">  116</span>    <span class="comment"># @return None</span></div>
-<div class="line"><span class="lineno">  117</span>    self.dEdX = val </div>
-<div class="line"><span class="lineno">  118</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a8ca26b603c7895ba65002ddd48436a2b" name="a8ca26b603c7895ba65002ddd48436a2b"></a>
@@ -967,11 +658,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00119">119</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  119</span>  <span class="keyword">def </span>set_dL(self, val):</div>
-<div class="line"><span class="lineno">  120</span>    </div>
-<div class="line"><span class="lineno">  124</span>    self.dL = val</div>
-<div class="line"><span class="lineno">  125</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="aa26f327f5d74521ffc302d02396aa309" name="aa26f327f5d74521ffc302d02396aa309"></a>
@@ -994,11 +681,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00186">186</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  186</span>  <span class="keyword">def </span>set_input_values(self, values):</div>
-<div class="line"><span class="lineno">  187</span>    </div>
-<div class="line"><span class="lineno">  191</span>    self.input_values = values</div>
-<div class="line"><span class="lineno">  192</span>  </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a92e9fb4bf16d71b1223ca30ae8125827" name="a92e9fb4bf16d71b1223ca30ae8125827"></a>
@@ -1021,11 +704,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00106">106</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  106</span>  <span class="keyword">def </span>set_voltages(self, val):</div>
-<div class="line"><span class="lineno">  107</span>    </div>
-<div class="line"><span class="lineno">  111</span>    self.voltages = val</div>
-<div class="line"><span class="lineno">  112</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="ae96426d1ee09ce4abe023f3c47f137b9" name="ae96426d1ee09ce4abe023f3c47f137b9"></a>
@@ -1048,11 +727,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="mcaanalysis_8py_source.html#l00126">126</a> of file <a class="el" href="mcaanalysis_8py_source.html">mcaanalysis.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  126</span>  <span class="keyword">def </span>set_W(self, val):</div>
-<div class="line"><span class="lineno">  127</span>    </div>
-<div class="line"><span class="lineno">  131</span>    self.W = val</div>
-<div class="line"><span class="lineno">  132</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
@@ -1095,7 +770,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer.calib_data_h = <a class="el" href="namespacecatmlib_1_1util_1_1dataforming.html#a610a67ced407ba1e31850572ee25f57e">util.dataforming.create_histogram_data_from_points</a>(self.calib_data_x, self.calib_data_y)</td>
+          <td class="memname">catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer.calib_data_h = util.dataforming.create_histogram_data_from_points(self.calib_data_x, self.calib_data_y)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1127,7 +802,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer.calib_data_peak_indices = <a class="el" href="namespacecatmlib_1_1util_1_1dataforming.html#a65c2738b149373bcba2e1600c3f93cb6">util.dataforming.find_peaks</a>(smoothed_data)</td>
+          <td class="memname">catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer.calib_data_peak_indices = util.dataforming.find_peaks(smoothed_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1171,7 +846,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer.calib_data_y = <a class="el" href="namespacecatmlib_1_1util_1_1dataforming.html#a13dbd95a6cac156a4ec8ada005783d80">util.dataforming.read_spe_file</a>(self.calib_path)</td>
+          <td class="memname">catmlib.analyser.mcaanalysis.TMultiChannelAnalyzer.calib_data_y = util.dataforming.read_spe_file(self.calib_path)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1821,7 +1496,7 @@ Qmeas and error of Qmeas ([float, float, ... , float], [float, float, ... , floa
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="namespacecatmlib.html">catmlib</a></li><li class="navelem"><a href="namespacecatmlib_1_1analyser.html">analyser</a></li><li class="navelem"><a href="namespacecatmlib_1_1analyser_1_1mcaanalysis.html">mcaanalysis</a></li><li class="navelem"><a href="classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer.html">TMultiChannelAnalyzer</a></li>
+    <li class="navelem"><b>catmlib</b></li><li class="navelem"><b>analyser</b></li><li class="navelem"><b>mcaanalysis</b></li><li class="navelem"><a href="classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer.html">TMultiChannelAnalyzer</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>

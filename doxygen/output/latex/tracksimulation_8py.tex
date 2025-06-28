@@ -1,0 +1,220 @@
+\doxysection{/\+Users/fendo/\+Work/\+Program/uv-\/python/catmlib/src/catmlib/simulator/tracksimulation.py File Reference}
+\hypertarget{tracksimulation_8py}{}\label{tracksimulation_8py}\index{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/simulator/tracksimulation.py@{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/simulator/tracksimulation.py}}
+
+
+simple tracking simulrator with difution parameter of drift electron  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tracksimulation_8py_aa178e787094890dff0ee3c3ff8a5a6a9}{catmlib.\+simulator.\+tracksimulation.\+init\+\_\+track\+\_\+simulator}} (pad, num=1, start\+\_\+y=19.\+8, deg\+\_\+theta=0, deg\+\_\+phi=0, mc\+\_\+option=\textquotesingle{}gaus, gaus, null, gaus, gaus\textquotesingle{}, mc\+\_\+prm=\textquotesingle{}5, 5, 5, 10, 10\textquotesingle{}, gain=60, difusion\+\_\+gain=20, difusion=0.\+5, png\+\_\+save\+\_\+path=None, flag=True)
+\begin{DoxyCompactList}\small\item\em initialize track simulator \end{DoxyCompactList}\item 
+\mbox{\hyperlink{tracksimulation_8py_a6bbea6f63f35f9e3f666c3bcff81e002}{catmlib.\+simulator.\+tracksimulation.\+chk\+\_\+mc\+\_\+prm}} (simulator, flag=True, png\+\_\+save\+\_\+path=None)
+\begin{DoxyCompactList}\small\item\em check generated parameter \end{DoxyCompactList}\item 
+\mbox{\hyperlink{tracksimulation_8py_ae0f6a34ec6bb7460df8f7778a339e143}{catmlib.\+simulator.\+tracksimulation.\+simulate\+\_\+pad\+\_\+charge}} (simulator, gain=60, difusion\+\_\+gain=20, difusion=0.\+5)
+\begin{DoxyCompactList}\small\item\em simulate position and charge \end{DoxyCompactList}\item 
+\mbox{\hyperlink{tracksimulation_8py_ad6495f75d4103fb131bbdbd006fc7d21}{catmlib.\+simulator.\+tracksimulation.\+calculate\+\_\+pad\+\_\+charge\+\_\+threshold}} (centers, charge, threshold=0.\+08)
+\begin{DoxyCompactList}\small\item\em remove data using threshold \end{DoxyCompactList}\item 
+\mbox{\hyperlink{tracksimulation_8py_a15cc2996853d9980eb2158d450cf452a}{catmlib.\+simulator.\+tracksimulation.\+calculate\+\_\+xposition\+\_\+from\+\_\+charge}} (centers, xpos, charge, gain=60, difusion\+\_\+gain=20, difusion=0.\+5, threshold=0.\+2, global\+\_\+threshold\+\_\+value=0.\+2, png\+\_\+save\+\_\+path=None, flag=True)
+\begin{DoxyCompactList}\small\item\em calculate x position using removed charge list \end{DoxyCompactList}\item 
+\mbox{\hyperlink{tracksimulation_8py_a8d9e6173e10daf36be76dc79d6224558}{catmlib.\+simulator.\+tracksimulation.\+execute\+\_\+simulataion}} ()
+\begin{DoxyCompactList}\small\item\em method for script to execute mc simulation \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+simple tracking simulrator with difution parameter of drift electron 
+
+\begin{DoxyVersion}{Version}
+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Fumitaka ENDO 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/06-\/28T15\+:45\+:26+09\+:00 
+\end{DoxyDate}
+
+
+Definition in file \mbox{\hyperlink{tracksimulation_8py_source}{tracksimulation.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{tracksimulation_8py_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{tracksimulation_8py_ad6495f75d4103fb131bbdbd006fc7d21}\index{tracksimulation.py@{tracksimulation.py}!calculate\_pad\_charge\_threshold@{calculate\_pad\_charge\_threshold}}
+\index{calculate\_pad\_charge\_threshold@{calculate\_pad\_charge\_threshold}!tracksimulation.py@{tracksimulation.py}}
+\doxysubsubsection{\texorpdfstring{calculate\_pad\_charge\_threshold()}{calculate\_pad\_charge\_threshold()}}
+{\footnotesize\ttfamily \label{tracksimulation_8py_ad6495f75d4103fb131bbdbd006fc7d21} 
+catmlib.\+simulator.\+tracksimulation.\+calculate\+\_\+pad\+\_\+charge\+\_\+threshold (\begin{DoxyParamCaption}\item[{}]{centers}{, }\item[{}]{charge}{, }\item[{}]{threshold}{ = {\ttfamily 0.08}}\end{DoxyParamCaption})}
+
+
+
+remove data using threshold 
+
+
+\begin{DoxyParams}{Parameters}
+{\em centers} & list of center position for each pad \\
+\hline
+{\em charge} & list of charge for each pad \\
+\hline
+{\em threshold} & threshold value to removing the data\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+x positions, charges (\mbox{[}\mbox{]},\mbox{[}\mbox{]}) 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tracksimulation_8py_source_l00456}{456}} of file \mbox{\hyperlink{tracksimulation_8py_source}{tracksimulation.\+py}}.
+
+\Hypertarget{tracksimulation_8py_a15cc2996853d9980eb2158d450cf452a}\index{tracksimulation.py@{tracksimulation.py}!calculate\_xposition\_from\_charge@{calculate\_xposition\_from\_charge}}
+\index{calculate\_xposition\_from\_charge@{calculate\_xposition\_from\_charge}!tracksimulation.py@{tracksimulation.py}}
+\doxysubsubsection{\texorpdfstring{calculate\_xposition\_from\_charge()}{calculate\_xposition\_from\_charge()}}
+{\footnotesize\ttfamily \label{tracksimulation_8py_a15cc2996853d9980eb2158d450cf452a} 
+catmlib.\+simulator.\+tracksimulation.\+calculate\+\_\+xposition\+\_\+from\+\_\+charge (\begin{DoxyParamCaption}\item[{}]{centers}{, }\item[{}]{xpos}{, }\item[{}]{charge}{, }\item[{}]{gain}{ = {\ttfamily 60}, }\item[{}]{difusion\+\_\+gain}{ = {\ttfamily 20}, }\item[{}]{difusion}{ = {\ttfamily 0.5}, }\item[{}]{threshold}{ = {\ttfamily 0.2}, }\item[{}]{global\+\_\+threshold\+\_\+value}{ = {\ttfamily 0.2}, }\item[{}]{png\+\_\+save\+\_\+path}{ = {\ttfamily None}, }\item[{}]{flag}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+
+
+calculate x position using removed charge list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em centers} & list of center position for each pad \\
+\hline
+{\em charge} & list of charge for each pad \\
+\hline
+{\em xpos} & list of position \\
+\hline
+{\em threshold} & threshold value to removing the data \\
+\hline
+{\em gain} & gem gain (default = 60) \\
+\hline
+{\em difusion\+\_\+gain} & difusion gain (default = 20) \\
+\hline
+{\em difusion} & difufsion parameter (default = 0.\+5) \\
+\hline
+{\em global\+\_\+threshold\+\_\+value} & global threshold value to removing the data \\
+\hline
+{\em png\+\_\+save\+\_\+path} & output file path \\
+\hline
+{\em flag} & save flag \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{tracksimulation_8py_source_l00484}{484}} of file \mbox{\hyperlink{tracksimulation_8py_source}{tracksimulation.\+py}}.
+
+\Hypertarget{tracksimulation_8py_a6bbea6f63f35f9e3f666c3bcff81e002}\index{tracksimulation.py@{tracksimulation.py}!chk\_mc\_prm@{chk\_mc\_prm}}
+\index{chk\_mc\_prm@{chk\_mc\_prm}!tracksimulation.py@{tracksimulation.py}}
+\doxysubsubsection{\texorpdfstring{chk\_mc\_prm()}{chk\_mc\_prm()}}
+{\footnotesize\ttfamily \label{tracksimulation_8py_a6bbea6f63f35f9e3f666c3bcff81e002} 
+catmlib.\+simulator.\+tracksimulation.\+chk\+\_\+mc\+\_\+prm (\begin{DoxyParamCaption}\item[{}]{simulator}{, }\item[{}]{flag}{ = {\ttfamily True}, }\item[{}]{png\+\_\+save\+\_\+path}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+check generated parameter 
+
+
+\begin{DoxyParams}{Parameters}
+{\em png\+\_\+save\+\_\+path} & output file path \\
+\hline
+{\em flag} & save flag\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+simulator object (\doxylink{class_track_simulator}{Track\+Simulator}) 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tracksimulation_8py_source_l00370}{370}} of file \mbox{\hyperlink{tracksimulation_8py_source}{tracksimulation.\+py}}.
+
+\Hypertarget{tracksimulation_8py_a8d9e6173e10daf36be76dc79d6224558}\index{tracksimulation.py@{tracksimulation.py}!execute\_simulataion@{execute\_simulataion}}
+\index{execute\_simulataion@{execute\_simulataion}!tracksimulation.py@{tracksimulation.py}}
+\doxysubsubsection{\texorpdfstring{execute\_simulataion()}{execute\_simulataion()}}
+{\footnotesize\ttfamily \label{tracksimulation_8py_a8d9e6173e10daf36be76dc79d6224558} 
+catmlib.\+simulator.\+tracksimulation.\+execute\+\_\+simulataion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+method for script to execute mc simulation 
+
+CLI argument\+: \begin{DoxyItemize}
+\item pad-\/type select trial pad type \item pad-\/version select trail pad version \item nmax select trial pad type \item gem-\/gain select trail pad version \item difusion-\/gain select trail pad version \item difusion-\/value select trail pad version \item global-\/threshold-\/value select trail pad version \item flag-\/track-\/example plot track example \item flag-\/mc-\/parameter plot generated track parameter \item flag-\/position-\/charge plot postion and charge \end{DoxyItemize}
+
+
+Definition at line \mbox{\hyperlink{tracksimulation_8py_source_l00554}{554}} of file \mbox{\hyperlink{tracksimulation_8py_source}{tracksimulation.\+py}}.
+
+\Hypertarget{tracksimulation_8py_aa178e787094890dff0ee3c3ff8a5a6a9}\index{tracksimulation.py@{tracksimulation.py}!init\_track\_simulator@{init\_track\_simulator}}
+\index{init\_track\_simulator@{init\_track\_simulator}!tracksimulation.py@{tracksimulation.py}}
+\doxysubsubsection{\texorpdfstring{init\_track\_simulator()}{init\_track\_simulator()}}
+{\footnotesize\ttfamily \label{tracksimulation_8py_aa178e787094890dff0ee3c3ff8a5a6a9} 
+catmlib.\+simulator.\+tracksimulation.\+init\+\_\+track\+\_\+simulator (\begin{DoxyParamCaption}\item[{}]{pad}{, }\item[{}]{num}{ = {\ttfamily 1}, }\item[{}]{start\+\_\+y}{ = {\ttfamily 19.8}, }\item[{}]{deg\+\_\+theta}{ = {\ttfamily 0}, }\item[{}]{deg\+\_\+phi}{ = {\ttfamily 0}, }\item[{}]{mc\+\_\+option}{ = {\ttfamily \textquotesingle{}gaus,gaus,null,gaus,gaus\textquotesingle{}}, }\item[{}]{mc\+\_\+prm}{ = {\ttfamily \textquotesingle{}5,5,5,10,10\textquotesingle{}}, }\item[{}]{gain}{ = {\ttfamily 60}, }\item[{}]{difusion\+\_\+gain}{ = {\ttfamily 20}, }\item[{}]{difusion}{ = {\ttfamily 0.5}, }\item[{}]{png\+\_\+save\+\_\+path}{ = {\ttfamily None}, }\item[{}]{flag}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+
+
+initialize track simulator 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pad} & pad object to be used \\
+\hline
+{\em num} & maximum number of loop (default = 1) \\
+\hline
+{\em start\+\_\+y} & (default = 19.\+8) \\
+\hline
+{\em deg\+\_\+theta} & (default = 0) \\
+\hline
+{\em deg\+\_\+phi} & (default = 0) \\
+\hline
+{\em mc\+\_\+option} & distribution along each axis for smearing electron (default = \textquotesingle{}gaus,gaus,null,gaus,gaus\textquotesingle{}) \\
+\hline
+{\em mc\+\_\+prm} & list of paramters for distributions (default = \textquotesingle{}5,5,5,10,10\textquotesingle{}) \\
+\hline
+{\em gain} & gem gain (default = 60) \\
+\hline
+{\em difusion\+\_\+gain} & difusion gain (default = 20) \\
+\hline
+{\em difusion} & difufsion parameter (default = 0.\+5) \\
+\hline
+{\em png\+\_\+save\+\_\+path} & output file path \\
+\hline
+{\em flag} & save flag\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+simulator object (\doxylink{class_track_simulator}{Track\+Simulator}) 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tracksimulation_8py_source_l00322}{322}} of file \mbox{\hyperlink{tracksimulation_8py_source}{tracksimulation.\+py}}.
+
+\Hypertarget{tracksimulation_8py_ae0f6a34ec6bb7460df8f7778a339e143}\index{tracksimulation.py@{tracksimulation.py}!simulate\_pad\_charge@{simulate\_pad\_charge}}
+\index{simulate\_pad\_charge@{simulate\_pad\_charge}!tracksimulation.py@{tracksimulation.py}}
+\doxysubsubsection{\texorpdfstring{simulate\_pad\_charge()}{simulate\_pad\_charge()}}
+{\footnotesize\ttfamily \label{tracksimulation_8py_ae0f6a34ec6bb7460df8f7778a339e143} 
+catmlib.\+simulator.\+tracksimulation.\+simulate\+\_\+pad\+\_\+charge (\begin{DoxyParamCaption}\item[{}]{simulator}{, }\item[{}]{gain}{ = {\ttfamily 60}, }\item[{}]{difusion\+\_\+gain}{ = {\ttfamily 20}, }\item[{}]{difusion}{ = {\ttfamily 0.5}}\end{DoxyParamCaption})}
+
+
+
+simulate position and charge 
+
+
+\begin{DoxyParams}{Parameters}
+{\em simulator} & simulator object \\
+\hline
+{\em gain} & gem gain (default = 60) \\
+\hline
+{\em difusion\+\_\+gain} & difusion gain (default = 20) \\
+\hline
+{\em difusion} & difufsion parameter (default = 0.\+5)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+x positions, charges (\mbox{[}\mbox{]},\mbox{[}\mbox{]}) 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tracksimulation_8py_source_l00414}{414}} of file \mbox{\hyperlink{tracksimulation_8py_source}{tracksimulation.\+py}}.
+

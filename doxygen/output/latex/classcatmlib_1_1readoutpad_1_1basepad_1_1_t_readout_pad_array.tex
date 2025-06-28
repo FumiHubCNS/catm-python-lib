@@ -55,19 +55,6 @@ catmlib.\+readoutpad.\+basepad.\+TReadout\+Pad\+Array.\+\_\+\+\_\+init\+\_\+\+\_
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00107}{107}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00107\ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self):}
-\DoxyCodeLine{00108\ \ \ \ \ }
-\DoxyCodeLine{00117\ \ \ \ \ self.mapping\ =\ \{\textcolor{stringliteral}{'x'}:\ 0,\ \textcolor{stringliteral}{'y'}:\ 1,\ \textcolor{stringliteral}{'z'}:\ 2\}}
-\DoxyCodeLine{00118\ \ \ \ \ self.basepadlist\ =\ []}
-\DoxyCodeLine{00119\ \ \ \ \ self.pads\ =\ []}
-\DoxyCodeLine{00120\ \ \ \ \ self.ids\ =\ []}
-\DoxyCodeLine{00121\ \ \ \ \ self.centers\ =\ []}
-\DoxyCodeLine{00122\ \ \ \ \ self.charges\ =\ []}
-\DoxyCodeLine{00123\ }
-
-\end{DoxyCode}
-
 
 \label{doc-func-members}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array_doc-func-members}
@@ -82,14 +69,6 @@ catmlib.\+readoutpad.\+basepad.\+TReadout\+Pad\+Array.\+add\+\_\+basepad (\begin
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00160}{160}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00160\ \ \ \textcolor{keyword}{def\ }add\_basepad(self,baseinfo):}
-\DoxyCodeLine{00161\ \ \ \ \ }
-\DoxyCodeLine{00165\ \ \ \ \ self.basepadlist.append(baseinfo)}
-\DoxyCodeLine{00166\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array_ad5f4b66d567d9372ba65ee5b41735607}\index{catmlib.readoutpad.basepad.TReadoutPadArray@{catmlib.readoutpad.basepad.TReadoutPadArray}!add\_pads@{add\_pads}}
 \index{add\_pads@{add\_pads}!catmlib.readoutpad.basepad.TReadoutPadArray@{catmlib.readoutpad.basepad.TReadoutPadArray}}
 \doxysubsubsection{\texorpdfstring{add\_pads()}{add\_pads()}}
@@ -100,33 +79,6 @@ catmlib.\+readoutpad.\+basepad.\+TReadout\+Pad\+Array.\+add\+\_\+pads (\begin{Do
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00167}{167}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00167\ \ \ \textcolor{keyword}{def\ }add\_pads(self,\ center,\ baseid,\ degX=0,\ degY=0,\ degZ=0,\ id=0):}
-\DoxyCodeLine{00168\ \ \ \ \ }
-\DoxyCodeLine{00177\ \ \ \ \ padshape\ =\ self.basepadlist[baseid]}
-\DoxyCodeLine{00178\ \ \ \ \ polygon\_origin\ =\ padshape.get\_polygon()}
-\DoxyCodeLine{00179\ }
-\DoxyCodeLine{00180\ \ \ \ \ polygon\_new\ =\ []}
-\DoxyCodeLine{00181\ }
-\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(polygon\_origin)):}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00184\ \ \ \ \ \ \ polygon\_rot\ =\ self.rotate\_x(polygon\_origin[i],\ degX)}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ polygon\_rot\ =\ self.rotate\_y(polygon\_rot,\ degY)}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ polygon\_rot\ =\ self.rotate\_z(polygon\_rot,\ degZ)}
-\DoxyCodeLine{00187\ }
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(polygon\_rot)):}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ polygon\_rot[j]\ =\ polygon\_rot[j]\ +\ center[j]}
-\DoxyCodeLine{00190\ }
-\DoxyCodeLine{00191\ \ \ \ \ \ \ polygon\_new.append(polygon\_rot)}
-\DoxyCodeLine{00192\ }
-\DoxyCodeLine{00193\ \ \ \ \ self.pads.append(polygon\_new)}
-\DoxyCodeLine{00194\ \ \ \ \ self.ids.append(id)}
-\DoxyCodeLine{00195\ \ \ \ \ self.centers.append(np.mean(polygon\_new,\ axis=0))}
-\DoxyCodeLine{00196\ \ \ \ \ self.charges.append(0)}
-\DoxyCodeLine{00197\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array_aacd95d520624f8d663ae78c45e075522}\index{catmlib.readoutpad.basepad.TReadoutPadArray@{catmlib.readoutpad.basepad.TReadoutPadArray}!rotate\_x@{rotate\_x}}
 \index{rotate\_x@{rotate\_x}!catmlib.readoutpad.basepad.TReadoutPadArray@{catmlib.readoutpad.basepad.TReadoutPadArray}}
 \doxysubsubsection{\texorpdfstring{rotate\_x()}{rotate\_x()}}
@@ -137,18 +89,6 @@ catmlib.\+readoutpad.\+basepad.\+TReadout\+Pad\+Array.\+rotate\+\_\+x (\begin{Do
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00124}{124}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00124\ \ \ \textcolor{keyword}{def\ }rotate\_x(self,\ position,\ degree):}
-\DoxyCodeLine{00125\ \ \ \ \ }
-\DoxyCodeLine{00130\ \ \ \ \ theta\ =\ 0.0174533*degree}
-\DoxyCodeLine{00131\ \ \ \ \ x\ =\ position[0]}
-\DoxyCodeLine{00132\ \ \ \ \ y\ =\ position[1]\ *\ np.cos(theta)\ -\/\ position[2]\ *\ np.sin(theta)}
-\DoxyCodeLine{00133\ \ \ \ \ z\ =\ position[1]\ *\ np.sin(theta)\ +\ position[2]\ *\ np.cos(theta)}
-\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{return}\ [x,\ y,\ z]}
-\DoxyCodeLine{00135\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array_af4fdb46caaa5f5214916c9869cf00e22}\index{catmlib.readoutpad.basepad.TReadoutPadArray@{catmlib.readoutpad.basepad.TReadoutPadArray}!rotate\_y@{rotate\_y}}
 \index{rotate\_y@{rotate\_y}!catmlib.readoutpad.basepad.TReadoutPadArray@{catmlib.readoutpad.basepad.TReadoutPadArray}}
 \doxysubsubsection{\texorpdfstring{rotate\_y()}{rotate\_y()}}
@@ -159,18 +99,6 @@ catmlib.\+readoutpad.\+basepad.\+TReadout\+Pad\+Array.\+rotate\+\_\+y (\begin{Do
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00136}{136}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00136\ \ \ \textcolor{keyword}{def\ }rotate\_y(self,\ position,\ degree):}
-\DoxyCodeLine{00137\ \ \ \ \ }
-\DoxyCodeLine{00142\ \ \ \ \ theta\ =\ 0.0174533*degree}
-\DoxyCodeLine{00143\ \ \ \ \ x\ =\ \ position[0]\ *\ np.cos(theta)\ +\ position[2]\ *\ np.sin(theta)}
-\DoxyCodeLine{00144\ \ \ \ \ y\ =\ \ position[1]}
-\DoxyCodeLine{00145\ \ \ \ \ z\ =\ -\/position[0]\ *\ np.sin(theta)\ +\ position[2]\ *\ np.cos(theta)}
-\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ [x,\ y,\ z]}
-\DoxyCodeLine{00147\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array_a6016e4b6eaf77fee928f0a80eceae288}\index{catmlib.readoutpad.basepad.TReadoutPadArray@{catmlib.readoutpad.basepad.TReadoutPadArray}!rotate\_z@{rotate\_z}}
 \index{rotate\_z@{rotate\_z}!catmlib.readoutpad.basepad.TReadoutPadArray@{catmlib.readoutpad.basepad.TReadoutPadArray}}
 \doxysubsubsection{\texorpdfstring{rotate\_z()}{rotate\_z()}}
@@ -181,18 +109,6 @@ catmlib.\+readoutpad.\+basepad.\+TReadout\+Pad\+Array.\+rotate\+\_\+z (\begin{Do
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00148}{148}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00148\ \ \ \textcolor{keyword}{def\ }rotate\_z(self,\ position,\ degree):}
-\DoxyCodeLine{00149\ \ \ \ \ }
-\DoxyCodeLine{00154\ \ \ \ \ theta\ =\ 0.0174533*degree}
-\DoxyCodeLine{00155\ \ \ \ \ x\ =\ position[0]\ *\ np.cos(theta)\ -\/\ position[1]\ *\ np.sin(theta)}
-\DoxyCodeLine{00156\ \ \ \ \ y\ =\ position[0]\ *\ np.sin(theta)\ +\ position[1]\ *\ np.cos(theta)}
-\DoxyCodeLine{00157\ \ \ \ \ z\ =\ position[2]}
-\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ [x,\ y,\ z]}
-\DoxyCodeLine{00159\ }
-
-\end{DoxyCode}
 \Hypertarget{classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array_adc29c11f7fcd167ad00fe0d9475a0298}\index{catmlib.readoutpad.basepad.TReadoutPadArray@{catmlib.readoutpad.basepad.TReadoutPadArray}!show\_pads@{show\_pads}}
 \index{show\_pads@{show\_pads}!catmlib.readoutpad.basepad.TReadoutPadArray@{catmlib.readoutpad.basepad.TReadoutPadArray}}
 \doxysubsubsection{\texorpdfstring{show\_pads()}{show\_pads()}}
@@ -203,30 +119,6 @@ catmlib.\+readoutpad.\+basepad.\+TReadout\+Pad\+Array.\+show\+\_\+pads (\begin{D
 
 Definition at line \mbox{\hyperlink{basepad_8py_source_l00198}{198}} of file \mbox{\hyperlink{basepad_8py_source}{basepad.\+py}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00198\ \ \ \textcolor{keyword}{def\ }show\_pads(self,\ plane='xz'):}
-\DoxyCodeLine{00199\ \ \ \ \ }
-\DoxyCodeLine{00203\ \ \ \ \ index1\ =\ self.mapping.get(plane[0],\ 0)}
-\DoxyCodeLine{00204\ \ \ \ \ index2\ =\ self.mapping.get(plane[1],\ 0)}
-\DoxyCodeLine{00205\ }
-\DoxyCodeLine{00206\ \ \ \ \ fig=plt.figure(figsize=(6,\ 5))}
-\DoxyCodeLine{00207\ \ \ \ \ ax\ =\ fig.add\_subplot(111)}
-\DoxyCodeLine{00208\ \ \ \ \ fig.patch.set\_alpha(0.)}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.pads)):}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ xs\ =\ [vertex[index1]\ \textcolor{keywordflow}{for}\ vertex\ \textcolor{keywordflow}{in}\ self.pads[i]\ ]}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ ys\ =\ [vertex[index2]\ \textcolor{keywordflow}{for}\ vertex\ \textcolor{keywordflow}{in}\ self.pads[i]\ ]}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ ax.fill(xs,\ ys,\ edgecolor=\textcolor{stringliteral}{'black'},\ facecolor=\textcolor{stringliteral}{'\#d3d3d3'},lw=0.5)}
-\DoxyCodeLine{00214\ }
-\DoxyCodeLine{00215\ \ \ \ \ ax.set\_aspect(\textcolor{stringliteral}{'equal'})}
-\DoxyCodeLine{00216\ }
-\DoxyCodeLine{00217\ \ \ \ \ plt.xlabel(str(plane[0])+\textcolor{stringliteral}{"{}\ position\ [mm]"{}})}
-\DoxyCodeLine{00218\ \ \ \ \ plt.ylabel(str(plane[1])+\textcolor{stringliteral}{"{}\ position\ [mm]"{}})}
-\DoxyCodeLine{00219\ \ \ \ \ plt.show()}
-\DoxyCodeLine{00220\ }
-
-\end{DoxyCode}
 
 
 \label{doc-variable-members}

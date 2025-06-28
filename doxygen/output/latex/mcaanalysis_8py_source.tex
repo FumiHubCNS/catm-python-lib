@@ -2,349 +2,514 @@
 \hypertarget{mcaanalysis_8py_source}{}\label{mcaanalysis_8py_source}\index{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/analyser/mcaanalysis.py@{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/analyser/mcaanalysis.py}}
 \mbox{\hyperlink{mcaanalysis_8py}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00001}\mbox{\hyperlink{namespacecatmlib_1_1analyser_1_1mcaanalysis}{00001}}\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00007}00007\ \textcolor{keyword}{import}\ sys}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00008}00008\ \textcolor{keyword}{import}\ os}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00009}00009\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00010}00010\ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(\_\_file\_\_),\ \textcolor{stringliteral}{'..'})))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00011}00011\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00012}00012\ \textcolor{keyword}{import}\ \mbox{\hyperlink{namespacecatmlib_1_1util}{catmlib.util}}\ \textcolor{keyword}{as}\ util}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00013}00013\ \textcolor{keyword}{import}\ plotly.express\ \textcolor{keyword}{as}\ px}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00014}00014\ \textcolor{keyword}{import}\ pandas\ \textcolor{keyword}{as}\ pd}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00015}00015\ \textcolor{keyword}{import}\ numpy\ \textcolor{keyword}{as}\ np}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00016}00016\ \textcolor{keyword}{from}\ scipy.ndimage\ \textcolor{keyword}{import}\ gaussian\_filter}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00017}00017\ \textcolor{keyword}{from}\ iminuit\ \textcolor{keyword}{import}\ Minuit}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00018}00018\ \textcolor{keyword}{from}\ iminuit.cost\ \textcolor{keyword}{import}\ LeastSquares}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00019}00019\ \textcolor{keyword}{import}\ plotly.graph\_objects\ \textcolor{keyword}{as}\ go}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00020}00020\ \textcolor{keyword}{import}\ glob}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00021}00021\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00022}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer}{00022}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer}{TMultiChannelAnalyzer}}():}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00023}00023\ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00026}00026\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00027}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a68e99a608cfbbf4f36961772cef0764c}{00027}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a68e99a608cfbbf4f36961772cef0764c}{\_\_init\_\_}}(self):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00028}00028\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00062}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a26b5639e4fadf8b8f2a3303834bf0e9e}{00062}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a26b5639e4fadf8b8f2a3303834bf0e9e}{Qmeas}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00063}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a22c6b320ff96ba0091cfbcc603951dfc}{00063}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a22c6b320ff96ba0091cfbcc603951dfc}{Qmeas\_err}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00064}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ad5d5cb6885e3c195aa10577ed87ac570}{00064}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ad5d5cb6885e3c195aa10577ed87ac570}{dEdX}}\ =\ 1e6\ \ \ \ \textcolor{comment}{\#\ [eV/mm]}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00065}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab20bd9590ea60578e6fca8d3558f0c3a}{00065}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab20bd9590ea60578e6fca8d3558f0c3a}{dL}}\ =\ 12\ \ \ \ \ \ \ \textcolor{comment}{\#\ [mm]}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00066}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a10c9fe8188da7fcf9d6b7dbcaca84e26}{00066}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a10c9fe8188da7fcf9d6b7dbcaca84e26}{W}}\ =\ 26\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ [eV]}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00067}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ad0c1cd4358cfb4e03e7c689edcc8e9d0}{00067}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ad0c1cd4358cfb4e03e7c689edcc8e9d0}{Qe}}\ =\ 1.602e-\/7\ \textcolor{comment}{\#\ [pC]}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00068}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a7c3020e476ac1e1d25358d8a3b49f103}{00068}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a7c3020e476ac1e1d25358d8a3b49f103}{G}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00069}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a66b915780d1e66c39030fb17deea07da}{00069}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a66b915780d1e66c39030fb17deea07da}{G\_err}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00070}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9e9fe17532f38716e43e5f33e6befd22}{00070}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9e9fe17532f38716e43e5f33e6befd22}{E}}\ =\ 1\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00071}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5d7ba8bf9fe88a46f32e506986b85cbe}{00071}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5d7ba8bf9fe88a46f32e506986b85cbe}{a}}\ =\ 1}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00072}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_abefc13372000ebe1b0efda1bce9463bb}{00072}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_abefc13372000ebe1b0efda1bce9463bb}{b}}\ =\ 0}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00073}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a83b9349d88bd1605ff04548bbfab885b}{00073}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a83b9349d88bd1605ff04548bbfab885b}{calib\_path}}\ =\ \textcolor{keywordtype}{None}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00074}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a505ceb4c405c28be601bccfc4cdd013d}{00074}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a505ceb4c405c28be601bccfc4cdd013d}{datas}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00075}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae5bc04a75161c96e9a7b837eafc19690}{00075}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae5bc04a75161c96e9a7b837eafc19690}{input\_values}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00076}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ac4305e6ff8e753cb9519a866b9112eea}{00076}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ac4305e6ff8e753cb9519a866b9112eea}{calib\_fit\_xs}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00077}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4fa940db1824cd02bce1496c70c9fc5e}{00077}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4fa940db1824cd02bce1496c70c9fc5e}{calib\_fit\_ys}}\ =[]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00078}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{00078}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00079}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a130beccd1a9c5d55952af70fba3474ce}{00079}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a130beccd1a9c5d55952af70fba3474ce}{calib\_sigmas}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00080}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a434e33f4a51d1ee041722c432f6c9102}{00080}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a434e33f4a51d1ee041722c432f6c9102}{data\_files}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00081}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a38cc24d5af4ef806ab65318c4aaf796d}{00081}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a38cc24d5af4ef806ab65318c4aaf796d}{data\_files\_name}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00082}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae446d05f6a53db6956f33bea1c78d815}{00082}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae446d05f6a53db6956f33bea1c78d815}{datas\_x}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00083}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab028ae4af8dffb065deae908c19d0643}{00083}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab028ae4af8dffb065deae908c19d0643}{datas\_y}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00084}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a7643c500c963ba6dcdfa86aa273f8426}{00084}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a7643c500c963ba6dcdfa86aa273f8426}{datas\_h}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00085}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5642e4e18248da0e9a45194643a9f63f}{00085}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5642e4e18248da0e9a45194643a9f63f}{datas\_peak\_count}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00086}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae3177584f4420964d3ed6a0c369c9fb2}{00086}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae3177584f4420964d3ed6a0c369c9fb2}{datas\_peak\_indices}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00087}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{00087}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{datas\_fit\_xs}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00088}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4c25699507abbc7d92b9d880472fe99a}{00088}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4c25699507abbc7d92b9d880472fe99a}{datas\_fit\_ys}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00089}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5fd6c42030b318ebd0f3fa66008a7119}{00089}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5fd6c42030b318ebd0f3fa66008a7119}{datas\_fit\_oys}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00090}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8445025b1ec1d48cd311e101dfc0d43d}{00090}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8445025b1ec1d48cd311e101dfc0d43d}{datas\_means}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00091}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9c913eb218cb3b3997909837fe51d684}{00091}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9c913eb218cb3b3997909837fe51d684}{datas\_sigmas}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00092}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ac7ec4c3e66f37706b483e8e0ae322569}{00092}}\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ac7ec4c3e66f37706b483e8e0ae322569}{voltages}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00093}00093\ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00094}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a686b74ecea6effbbb3f5000b050c01a4}{00094}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a686b74ecea6effbbb3f5000b050c01a4}{get\_Qmeas}}(self):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00095}00095\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00098}00098\ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a26b5639e4fadf8b8f2a3303834bf0e9e}{Qmeas}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a22c6b320ff96ba0091cfbcc603951dfc}{Qmeas\_err}}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00099}00099\ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00100}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a312cd90663db8c349893e45d42c87ccf}{00100}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a312cd90663db8c349893e45d42c87ccf}{get\_Gain}}(self):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00101}00101\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a7c3020e476ac1e1d25358d8a3b49f103}{G}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a66b915780d1e66c39030fb17deea07da}{G\_err}}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00105}00105\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00106}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a92e9fb4bf16d71b1223ca30ae8125827}{00106}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a92e9fb4bf16d71b1223ca30ae8125827}{set\_voltages}}(self,\ val):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00107}00107\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00111}00111\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ac7ec4c3e66f37706b483e8e0ae322569}{voltages}}\ =\ val}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00112}00112\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00113}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a0dafa367e0f6b71f3d0eac03710c34b9}{00113}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a0dafa367e0f6b71f3d0eac03710c34b9}{set\_dEdX}}(self,\ val):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00114}00114\ \ \ \ \ \textcolor{comment}{\#\ @brief\ set\ energy\ loss\ in\ small\ interval\ at\ certain\ point}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00115}00115\ \ \ \ \ \textcolor{comment}{\#\ @param\ val\ reference\ values\ }}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00116}00116\ \ \ \ \ \textcolor{comment}{\#\ @return\ None}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00117}00117\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ad5d5cb6885e3c195aa10577ed87ac570}{dEdX}}\ =\ val\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00001}00001\ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00002}00002\ \textcolor{stringliteral}{@file\ mcaanalysis.py}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00003}00003\ \textcolor{stringliteral}{@version\ 1}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00004}00004\ \textcolor{stringliteral}{@author\ Fumitaka\ ENDO}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00005}00005\ \textcolor{stringliteral}{@date\ 2025-\/01-\/30T10:52:52+09:00}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00006}00006\ \textcolor{stringliteral}{@brief\ analysis\ utilities\ related\ to\ MCA\ (Kromek)}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00007}00007\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00008}00008\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00009}00009\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00011}00011\ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(\_\_file\_\_),\ \textcolor{stringliteral}{'..'})))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00013}00013\ \textcolor{keyword}{import}\ \mbox{\hyperlink{namespacecatmlib_1_1util}{catmlib.util}}\ \textcolor{keyword}{as}\ util}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00014}00014\ \textcolor{keyword}{import}\ plotly.express\ \textcolor{keyword}{as}\ px}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00015}00015\ \textcolor{keyword}{import}\ pandas\ \textcolor{keyword}{as}\ pd}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00016}00016\ \textcolor{keyword}{import}\ numpy\ \textcolor{keyword}{as}\ np}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00017}00017\ \textcolor{keyword}{from}\ scipy.ndimage\ \textcolor{keyword}{import}\ gaussian\_filter}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00018}00018\ \textcolor{keyword}{from}\ iminuit\ \textcolor{keyword}{import}\ Minuit}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00019}00019\ \textcolor{keyword}{from}\ iminuit.cost\ \textcolor{keyword}{import}\ LeastSquares}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00020}00020\ \textcolor{keyword}{import}\ plotly.graph\_objects\ \textcolor{keyword}{as}\ go}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00021}00021\ \textcolor{keyword}{import}\ glob}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00023}00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_multi_channel_analyzer}{TMultiChannelAnalyzer}}():}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00024}00024\ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00025}\mbox{\hyperlink{class_t_multi_channel_analyzer}{00025}}\ \textcolor{stringliteral}{\ \ @class\ TMultiChannelAnalyzer}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ @brief\ analysis\ package\ for\ analysing\ data\ acquired\ by\ MCA}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00027}00027\ \textcolor{stringliteral}{\ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00029}00029\ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00030}00030\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00031}00031\ \textcolor{stringliteral}{\ \ \ \ @brief\ initialze\ object}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00032}00032\ \textcolor{stringliteral}{\ \ \ \ @param\ Qmeas\ calculated\ measured\ charge}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00033}00033\ \textcolor{stringliteral}{\ \ \ \ @param\ Qmeas\_err\ calculated\ error\ of\ measured\ charge}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00034}00034\ \textcolor{stringliteral}{\ \ \ \ @param\ dEdX\ stopping\ power\ in\ certain\ point}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00035}00035\ \textcolor{stringliteral}{\ \ \ \ @param\ dL\ effective\ pad\ length}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00036}00036\ \textcolor{stringliteral}{\ \ \ \ @param\ W\ elecrton-\/ion\ piar\ creation\ energy}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00037}00037\ \textcolor{stringliteral}{\ \ \ \ @param\ Qe\ elementary\ charge}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00038}00038\ \textcolor{stringliteral}{\ \ \ \ @param\ G\ calculated\ gain}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00039}00039\ \textcolor{stringliteral}{\ \ \ \ @param\ G\_err\ calculated\ error\ of\ gain}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00040}00040\ \textcolor{stringliteral}{\ \ \ \ @param\ E\ calculated\ theoretical\ energy\ deposit\ in\ pad}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00041}00041\ \textcolor{stringliteral}{\ \ \ \ @param\ a\ 1-\/st\ order\ term\ of\ calibration\ parameter\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00042}00042\ \textcolor{stringliteral}{\ \ \ \ @param\ b\ 0-\/th\ order\ term\ of\ calibration\ parameter\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00043}00043\ \textcolor{stringliteral}{\ \ \ \ @param\ calib\_path\ calibration\ data\ path}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00044}00044\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\ gain\ measurement\ datas\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00045}00045\ \textcolor{stringliteral}{\ \ \ \ @param\ input\_values\ gain\ measurement\ datas\ path}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00046}00046\ \textcolor{stringliteral}{\ \ \ \ @param\ calib\_fit\_xs\ data\ list\ for\ the\ data\ point\ x\ near\ each\ peak\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00047}00047\ \textcolor{stringliteral}{\ \ \ \ @param\ calib\_fit\_ys\ data\ list\ for\ the\ gausian\ value\ near\ each\ peak\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00048}00048\ \textcolor{stringliteral}{\ \ \ \ @param\ calib\_means\ mean\ values\ list\ from\ fitting\ result\ by\ iminuit}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00049}00049\ \textcolor{stringliteral}{\ \ \ \ @param\ calib\_sigmas\ sigma\ values\ list\ from\ fitting\ result\ by\ iminuit}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00050}00050\ \textcolor{stringliteral}{\ \ \ \ @param\ data\_files\ list\ of\ data\ path}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00051}00051\ \textcolor{stringliteral}{\ \ \ \ @param\ data\_files\_name\ list\ of\ data\ path\ name\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00052}00052\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\_x\ lits\ of\ mca\ data\ points\ (x)}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00053}00053\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\_y\ lits\ of\ mca\ data\ points\ (y)}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00054}00054\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\_h\ lits\ of\ mca\ data\ points\ (frequency)}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00055}00055\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\_peak\_count\ list\ of\ found\ peak\ count}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00056}00056\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\_peak\_indices\ list\ of\ found\ peak\ index}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00057}00057\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\_fit\_xs\ list\ of\ data\ point\ x\ picked\ up\ mca\ data\ around\ peak\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00058}00058\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\_fit\_ys\ list\ of\ gausian\ values\ picked\ up\ mca\ data\ around\ peak\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00059}00059\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\_fit\_oys\ list\ of\ data\ point\ y\ picked\ up\ mca\ data\ around\ peak\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00060}00060\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\_means\ list\ of\ fitted\ mean\ value}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00061}00061\ \textcolor{stringliteral}{\ \ \ \ @param\ datas\_sigmas\ list\ of\ fitted\ sigma\ value}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00062}00062\ \textcolor{stringliteral}{\ \ \ \ @param\ voltages\ input\ voltage\ values}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00063}00063\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00064}00064\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00065}00065\ \ \ \ \ self.Qmeas\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00066}00066\ \ \ \ \ self.Qmeas\_err\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00067}00067\ \ \ \ \ self.dEdX\ =\ 1e6\ \ \ \ \textcolor{comment}{\#\ [eV/mm]}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00068}00068\ \ \ \ \ self.dL\ =\ 12\ \ \ \ \ \ \ \textcolor{comment}{\#\ [mm]}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00069}00069\ \ \ \ \ self.W\ =\ 26\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ [eV]}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00070}00070\ \ \ \ \ self.Qe\ =\ 1.602e-\/7\ \textcolor{comment}{\#\ [pC]}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00071}00071\ \ \ \ \ self.G\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00072}00072\ \ \ \ \ self.G\_err\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00073}00073\ \ \ \ \ self.E\ =\ 1\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00074}00074\ \ \ \ \ self.a\ =\ 1}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00075}00075\ \ \ \ \ self.b\ =\ 0}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00076}00076\ \ \ \ \ self.calib\_path\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00077}00077\ \ \ \ \ self.datas\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00078}00078\ \ \ \ \ self.input\_values\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00079}00079\ \ \ \ \ self.calib\_fit\_xs\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00080}00080\ \ \ \ \ self.calib\_fit\_ys\ =[]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00081}00081\ \ \ \ \ self.calib\_means\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00082}00082\ \ \ \ \ self.calib\_sigmas\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00083}00083\ \ \ \ \ self.data\_files\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00084}00084\ \ \ \ \ self.data\_files\_name\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00085}00085\ \ \ \ \ self.datas\_x\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00086}00086\ \ \ \ \ self.datas\_y\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00087}00087\ \ \ \ \ self.datas\_h\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00088}00088\ \ \ \ \ self.datas\_peak\_count\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00089}00089\ \ \ \ \ self.datas\_peak\_indices\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00090}00090\ \ \ \ \ self.datas\_fit\_xs\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00091}00091\ \ \ \ \ self.datas\_fit\_ys\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00092}00092\ \ \ \ \ self.datas\_fit\_oys\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00093}00093\ \ \ \ \ self.datas\_means\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00094}00094\ \ \ \ \ self.datas\_sigmas\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00095}00095\ \ \ \ \ self.voltages\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00096}00096\ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00097}00097\ \ \ \textcolor{keyword}{def\ }get\_Qmeas(self):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00098}00098\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00099}00099\ \textcolor{stringliteral}{\ \ \ \ @brief\ get\ calculated\ measured\ charge\ and\ error\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00100}00100\ \textcolor{stringliteral}{\ \ \ \ @return\ Qmeas\ and\ error\ of\ Qmeas\ ([float,\ float,\ ...\ ,\ float],\ [float,\ float,\ ...\ ,\ float])}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00101}00101\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00102}00102\ \ \ \ \ \textcolor{keywordflow}{return}\ self.Qmeas,\ self.Qmeas\_err}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00103}00103\ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00104}00104\ \ \ \textcolor{keyword}{def\ }get\_Gain(self):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00105}00105\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00106}00106\ \textcolor{stringliteral}{\ \ \ \ @brief\ get\ calculated\ gain\ and\ error\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00107}00107\ \textcolor{stringliteral}{\ \ \ \ @return\ Gain\ and\ error\ of\ Gain\ ([float,\ float,\ ...\ ,\ float],\ [float,\ float,\ ...\ ,\ float])}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00108}00108\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{return}\ self.G,\ self.G\_err}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00111}00111\ \ \ \textcolor{keyword}{def\ }set\_voltages(self,\ val):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00112}00112\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00113}00113\ \textcolor{stringliteral}{\ \ \ \ @brief\ set\ list\ of\ voltage\ value}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00114}00114\ \textcolor{stringliteral}{\ \ \ \ @param\ val\ reference\ values\ [float,\ float,\ ...\ ,\ float]}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00115}00115\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00116}00116\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00117}00117\ \ \ \ \ self.voltages\ =\ val}
 \DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00118}00118\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00119}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8ca26b603c7895ba65002ddd48436a2b}{00119}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8ca26b603c7895ba65002ddd48436a2b}{set\_dL}}(self,\ val):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00120}00120\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00124}00124\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab20bd9590ea60578e6fca8d3558f0c3a}{dL}}\ =\ val}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00125}00125\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00126}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae96426d1ee09ce4abe023f3c47f137b9}{00126}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae96426d1ee09ce4abe023f3c47f137b9}{set\_W}}(self,\ val):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00127}00127\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00131}00131\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a10c9fe8188da7fcf9d6b7dbcaca84e26}{W}}\ =\ val}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00132}00132\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00133}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a3ea4c90ff287ee262c3e86edc78649ac}{00133}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a3ea4c90ff287ee262c3e86edc78649ac}{calculate\_Qmeas}}(self):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00134}00134\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8445025b1ec1d48cd311e101dfc0d43d}{datas\_means}})*len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9c913eb218cb3b3997909837fe51d684}{datas\_sigmas}})>0:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00142}00142\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a26b5639e4fadf8b8f2a3303834bf0e9e}{Qmeas}}\ =\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_acbbee1f993454e13253f9472defcfadc}{linear}}(\ np.array(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8445025b1ec1d48cd311e101dfc0d43d}{datas\_means}}).flatten(),\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_abefc13372000ebe1b0efda1bce9463bb}{b}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5d7ba8bf9fe88a46f32e506986b85cbe}{a}})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00143}00143\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a22c6b320ff96ba0091cfbcc603951dfc}{Qmeas\_err}}\ =\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5d7ba8bf9fe88a46f32e506986b85cbe}{a}}\ *\ np.array(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9c913eb218cb3b3997909837fe51d684}{datas\_sigmas}}).flatten()}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00145}00145\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{'measured\ values\ are\ empty.'})\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00146}00146\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00147}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a54ada8110eaef5f1c01e157a9726e47c}{00147}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a54ada8110eaef5f1c01e157a9726e47c}{calculate\_Gain}}(self):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00148}00148\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00155}00155\ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a26b5639e4fadf8b8f2a3303834bf0e9e}{Qmeas}})*len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a22c6b320ff96ba0091cfbcc603951dfc}{Qmeas\_err}})>0:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00156}00156\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a7c3020e476ac1e1d25358d8a3b49f103}{G}}\ =\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a26b5639e4fadf8b8f2a3303834bf0e9e}{Qmeas}}\ /\ (\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ad5d5cb6885e3c195aa10577ed87ac570}{dEdX}}\ *\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab20bd9590ea60578e6fca8d3558f0c3a}{dL}}\ *\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ad0c1cd4358cfb4e03e7c689edcc8e9d0}{Qe}}\ /\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a10c9fe8188da7fcf9d6b7dbcaca84e26}{W}}\ )\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00157}00157\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a66b915780d1e66c39030fb17deea07da}{G\_err}}\ =\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a22c6b320ff96ba0091cfbcc603951dfc}{Qmeas\_err}}\ /\ (\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ad5d5cb6885e3c195aa10577ed87ac570}{dEdX}}\ *\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab20bd9590ea60578e6fca8d3558f0c3a}{dL}}\ *\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ad0c1cd4358cfb4e03e7c689edcc8e9d0}{Qe}}\ /\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a10c9fe8188da7fcf9d6b7dbcaca84e26}{W}}\ )\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00158}00158\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00159}00159\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{'measured\ values\ are\ empty.'})\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00160}00160\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00161}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_af56e284882ffb6edc2b4b63aa4b84ea8}{00161}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_af56e284882ffb6edc2b4b63aa4b84ea8}{gaussian}}(self,\ x,\ amplitude,\ mean,\ sigma):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00162}00162\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00168}00168\ \ \ \ \ \textcolor{keywordflow}{return}\ amplitude\ *\ np.exp(-\/0.5\ *\ ((x\ -\/\ mean)\ /\ sigma)\ **\ 2)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00169}00169\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00170}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_acbbee1f993454e13253f9472defcfadc}{00170}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_acbbee1f993454e13253f9472defcfadc}{linear}}(self,\ x,\ p0,\ p1):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00171}00171\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00177}00177\ \ \ \ \ \textcolor{keywordflow}{return}\ p0\ +\ p1\ *\ x}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00178}00178\ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00179}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_aa420285eb094bcdbdba98ed689004800}{00179}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_aa420285eb094bcdbdba98ed689004800}{set\_calibration\_file\_path}}(self,\ file\_path):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00180}00180\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00184}00184\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a83b9349d88bd1605ff04548bbfab885b}{calib\_path}}\ =\ file\_path}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00185}00185\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00186}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_aa26f327f5d74521ffc302d02396aa309}{00186}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_aa26f327f5d74521ffc302d02396aa309}{set\_input\_values}}(self,\ values):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00187}00187\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00191}00191\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae5bc04a75161c96e9a7b837eafc19690}{input\_values}}\ =\ values}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00119}00119\ \ \ \textcolor{keyword}{def\ }set\_dEdX(self,\ val):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00120}00120\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00121}00121\ \textcolor{stringliteral}{\ \ \ \ @brief\ set\ energy\ loss\ in\ small\ interval\ at\ certain\ point}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00122}00122\ \textcolor{stringliteral}{\ \ \ \ @param\ val\ reference\ values\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00123}00123\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00124}00124\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00125}00125\ \ \ \ \ self.dEdX\ =\ val\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00127}00127\ \ \ \textcolor{keyword}{def\ }set\_dL(self,\ val):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00128}00128\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00129}00129\ \textcolor{stringliteral}{\ \ \ \ @brief\ set\ effective\ pad\ length}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00130}00130\ \textcolor{stringliteral}{\ \ \ \ @param\ val\ reference\ values\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00131}00131\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00132}00132\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00133}00133\ \ \ \ \ self.dL\ =\ val}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00135}00135\ \ \ \textcolor{keyword}{def\ }set\_W(self,\ val):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00136}00136\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00137}00137\ \textcolor{stringliteral}{\ \ \ \ @brief\ set\ electron-\/ion\ pair\ cratrion\ energy}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00138}00138\ \textcolor{stringliteral}{\ \ \ \ @param\ val\ reference\ values\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00139}00139\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00140}00140\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00141}00141\ \ \ \ \ self.W\ =\ val}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00143}00143\ \ \ \textcolor{keyword}{def\ }calculate\_Qmeas(self):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00144}00144\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00145}00145\ \textcolor{stringliteral}{\ \ \ \ @brief\ calculate\ measured\ charge\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00146}00146\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00147}00147\ \textcolor{stringliteral}{\ \ \ \ More\ details:\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00148}00148\ \textcolor{stringliteral}{\ \ \ \ calculation\ result\ is\ stored\ to\ \`{}self.Qmeas\`{}\ and\ \`{}self.Qmeas\_err\`{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00149}00149\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00150}00150\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00151}00151\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.datas\_means)*len(self.datas\_sigmas)>0:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00153}00153\ \ \ \ \ \ \ self.Qmeas\ =\ self.linear(\ np.array(self.datas\_means).flatten(),\ self.b,\ self.a)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00154}00154\ \ \ \ \ \ \ self.Qmeas\_err\ =\ self.a\ *\ np.array(self.datas\_sigmas).flatten()}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00155}00155\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00156}00156\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{'measured\ values\ are\ empty.'})\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00158}00158\ \ \ \textcolor{keyword}{def\ }calculate\_Gain(self):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00159}00159\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00160}00160\ \textcolor{stringliteral}{\ \ \ \ @brief\ calculate\ gain\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00161}00161\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00162}00162\ \textcolor{stringliteral}{\ \ \ \ More\ details:\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00163}00163\ \textcolor{stringliteral}{\ \ \ \ calculation\ result\ is\ stored\ to\ self.G\ and\ self.G\_err}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00164}00164\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00165}00165\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00166}00166\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00167}00167\ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.Qmeas)*len(self.Qmeas\_err)>0:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00168}00168\ \ \ \ \ \ \ self.G\ =\ self.Qmeas\ /\ (\ self.dEdX\ *\ self.dL\ *\ self.Qe\ /\ self.W\ )\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00169}00169\ \ \ \ \ \ \ self.G\_err\ =\ self.Qmeas\_err\ /\ (\ self.dEdX\ *\ self.dL\ *\ self.Qe\ /\ self.W\ )\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00170}00170\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00171}00171\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{'measured\ values\ are\ empty.'})\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00173}00173\ \ \ \textcolor{keyword}{def\ }gaussian(self,\ x,\ amplitude,\ mean,\ sigma):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00174}00174\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00175}00175\ \textcolor{stringliteral}{\ \ \ \ @brief\ calculate\ gaussian\ value}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00176}00176\ \textcolor{stringliteral}{\ \ \ \ @param\ amplitude\ constant}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00177}00177\ \textcolor{stringliteral}{\ \ \ \ @param\ mean\ mean\ value}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00178}00178\ \textcolor{stringliteral}{\ \ \ \ @param\ sigma\ sigma\ value}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00179}00179\ \textcolor{stringliteral}{\ \ \ \ @return\ gaus(amplitude,\ mean,\ sigma)}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00180}00180\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00181}00181\ \ \ \ \ \textcolor{keywordflow}{return}\ amplitude\ *\ np.exp(-\/0.5\ *\ ((x\ -\/\ mean)\ /\ sigma)\ **\ 2)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00183}00183\ \ \ \textcolor{keyword}{def\ }linear(self,\ x,\ p0,\ p1):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00184}00184\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00185}00185\ \textcolor{stringliteral}{\ \ \ \ @brief\ calculate\ liner\ transform\ value}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00186}00186\ \textcolor{stringliteral}{\ \ \ \ @param\ x\ reference\ values}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00187}00187\ \textcolor{stringliteral}{\ \ \ \ @param\ p0\ coefficient\ of\ 0-\/th\ order\ term}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00188}00188\ \textcolor{stringliteral}{\ \ \ \ @param\ p1\ coefficient\ of\ 1-\/st\ order\ term}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00189}00189\ \textcolor{stringliteral}{\ \ \ \ @return\ gaus(amplitude,\ mean,\ sigma)}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00190}00190\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00191}00191\ \ \ \ \ \textcolor{keywordflow}{return}\ p0\ +\ p1\ *\ x}
 \DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00192}00192\ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00193}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_af767d7af60cacab14955ba8c127bae01}{00193}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_af767d7af60cacab14955ba8c127bae01}{find\_peak}}(self,\ smooth\_parameter=3,\ input\_label='calib'\ ,debug=False):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00194}00194\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00205}00205\ \ \ \ \ \textcolor{keywordflow}{if}\ input\_label\ ==\ \textcolor{stringliteral}{'calib'}:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00206}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9486ee23f04ebee079448a36d0de3d14}{00206}}\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9486ee23f04ebee079448a36d0de3d14}{calib\_data\_x}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a06fa36e8437c086663706828b3c2a8f5}{calib\_data\_y}}\ =\ util.dataforming.read\_spe\_file(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a83b9349d88bd1605ff04548bbfab885b}{calib\_path}})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00207}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab5de031b2c4b7a4189b4956fae36fccb}{00207}}\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab5de031b2c4b7a4189b4956fae36fccb}{calib\_data\_h}}\ =\ util.dataforming.create\_histogram\_data\_from\_points(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9486ee23f04ebee079448a36d0de3d14}{calib\_data\_x}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a06fa36e8437c086663706828b3c2a8f5}{calib\_data\_y}})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00208}00208\ \ \ \ \ \ \ smoothed\_data\ =\ gaussian\_filter(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a06fa36e8437c086663706828b3c2a8f5}{calib\_data\_y}},\ smooth\_parameter)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00209}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a200466ca9d3a7493adcdfe9e3f077f2b}{00209}}\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a200466ca9d3a7493adcdfe9e3f077f2b}{calib\_data\_peak\_count}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab0b4d5c3a1a193341e0c73fdae054cdc}{calib\_data\_peak\_indices}}\ =\ util.dataforming.find\_peaks(smoothed\_data)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00210}00210\ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00211}00211\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ debug:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}(calibration)\ number\ of\ peak:"{}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a200466ca9d3a7493adcdfe9e3f077f2b}{calib\_data\_peak\_count}},\textcolor{stringliteral}{"{},\ index\ of\ peak:"{}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab0b4d5c3a1a193341e0c73fdae054cdc}{calib\_data\_peak\_indices}})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00213}00213\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00214}00214\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00215}00215\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a434e33f4a51d1ee041722c432f6c9102}{data\_files}})):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00216}00216\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ file\_name\ =\ os.path.basename(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a434e33f4a51d1ee041722c432f6c9102}{data\_files}}[i])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ data\_x,\ data\_y\ =\ util.dataforming.read\_spe\_file(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a434e33f4a51d1ee041722c432f6c9102}{data\_files}}[i])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ data\_h\ =\ util.dataforming.create\_histogram\_data\_from\_points(data\_x,\ data\_y)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ smoothed\_data\ =\ gaussian\_filter(data\_y,\ smooth\_parameter)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ data\_peak\_count,\ data\_peak\_indices\ =\ util.dataforming.find\_peaks(smoothed\_data)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae446d05f6a53db6956f33bea1c78d815}{datas\_x}}.append(data\_x)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab028ae4af8dffb065deae908c19d0643}{datas\_y}}.append(data\_y)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a7643c500c963ba6dcdfa86aa273f8426}{datas\_h}}.append(data\_h)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5642e4e18248da0e9a45194643a9f63f}{datas\_peak\_count}}.append(data\_peak\_count)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae3177584f4420964d3ed6a0c369c9fb2}{datas\_peak\_indices}}.append(data\_peak\_indices)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a38cc24d5af4ef806ab65318c4aaf796d}{data\_files\_name}}.append(os.path.splitext(file\_name)[0])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00229}00229\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ debug:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}(data)\ :"{}},\ i,\ \textcolor{stringliteral}{"{}\ number\ of\ peak:"{}},\ data\_peak\_count,\ \textcolor{stringliteral}{"{},\ index\ of\ peak:"{}},\ data\_peak\_indices)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00232}00232\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00233}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a3e0d7858932b1010c54c0c7187e652cf}{00233}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a3e0d7858932b1010c54c0c7187e652cf}{fit\_calibration\_data}}(self,\ width=30,\ initial\_sigma=10,\ plot\_flag=False):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00234}00234\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00244}00244\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab0b4d5c3a1a193341e0c73fdae054cdc}{calib\_data\_peak\_indices}})):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00245}00245\ \ \ \ \ \ \ xarr\ =\ np.array(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9486ee23f04ebee079448a36d0de3d14}{calib\_data\_x}})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00246}00246\ \ \ \ \ \ \ yarr\ =\ np.array(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a06fa36e8437c086663706828b3c2a8f5}{calib\_data\_y}})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00247}00247\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00248}00248\ \ \ \ \ \ \ fit\_min,\ fit\_max\ =\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9486ee23f04ebee079448a36d0de3d14}{calib\_data\_x}}[self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab0b4d5c3a1a193341e0c73fdae054cdc}{calib\_data\_peak\_indices}}[i]]\ -\/\ width,\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9486ee23f04ebee079448a36d0de3d14}{calib\_data\_x}}[self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab0b4d5c3a1a193341e0c73fdae054cdc}{calib\_data\_peak\_indices}}[i]]\ +\ width\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00249}00249\ \ \ \ \ \ \ mask\ =\ (xarr\ >=\ fit\_min)\ \&\ (xarr\ <=\ fit\_max)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00250}00250\ \ \ \ \ \ \ xarr\_mask\ =\ xarr[mask]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00251}00251\ \ \ \ \ \ \ yarr\_mask\ =\ yarr[mask]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00252}00252\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00253}00253\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00254}00254\ \ \ \ \ \ \ least\_squares\ =\ LeastSquares(xarr\_mask,\ yarr\_mask,\ np.ones\_like(yarr\_mask),\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_af56e284882ffb6edc2b4b63aa4b84ea8}{gaussian}})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00255}00255\ \ \ \ \ \ \ m\ =\ Minuit(least\_squares,\ amplitude=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a06fa36e8437c086663706828b3c2a8f5}{calib\_data\_y}}[self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab0b4d5c3a1a193341e0c73fdae054cdc}{calib\_data\_peak\_indices}}[i]],\ \ mean=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9486ee23f04ebee079448a36d0de3d14}{calib\_data\_x}}[self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab0b4d5c3a1a193341e0c73fdae054cdc}{calib\_data\_peak\_indices}}[i]],\ sigma=initial\_sigma)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00256}00256\ \ \ \ \ \ \ m.errordef\ =\ 1}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00257}00257\ \ \ \ \ \ \ m.migrad()}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00258}00258\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00259}00259\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ac4305e6ff8e753cb9519a866b9112eea}{calib\_fit\_xs}}.append(xarr\_mask)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00260}00260\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4fa940db1824cd02bce1496c70c9fc5e}{calib\_fit\_ys}}.append(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_af56e284882ffb6edc2b4b63aa4b84ea8}{gaussian}}(xarr\_mask,\ m.values[\textcolor{stringliteral}{'amplitude'}],\ m.values[\textcolor{stringliteral}{'mean'}],\ m.values[\textcolor{stringliteral}{'sigma'}]))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00261}00261\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00262}00262\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}}.append(m.values[\textcolor{stringliteral}{'mean'}])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00263}00263\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a130beccd1a9c5d55952af70fba3474ce}{calib\_sigmas}}.append(m.values[\textcolor{stringliteral}{'sigma'}])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00264}00264\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00265}00265\ \ \ \ \ \textcolor{keywordflow}{if}\ plot\_flag:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00266}00266\ \ \ \ \ \ \ categories\ =\ [\textcolor{stringliteral}{"{}mca"{}}]\ *\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab5de031b2c4b7a4189b4956fae36fccb}{calib\_data\_h}})\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00267}00267\ \ \ \ \ \ \ df\ =\ pd.DataFrame(\{\textcolor{stringliteral}{'Value'}:\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab5de031b2c4b7a4189b4956fae36fccb}{calib\_data\_h}},\ \textcolor{stringliteral}{'Category'}:\ categories\})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00268}00268\ \ \ \ \ \ \ fig\ =\ px.histogram(df,\ x=\textcolor{stringliteral}{'Value'},\ color=\textcolor{stringliteral}{'Category'},\ nbins=1023,\ labels=\{\textcolor{stringliteral}{'Value'}:\ \textcolor{stringliteral}{'Channel'}\},\ title=\textcolor{stringliteral}{'MCA\ Histogram'})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00269}00269\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00270}00270\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}})):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ fig.add\_trace(}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ go.Scatter(}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ac4305e6ff8e753cb9519a866b9112eea}{calib\_fit\_xs}}[i],\ y=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4fa940db1824cd02bce1496c70c9fc5e}{calib\_fit\_ys}}[i],\ mode=\textcolor{stringliteral}{'lines'},\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name=f\textcolor{stringliteral}{"{}FID:\{i\},\ (\{self.calib\_means[i]:3.2f\},\ \{self.calib\_sigmas[i]:3.2f\})"{}},\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line=dict(color=\textcolor{stringliteral}{'red'},\ width=1.5),\ opacity=0.5))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00277}00277\ \ \ \ \ \ \ fig.show()}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00278}00278\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00279}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a375c8936a662748b7af17995345045c8}{00279}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a375c8936a662748b7af17995345045c8}{calculate\_calibration\_parameters}}(self,\ plot\_flag=False):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00280}00280\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00288}00288\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00289}00289\ \ \ \ \ \textcolor{comment}{\#\ @param\ plot\_flag\ plot\ flag.\ if\ true,\ draw\ data\ by\ plotly\ (default:False)}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00290}00290\ \ \ \ \ \textcolor{comment}{\#\ @return\ None}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00291}00291\ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a130beccd1a9c5d55952af70fba3474ce}{calib\_sigmas}})\ ==\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae5bc04a75161c96e9a7b837eafc19690}{input\_values}}):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00292}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5cf2a0020ecdfb9c083897ca1c8b3fce}{00292}}\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5cf2a0020ecdfb9c083897ca1c8b3fce}{calib\_means\_err}}\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00293}00293\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}})):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5cf2a0020ecdfb9c083897ca1c8b3fce}{calib\_means\_err}}.append(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a130beccd1a9c5d55952af70fba3474ce}{calib\_sigmas}}[i]/self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}}[i])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00295}00295\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00296}00296\ \ \ \ \ \ \ least\_squares\ =\ LeastSquares(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae5bc04a75161c96e9a7b837eafc19690}{input\_values}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5cf2a0020ecdfb9c083897ca1c8b3fce}{calib\_means\_err}},\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_acbbee1f993454e13253f9472defcfadc}{linear}})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00297}00297\ \ \ \ \ \ \ m\ =\ Minuit(least\_squares,\ p0=0,\ p1=100)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00298}00298\ \ \ \ \ \ \ m.errordef\ =\ 1}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00299}00299\ \ \ \ \ \ \ m.migrad()}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00300}00300\ \ \ \ \ \ \ params\ =\ m.values}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00301}00301\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00302}00302\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_abefc13372000ebe1b0efda1bce9463bb}{b}}\ =\ -\/params[\textcolor{stringliteral}{'p0'}]/params[\textcolor{stringliteral}{'p1'}]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00303}00303\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5d7ba8bf9fe88a46f32e506986b85cbe}{a}}\ =\ 1/params[\textcolor{stringliteral}{'p1'}]\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00304}00304\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00305}00305\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ plot\_flag:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ fig\ =\ go.Figure(}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ data\ =\ go.Scatter(}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ y=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae5bc04a75161c96e9a7b837eafc19690}{input\_values}},\ x=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}},\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ error\_x=dict(type=\textcolor{stringliteral}{'data'},\ array=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5cf2a0020ecdfb9c083897ca1c8b3fce}{calib\_means\_err}},\ thickness=2,\ width=5,\ visible=\textcolor{keyword}{True}),}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ mode=\textcolor{stringliteral}{'markers'},\ name=\textcolor{stringliteral}{'fitted\ data\ plot'}))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ fig.update\_layout(title=\textcolor{stringliteral}{'Input\ Values\ vs\ Fitted\ Values'},\ yaxis\_title=\textcolor{stringliteral}{'Input\ values'},\ xaxis\_title=\textcolor{stringliteral}{'Fitted\ value'},\ title\_x=0.05,\ title\_font=dict(size=20))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ fig.add\_trace(}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ go.Scatter(}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ x=np.array(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}}),\ y=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_acbbee1f993454e13253f9472defcfadc}{linear}}(np.array(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}}),\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_abefc13372000ebe1b0efda1bce9463bb}{b}}\ ,\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5d7ba8bf9fe88a46f32e506986b85cbe}{a}}),\ mode=\textcolor{stringliteral}{'lines'},\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ name=f\textcolor{stringliteral}{"{}\{self.b:.3f\}+\{self.a:.3f\}x"{}},\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ line=dict(color=\textcolor{stringliteral}{'red'},\ width=2),\ opacity=0.5))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ fig.show()}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00318}00318\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00319}00319\ \ \ \ \ \ \ print(\textcolor{stringliteral}{'peak\ number\ does\ not\ match\ input\ list.'})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00320}00320\ \ \ \ \ \ \ print(\textcolor{stringliteral}{'calibration\ parameter\ calculation\ process\ wad\ skipped.'})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00321}00321\ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00322}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a170e769125666d78312a8584f1aed3eb}{00322}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a170e769125666d78312a8584f1aed3eb}{remove\_fitted\_peak}}(self,\ list\_label='calib',\ index\_list=[]):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00323}00323\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00328}00328\ \ \ \ \ \textcolor{keywordflow}{if}\ list\_label\ ==\ \textcolor{stringliteral}{'calib'}:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00329}00329\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list,\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a130beccd1a9c5d55952af70fba3474ce}{calib\_sigmas}}):\ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a130beccd1a9c5d55952af70fba3474ce}{calib\_sigmas}}[index]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00332}00332\ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00333}00333\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list,\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}}):\ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a53e658c8ddbd4b2ef4e4f0215e065c59}{calib\_means}}[index]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00336}00336\ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8445025b1ec1d48cd311e101dfc0d43d}{datas\_means}})):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{datas\_fit\_xs}}[i]):\ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{datas\_fit\_xs}}[i][index]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00341}00341\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4c25699507abbc7d92b9d880472fe99a}{datas\_fit\_ys}}[i]):\ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4c25699507abbc7d92b9d880472fe99a}{datas\_fit\_ys}}[i][index]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00345}00345\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5fd6c42030b318ebd0f3fa66008a7119}{datas\_fit\_oys}}[i]):\ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5fd6c42030b318ebd0f3fa66008a7119}{datas\_fit\_oys}}[i][index]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00349}00349\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8445025b1ec1d48cd311e101dfc0d43d}{datas\_means}}[i]):\ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8445025b1ec1d48cd311e101dfc0d43d}{datas\_means}}[i][index]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00353}00353\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9c913eb218cb3b3997909837fe51d684}{datas\_sigmas}}[i]):\ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9c913eb218cb3b3997909837fe51d684}{datas\_sigmas}}[i][index]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00357}00357\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00358}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a3d5f7c7ed22f86e05949d4bb597e8cdd}{00358}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a3d5f7c7ed22f86e05949d4bb597e8cdd}{get\_data\_file\_path\_list}}(self,\ filepath='./*spe'):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00359}00359\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00367}00367\ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a434e33f4a51d1ee041722c432f6c9102}{data\_files}}\ =\ sorted(glob.glob(filepath))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00368}00368\ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00369}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9a7c848c6f8d231f57951eaa82371309}{00369}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9a7c848c6f8d231f57951eaa82371309}{add\_data\_file\_path\_list}}(self,\ filepath='./*spe'):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00370}00370\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00378}00378\ \ \ \ \ add\_files\ =\ sorted(glob.glob(filepath))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00379}00379\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(add\_files)):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00380}00380\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a434e33f4a51d1ee041722c432f6c9102}{data\_files}}.append(add\_files[i])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00381}00381\ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00382}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8bedc887ec3de0f7b50e361a391313cc}{00382}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8bedc887ec3de0f7b50e361a391313cc}{check\_data\_file}}(self):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00383}00383\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00386}00386\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a434e33f4a51d1ee041722c432f6c9102}{data\_files}})):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00387}00387\ \ \ \ \ \ \ print(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a434e33f4a51d1ee041722c432f6c9102}{data\_files}}[i])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00388}00388\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00389}00389\ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00390}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a40cb95c444fc86dd287b7233a17e0a25}{00390}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a40cb95c444fc86dd287b7233a17e0a25}{fit\_data}}(self,\ width=30,\ initial\_sigma=10):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00391}00391\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00400}00400\ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae446d05f6a53db6956f33bea1c78d815}{datas\_x}})):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00401}00401\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00402}00402\ \ \ \ \ \ \ data\_fit\_xs\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00403}00403\ \ \ \ \ \ \ data\_fit\_ys\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00404}00404\ \ \ \ \ \ \ data\_fit\_oys\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00405}00405\ \ \ \ \ \ \ data\_means\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00406}00406\ \ \ \ \ \ \ data\_sigmas\ =\ []}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00407}00407\ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00408}00408\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae3177584f4420964d3ed6a0c369c9fb2}{datas\_peak\_indices}}[j])):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ xarr\ =\ np.array(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae446d05f6a53db6956f33bea1c78d815}{datas\_x}}[j])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00410}00410\ \ \ \ \ \ \ \ \ yarr\ =\ np.array(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab028ae4af8dffb065deae908c19d0643}{datas\_y}}[j])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00193}00193\ \ \ \textcolor{keyword}{def\ }set\_calibration\_file\_path(self,\ file\_path):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00194}00194\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00195}00195\ \textcolor{stringliteral}{\ \ \ \ @brief\ set\ path\ of\ calibration\ data}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00196}00196\ \textcolor{stringliteral}{\ \ \ \ @param\ file\_path\ file\ path\ for\ mca\ data}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00197}00197\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00198}00198\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00199}00199\ \ \ \ \ self.calib\_path\ =\ file\_path}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00201}00201\ \ \ \textcolor{keyword}{def\ }set\_input\_values(self,\ values):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00202}00202\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00203}00203\ \textcolor{stringliteral}{\ \ \ \ @brief\ set\ path\ of\ measured\ data}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00204}00204\ \textcolor{stringliteral}{\ \ \ \ @param\ file\_path\ file\ path\ for\ mca\ data}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00205}00205\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00206}00206\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00207}00207\ \ \ \ \ self.input\_values\ =\ values}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00208}00208\ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00209}00209\ \ \ \textcolor{keyword}{def\ }find\_peak(self,\ smooth\_parameter=3,\ input\_label='calib'\ ,debug=False):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00210}00210\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00211}00211\ \textcolor{stringliteral}{\ \ \ \ @brief\ search\ peaks\ for\ calibraion\ data}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00212}00212\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00213}00213\ \textcolor{stringliteral}{\ \ \ \ More\ details:\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00214}00214\ \textcolor{stringliteral}{\ \ \ \ should\ be\ set\ before\ executinf\ this\ function.\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00215}00215\ \textcolor{stringliteral}{\ \ \ \ result\ id\ stored\ to,\ self.calib\_data\_peak\_count\ and\ self.calib\_data\_peak\_indices\ for\ calibration,\ self.datas\_peak\_count,\ self.datas\_peak\_indices\ for\ data}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00216}00216\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00217}00217\ \textcolor{stringliteral}{\ \ \ \ @param\ smooth\_parameter\ smear\ parameter\ for\ original\ histogram}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00218}00218\ \textcolor{stringliteral}{\ \ \ \ @param\ input\_label\ label\ for\ data\ (calibration:'calib',\ data\ list:'data')}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00219}00219\ \textcolor{stringliteral}{\ \ \ \ @param\ debug\ debug\ flag.\ if\ true,\ dump\ peak\ finding\ result\ (default:False)}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00220}00220\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00221}00221\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00222}00222\ \ \ \ \ \textcolor{keywordflow}{if}\ input\_label\ ==\ \textcolor{stringliteral}{'calib'}:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00223}00223\ \ \ \ \ \ \ self.calib\_data\_x,\ self.calib\_data\_y\ =\ util.dataforming.read\_spe\_file(self.calib\_path)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00224}00224\ \ \ \ \ \ \ self.calib\_data\_h\ =\ util.dataforming.create\_histogram\_data\_from\_points(self.calib\_data\_x,\ self.calib\_data\_y)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00225}00225\ \ \ \ \ \ \ smoothed\_data\ =\ gaussian\_filter(self.calib\_data\_y,\ smooth\_parameter)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00226}00226\ \ \ \ \ \ \ self.calib\_data\_peak\_count,\ self.calib\_data\_peak\_indices\ =\ util.dataforming.find\_peaks(smoothed\_data)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00227}00227\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00228}00228\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ debug:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}(calibration)\ number\ of\ peak:"{}},\ self.calib\_data\_peak\_count,\textcolor{stringliteral}{"{},\ index\ of\ peak:"{}},\ self.calib\_data\_peak\_indices)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00231}00231\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00232}00232\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.data\_files)):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ file\_name\ =\ os.path.basename(self.data\_files[i])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ data\_x,\ data\_y\ =\ util.dataforming.read\_spe\_file(self.data\_files[i])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ data\_h\ =\ util.dataforming.create\_histogram\_data\_from\_points(data\_x,\ data\_y)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ smoothed\_data\ =\ gaussian\_filter(data\_y,\ smooth\_parameter)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ data\_peak\_count,\ data\_peak\_indices\ =\ util.dataforming.find\_peaks(smoothed\_data)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ self.datas\_x.append(data\_x)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ self.datas\_y.append(data\_y)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ self.datas\_h.append(data\_h)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ self.datas\_peak\_count.append(data\_peak\_count)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ self.datas\_peak\_indices.append(data\_peak\_indices)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ self.data\_files\_name.append(os.path.splitext(file\_name)[0])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ debug:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}(data)\ :"{}},\ i,\ \textcolor{stringliteral}{"{}\ number\ of\ peak:"{}},\ data\_peak\_count,\ \textcolor{stringliteral}{"{},\ index\ of\ peak:"{}},\ data\_peak\_indices)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00250}00250\ \ \ \textcolor{keyword}{def\ }fit\_calibration\_data(self,\ width=30,\ initial\_sigma=10,\ plot\_flag=False):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00251}00251\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00252}00252\ \textcolor{stringliteral}{\ \ \ \ @brief\ peak\ fitting\ for\ calibration\ data}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00253}00253\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00254}00254\ \textcolor{stringliteral}{\ \ \ \ More\ details:\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00255}00255\ \textcolor{stringliteral}{\ \ \ \ fitting\ result\ is\ stored\ to\ \`{}self.calib\_fit\_xs\`{},\ \`{}self.calib\_fit\_ys\`{},\ \`{}self.calib\_means\`{},\ \ \`{}self.calib\_sigmas\`{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00256}00256\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00257}00257\ \textcolor{stringliteral}{\ \ \ \ @param\ width\ fitting\ range\ from\ center\ position\ (\`{}self.calib\_data\_x[self.calib\_data\_peak\_indices[i]]\`{})}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00258}00258\ \textcolor{stringliteral}{\ \ \ \ @param\ initial\_sigma\ initial\ value\ for\ using\ iminuit\ fitting\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00259}00259\ \textcolor{stringliteral}{\ \ \ \ @param\ plot\_flag\ plot\ flag.\ if\ true,\ draw\ data\ by\ plotly\ (default:False)}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00260}00260\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00261}00261\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00262}00262\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.calib\_data\_peak\_indices)):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00263}00263\ \ \ \ \ \ \ xarr\ =\ np.array(self.calib\_data\_x)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00264}00264\ \ \ \ \ \ \ yarr\ =\ np.array(self.calib\_data\_y)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00266}00266\ \ \ \ \ \ \ fit\_min,\ fit\_max\ =\ self.calib\_data\_x[self.calib\_data\_peak\_indices[i]]\ -\/\ width,\ self.calib\_data\_x[self.calib\_data\_peak\_indices[i]]\ +\ width\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00267}00267\ \ \ \ \ \ \ mask\ =\ (xarr\ >=\ fit\_min)\ \&\ (xarr\ <=\ fit\_max)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00268}00268\ \ \ \ \ \ \ xarr\_mask\ =\ xarr[mask]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00269}00269\ \ \ \ \ \ \ yarr\_mask\ =\ yarr[mask]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00272}00272\ \ \ \ \ \ \ least\_squares\ =\ LeastSquares(xarr\_mask,\ yarr\_mask,\ np.ones\_like(yarr\_mask),\ self.gaussian)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00273}00273\ \ \ \ \ \ \ m\ =\ Minuit(least\_squares,\ amplitude=self.calib\_data\_y[self.calib\_data\_peak\_indices[i]],\ \ mean=self.calib\_data\_x[self.calib\_data\_peak\_indices[i]],\ sigma=initial\_sigma)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00274}00274\ \ \ \ \ \ \ m.errordef\ =\ 1}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00275}00275\ \ \ \ \ \ \ m.migrad()}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00277}00277\ \ \ \ \ \ \ self.calib\_fit\_xs.append(xarr\_mask)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00278}00278\ \ \ \ \ \ \ self.calib\_fit\_ys.append(self.gaussian(xarr\_mask,\ m.values[\textcolor{stringliteral}{'amplitude'}],\ m.values[\textcolor{stringliteral}{'mean'}],\ m.values[\textcolor{stringliteral}{'sigma'}]))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00280}00280\ \ \ \ \ \ \ self.calib\_means.append(m.values[\textcolor{stringliteral}{'mean'}])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00281}00281\ \ \ \ \ \ \ self.calib\_sigmas.append(m.values[\textcolor{stringliteral}{'sigma'}])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00283}00283\ \ \ \ \ \textcolor{keywordflow}{if}\ plot\_flag:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00284}00284\ \ \ \ \ \ \ categories\ =\ [\textcolor{stringliteral}{"{}mca"{}}]\ *\ len(self.calib\_data\_h)\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00285}00285\ \ \ \ \ \ \ df\ =\ pd.DataFrame(\{\textcolor{stringliteral}{'Value'}:\ self.calib\_data\_h,\ \textcolor{stringliteral}{'Category'}:\ categories\})}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00286}00286\ \ \ \ \ \ \ fig\ =\ px.histogram(df,\ x=\textcolor{stringliteral}{'Value'},\ color=\textcolor{stringliteral}{'Category'},\ nbins=1023,\ labels=\{\textcolor{stringliteral}{'Value'}:\ \textcolor{stringliteral}{'Channel'}\},\ title=\textcolor{stringliteral}{'MCA\ Histogram'})}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00288}00288\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.calib\_means)):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ fig.add\_trace(}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ go.Scatter(}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x=self.calib\_fit\_xs[i],\ y=self.calib\_fit\_ys[i],\ mode=\textcolor{stringliteral}{'lines'},\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name=f\textcolor{stringliteral}{"{}FID:\{i\},\ (\{self.calib\_means[i]:3.2f\},\ \{self.calib\_sigmas[i]:3.2f\})"{}},\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line=dict(color=\textcolor{stringliteral}{'red'},\ width=1.5),\ opacity=0.5))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00295}00295\ \ \ \ \ \ \ fig.show()}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00297}00297\ \ \ \textcolor{keyword}{def\ }calculate\_calibration\_parameters(self,\ plot\_flag=False):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00298}00298\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00299}00299\ \textcolor{stringliteral}{\ \ \ \ @brief\ calculate\ calibration\ paramters\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00300}00300\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00301}00301\ \textcolor{stringliteral}{\ \ \ \ More\ details:\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00302}00302\ \textcolor{stringliteral}{\ \ \ \ calibraion\ paramter\ is\ determined\ by\ iminuit\ fitting.}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00303}00303\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00304}00304\ \textcolor{stringliteral}{\ \ \ \ his\ function\ sould\ be\ executed\ after\ executing\ \`{}self.fit\_calibration\_data()\`{}.}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00305}00305\ \textcolor{stringliteral}{\ \ \ \ fitting\ result\ is\ stored\ to\ \`{}self.a\`{}(1st),\ \`{}self.b\`{}(0th)}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00306}00306\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00307}00307\ \textcolor{stringliteral}{\ \ \ \ @param\ plot\_flag\ plot\ flag.\ if\ true,\ draw\ data\ by\ plotly\ (default:False)}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00308}00308\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00309}00309\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00310}00310\ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.calib\_sigmas)\ ==\ len(self.input\_values):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00311}00311\ \ \ \ \ \ \ self.calib\_means\_err\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00312}00312\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.calib\_means)):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ self.calib\_means\_err.append(self.calib\_sigmas[i]/self.calib\_means[i])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00315}00315\ \ \ \ \ \ \ least\_squares\ =\ LeastSquares(self.input\_values,\ self.calib\_means,\ self.calib\_means\_err,\ self.linear)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00316}00316\ \ \ \ \ \ \ m\ =\ Minuit(least\_squares,\ p0=0,\ p1=100)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00317}00317\ \ \ \ \ \ \ m.errordef\ =\ 1}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00318}00318\ \ \ \ \ \ \ m.migrad()}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00319}00319\ \ \ \ \ \ \ params\ =\ m.values}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00321}00321\ \ \ \ \ \ \ self.b\ =\ -\/params[\textcolor{stringliteral}{'p0'}]/params[\textcolor{stringliteral}{'p1'}]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00322}00322\ \ \ \ \ \ \ self.a\ =\ 1/params[\textcolor{stringliteral}{'p1'}]\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00324}00324\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ plot\_flag:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ fig\ =\ go.Figure(}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ data\ =\ go.Scatter(}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ y=self.input\_values,\ x=self.calib\_means,\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ error\_x=dict(type=\textcolor{stringliteral}{'data'},\ array=self.calib\_means\_err,\ thickness=2,\ width=5,\ visible=\textcolor{keyword}{True}),}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ mode=\textcolor{stringliteral}{'markers'},\ name=\textcolor{stringliteral}{'fitted\ data\ plot'}))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ fig.update\_layout(title=\textcolor{stringliteral}{'Input\ Values\ vs\ Fitted\ Values'},\ yaxis\_title=\textcolor{stringliteral}{'Input\ values'},\ xaxis\_title=\textcolor{stringliteral}{'Fitted\ value'},\ title\_x=0.05,\ title\_font=dict(size=20))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ fig.add\_trace(}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ go.Scatter(}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ x=np.array(self.calib\_means),\ y=self.linear(np.array(self.calib\_means),\ self.b\ ,\ self.a),\ mode=\textcolor{stringliteral}{'lines'},\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ name=f\textcolor{stringliteral}{"{}\{self.b:.3f\}+\{self.a:.3f\}x"{}},\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ line=dict(color=\textcolor{stringliteral}{'red'},\ width=2),\ opacity=0.5))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ fig.show()}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00337}00337\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00338}00338\ \ \ \ \ \ \ print(\textcolor{stringliteral}{'peak\ number\ does\ not\ match\ input\ list.'})}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00339}00339\ \ \ \ \ \ \ print(\textcolor{stringliteral}{'calibration\ parameter\ calculation\ process\ wad\ skipped.'})}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00340}00340\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00341}00341\ \ \ \textcolor{keyword}{def\ }remove\_fitted\_peak(self,\ list\_label='calib',\ index\_list=[]):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00342}00342\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00343}00343\ \textcolor{stringliteral}{\ \ \ \ @brief\ remove\ specific\ peak}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00344}00344\ \textcolor{stringliteral}{\ \ \ \ @param\ list\_label\ label\ for\ data\ (calibration:'calib',\ data\ list:'data')}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00345}00345\ \textcolor{stringliteral}{\ \ \ \ @param\ index\_list\ list\ of\ index\ to\ be\ deleted}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00346}00346\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00347}00347\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00348}00348\ \ \ \ \ \textcolor{keywordflow}{if}\ list\_label\ ==\ \textcolor{stringliteral}{'calib'}:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00349}00349\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list,\ reverse=\textcolor{keyword}{True}):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.calib\_sigmas):\ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.calib\_sigmas[index]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00352}00352\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00353}00353\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list,\ reverse=\textcolor{keyword}{True}):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.calib\_means):\ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.calib\_means[index]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00356}00356\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00357}00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.datas\_means)):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.datas\_fit\_xs[i]):\ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.datas\_fit\_xs[i][index]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00361}00361\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.datas\_fit\_ys[i]):\ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.datas\_fit\_ys[i][index]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00365}00365\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.datas\_fit\_oys[i]):\ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.datas\_fit\_oys[i][index]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00369}00369\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.datas\_means[i]):\ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.datas\_means[i][index]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00373}00373\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ index\ \textcolor{keywordflow}{in}\ sorted(index\_list[i],\ reverse=\textcolor{keyword}{True}):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ 0\ <=\ index\ <\ len(self.datas\_sigmas[i]):\ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.datas\_sigmas[i][index]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00377}00377\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00378}00378\ \ \ \textcolor{keyword}{def\ }get\_data\_file\_path\_list(self,\ filepath='./*spe'):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00379}00379\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00380}00380\ \textcolor{stringliteral}{\ \ \ \ @brief\ sort\ and\ set\ data\ file\ list}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00381}00381\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00382}00382\ \textcolor{stringliteral}{\ \ \ \ More\ details:\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00383}00383\ \textcolor{stringliteral}{\ \ \ \ can\ use\ wildcard\ with\ input\ path\ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00384}00384\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00385}00385\ \textcolor{stringliteral}{\ \ \ \ @param\ filepath\ file\ path}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00386}00386\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00387}00387\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00388}00388\ \ \ \ \ self.data\_files\ =\ sorted(glob.glob(filepath))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00389}00389\ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00390}00390\ \ \ \textcolor{keyword}{def\ }add\_data\_file\_path\_list(self,\ filepath='./*spe'):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00391}00391\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00392}00392\ \textcolor{stringliteral}{\ \ \ \ @brief\ sort\ and\ add\ data\ file\ list}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00393}00393\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00394}00394\ \textcolor{stringliteral}{\ \ \ \ More\ details:\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00395}00395\ \textcolor{stringliteral}{\ \ \ \ can\ use\ wildcard\ with\ input\ path\ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00396}00396\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00397}00397\ \textcolor{stringliteral}{\ \ \ \ @param\ filepath\ file\ path}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00398}00398\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00399}00399\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00400}00400\ \ \ \ \ add\_files\ =\ sorted(glob.glob(filepath))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00401}00401\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(add\_files)):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00402}00402\ \ \ \ \ \ \ self.data\_files.append(add\_files[i])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00403}00403\ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00404}00404\ \ \ \textcolor{keyword}{def\ }check\_data\_file(self):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00405}00405\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00406}00406\ \textcolor{stringliteral}{\ \ \ \ @brief\ dump\ load\ file\ list}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00407}00407\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00408}00408\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00409}00409\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.data\_files)):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00410}00410\ \ \ \ \ \ \ print(self.data\_files[i])}
 \DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00411}00411\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00412}00412\ \ \ \ \ \ \ \ \ fit\_min,\ fit\_max\ =\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae446d05f6a53db6956f33bea1c78d815}{datas\_x}}[j][self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae3177584f4420964d3ed6a0c369c9fb2}{datas\_peak\_indices}}[j][i]]\ -\/\ width,\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae446d05f6a53db6956f33bea1c78d815}{datas\_x}}[j][self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae3177584f4420964d3ed6a0c369c9fb2}{datas\_peak\_indices}}[j][i]]\ +\ width\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00413}00413\ \ \ \ \ \ \ \ \ mask\ =\ (xarr\ >=\ fit\_min)\ \&\ (xarr\ <=\ fit\_max)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00414}00414\ \ \ \ \ \ \ \ \ xarr\_mask\ =\ xarr[mask]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00415}00415\ \ \ \ \ \ \ \ \ yarr\_mask\ =\ yarr[mask]}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00416}00416\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00417}00417\ \ \ \ \ \ \ \ \ least\_squares\ =\ LeastSquares(xarr\_mask,\ yarr\_mask,\ np.ones\_like(yarr\_mask),\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_af56e284882ffb6edc2b4b63aa4b84ea8}{gaussian}})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00418}00418\ \ \ \ \ \ \ \ \ m\ =\ Minuit(least\_squares,\ amplitude=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ab028ae4af8dffb065deae908c19d0643}{datas\_y}}[j][self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae3177584f4420964d3ed6a0c369c9fb2}{datas\_peak\_indices}}[j][i]],\ \ mean=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae446d05f6a53db6956f33bea1c78d815}{datas\_x}}[j][self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae3177584f4420964d3ed6a0c369c9fb2}{datas\_peak\_indices}}[j][i]],\ sigma=initial\_sigma)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00419}00419\ \ \ \ \ \ \ \ \ m.errordef\ =\ 1}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00420}00420\ \ \ \ \ \ \ \ \ m.migrad()}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00421}00421\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00422}00422\ \ \ \ \ \ \ \ \ data\_fit\_xs.append(xarr\_mask)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00423}00423\ \ \ \ \ \ \ \ \ data\_fit\_ys.append(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_af56e284882ffb6edc2b4b63aa4b84ea8}{gaussian}}(xarr\_mask,\ m.values[\textcolor{stringliteral}{'amplitude'}],\ m.values[\textcolor{stringliteral}{'mean'}],\ m.values[\textcolor{stringliteral}{'sigma'}]))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00424}00424\ \ \ \ \ \ \ \ \ data\_fit\_oys.append(yarr\_mask)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00425}00425\ \ \ \ \ \ \ \ \ data\_means.append(m.values[\textcolor{stringliteral}{'mean'}])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00426}00426\ \ \ \ \ \ \ \ \ data\_sigmas.append(m.values[\textcolor{stringliteral}{'sigma'}])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00427}00427\ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00428}00428\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{datas\_fit\_xs}}.append(data\_fit\_xs)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00429}00429\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4c25699507abbc7d92b9d880472fe99a}{datas\_fit\_ys}}.append(data\_fit\_ys)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00430}00430\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5fd6c42030b318ebd0f3fa66008a7119}{datas\_fit\_oys}}.append(data\_fit\_oys)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00431}00431\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a8445025b1ec1d48cd311e101dfc0d43d}{datas\_means}}.append(data\_means)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00432}00432\ \ \ \ \ \ \ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a9c913eb218cb3b3997909837fe51d684}{datas\_sigmas}}.append(data\_sigmas)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00433}00433\ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00434}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a99b8f1035c8851ef70115a8d3458534a}{00434}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a99b8f1035c8851ef70115a8d3458534a}{draw\_fitted\_datas}}(self):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00435}00435\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00438}00438\ \ \ \ \ k\ =\ 0}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00439}00439\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00440}00440\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{datas\_fit\_xs}})):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00441}00441\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{datas\_fit\_xs}}[i])):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00442}00442\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ data\_h\ =\ util.dataforming.create\_histogram\_data\_from\_points(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{datas\_fit\_xs}}[i][j],\ self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a5fd6c42030b318ebd0f3fa66008a7119}{datas\_fit\_oys}}[i][j])}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00444}00444\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00445}00445\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ k\ ==\ 0:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ categories\ =\ [f\textcolor{stringliteral}{"{}\{self.data\_files\_name[i]\},\ FID:\{i\},\ HID:\{j\}"{}}]\ *\ len(data\_h)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ histograms\ =\ data\_h}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00448}00448\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ categories\ =\ categories\ +\ [f\textcolor{stringliteral}{"{}\{self.data\_files\_name[i]\},\ FID:\{i\},\ HID:\{j\}"{}}]\ *\ len(data\_h)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ histograms\ =\ histograms\ +\ data\_h}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ k\ =\ k\ +\ 1}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00454}00454\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00455}00455\ \ \ \ \ df\ =\ pd.DataFrame(\{\textcolor{stringliteral}{'Value'}:\ histograms,\ \textcolor{stringliteral}{'Category'}:\ categories\})}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00456}00456\ \ \ \ \ fig\ =\ px.histogram(df,\ x=\textcolor{stringliteral}{"{}Value"{}},\ color=\textcolor{stringliteral}{"{}Category"{}},\ nbins=1023,\ opacity=0.75)}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00457}00457\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00458}00458\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{datas\_fit\_xs}})):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00459}00459\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{datas\_fit\_xs}}[i])):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ fig.add\_trace(}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ go.Scatter(}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ x=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ae0b4629d635715a95dc81941afc8cc5d}{datas\_fit\_xs}}[i][j],\ y=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4c25699507abbc7d92b9d880472fe99a}{datas\_fit\_ys}}[i][j],\ mode=\textcolor{stringliteral}{'lines'},\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ name=f\textcolor{stringliteral}{"{}FID:\{i\},\ HID:\{j\},\ (\{self.calib\_means[i]:3.2f\},\ \{self.calib\_sigmas[i]:3.2f\})"{}},\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ line=dict(color=\textcolor{stringliteral}{'black'},\ width=1.5),\ opacity=0.5))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00465}00465\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00466}00466\ \ \ \ \ fig.show()}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00412}00412\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00413}00413\ \ \ \textcolor{keyword}{def\ }fit\_data(self,\ width=30,\ initial\_sigma=10):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00414}00414\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00415}00415\ \textcolor{stringliteral}{\ \ \ \ @brief\ peak\ fitting\ for\ list\ of\ mca\ data}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00416}00416\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00417}00417\ \textcolor{stringliteral}{\ \ \ \ More\ details:\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00418}00418\ \textcolor{stringliteral}{\ \ \ \ fitting\ result\ is\ stored\ to\ \`{}self.datas\_fit\_xs\`{},\ \`{}self.datas\_fit\_ys\`{},\ \`{}self.datas\_fit\_oys\`{},\ \`{}self.datas\_means\`{},\ \`{}self.datas\_sigmas\`{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00419}00419\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00420}00420\ \textcolor{stringliteral}{\ \ \ \ @param\ width\ fitting\ range\ from\ center\ position\ (\`{}self.calib\_data\_x[self.calib\_data\_peak\_indices[i]]\`{})}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00421}00421\ \textcolor{stringliteral}{\ \ \ \ @param\ initial\_sigma\ initial\ value\ for\ using\ iminuit\ fitting\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00422}00422\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00423}00423\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00424}00424\ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(self.datas\_x)):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00425}00425\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00426}00426\ \ \ \ \ \ \ data\_fit\_xs\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00427}00427\ \ \ \ \ \ \ data\_fit\_ys\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00428}00428\ \ \ \ \ \ \ data\_fit\_oys\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00429}00429\ \ \ \ \ \ \ data\_means\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00430}00430\ \ \ \ \ \ \ data\_sigmas\ =\ []}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00431}00431\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00432}00432\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.datas\_peak\_indices[j])):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00433}00433\ \ \ \ \ \ \ \ \ xarr\ =\ np.array(self.datas\_x[j])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00434}00434\ \ \ \ \ \ \ \ \ yarr\ =\ np.array(self.datas\_y[j])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00435}00435\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00436}00436\ \ \ \ \ \ \ \ \ fit\_min,\ fit\_max\ =\ self.datas\_x[j][self.datas\_peak\_indices[j][i]]\ -\/\ width,\ self.datas\_x[j][self.datas\_peak\_indices[j][i]]\ +\ width\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00437}00437\ \ \ \ \ \ \ \ \ mask\ =\ (xarr\ >=\ fit\_min)\ \&\ (xarr\ <=\ fit\_max)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00438}00438\ \ \ \ \ \ \ \ \ xarr\_mask\ =\ xarr[mask]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ yarr\_mask\ =\ yarr[mask]}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00440}00440\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00441}00441\ \ \ \ \ \ \ \ \ least\_squares\ =\ LeastSquares(xarr\_mask,\ yarr\_mask,\ np.ones\_like(yarr\_mask),\ self.gaussian)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ m\ =\ Minuit(least\_squares,\ amplitude=self.datas\_y[j][self.datas\_peak\_indices[j][i]],\ \ mean=self.datas\_x[j][self.datas\_peak\_indices[j][i]],\ sigma=initial\_sigma)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ m.errordef\ =\ 1}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00444}00444\ \ \ \ \ \ \ \ \ m.migrad()}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00445}00445\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ data\_fit\_xs.append(xarr\_mask)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ data\_fit\_ys.append(self.gaussian(xarr\_mask,\ m.values[\textcolor{stringliteral}{'amplitude'}],\ m.values[\textcolor{stringliteral}{'mean'}],\ m.values[\textcolor{stringliteral}{'sigma'}]))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00448}00448\ \ \ \ \ \ \ \ \ data\_fit\_oys.append(yarr\_mask)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ data\_means.append(m.values[\textcolor{stringliteral}{'mean'}])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ data\_sigmas.append(m.values[\textcolor{stringliteral}{'sigma'}])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00451}00451\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00452}00452\ \ \ \ \ \ \ self.datas\_fit\_xs.append(data\_fit\_xs)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00453}00453\ \ \ \ \ \ \ self.datas\_fit\_ys.append(data\_fit\_ys)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00454}00454\ \ \ \ \ \ \ self.datas\_fit\_oys.append(data\_fit\_oys)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00455}00455\ \ \ \ \ \ \ self.datas\_means.append(data\_means)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00456}00456\ \ \ \ \ \ \ self.datas\_sigmas.append(data\_sigmas)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00457}00457\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00458}00458\ \ \ \textcolor{keyword}{def\ }draw\_fitted\_datas(self):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00459}00459\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00460}00460\ \textcolor{stringliteral}{\ \ \ \ @brief\ draw\ fitting\ result\ for\ list\ of\ mca\ data}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00461}00461\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00462}00462\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00463}00463\ \ \ \ \ k\ =\ 0}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00464}00464\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00465}00465\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.datas\_fit\_xs)):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00466}00466\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(self.datas\_fit\_xs[i])):}
 \DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00467}00467\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00468}\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4167ef1d85c186d2ba00a19d4e07c617}{00468}}\ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a4167ef1d85c186d2ba00a19d4e07c617}{draw\_gain\_curve}}(self):}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00469}00469\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00476}00476\ \ \ \ \ fig\ =\ go.Figure(}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00477}00477\ \ \ \ \ \ \ data\ =\ go.Scatter(}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00478}00478\ \ \ \ \ \ \ \ \ x=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_ac7ec4c3e66f37706b483e8e0ae322569}{voltages}},\ y=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a7c3020e476ac1e1d25358d8a3b49f103}{G}},\ }
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00479}00479\ \ \ \ \ \ \ \ \ error\_y=dict(type=\textcolor{stringliteral}{'data'},\ array=self.\mbox{\hyperlink{classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer_a66b915780d1e66c39030fb17deea07da}{G\_err}},\ thickness=2,\ width=5,\ visible=\textcolor{keyword}{True}),}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00480}00480\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{'fitted\ data\ plot'}))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00481}00481\ \ \ \ \ fig.update\_layout(title=\textcolor{stringliteral}{'Gain\ Curve'},\ yaxis\_title=\textcolor{stringliteral}{'Gain'},\ xaxis\_title=\textcolor{stringliteral}{'Voltage\ [V]'},\ title\_x=0.05,\ title\_font=dict(size=20))}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00482}00482\ \ \ \ \ \textcolor{comment}{\#\ fig.add\_trace(}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00483}00483\ \ \ \ \ \textcolor{comment}{\#\ \ \ go.Scatter(}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00484}00484\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ x=np.array(self.calib\_means),\ y=self.linear(np.array(self.calib\_means),\ self.b\ ,\ self.a),\ mode='lines',\ }}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00485}00485\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ name=f"{}\{self.b:.3f\}+\{self.a:.3f\}x"{},\ }}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00486}00486\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ line=dict(color='red',\ width=2),\ opacity=0.5))}}
-\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00487}00487\ \ \ \ \ fig.show()}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00468}00468\ \ \ \ \ \ \ \ \ data\_h\ =\ util.dataforming.create\_histogram\_data\_from\_points(self.datas\_fit\_xs[i][j],\ self.datas\_fit\_oys[i][j])}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00469}00469\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00470}00470\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ k\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ categories\ =\ [f\textcolor{stringliteral}{"{}\{self.data\_files\_name[i]\},\ FID:\{i\},\ HID:\{j\}"{}}]\ *\ len(data\_h)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ histograms\ =\ data\_h}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00473}00473\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00474}00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ categories\ =\ categories\ +\ [f\textcolor{stringliteral}{"{}\{self.data\_files\_name[i]\},\ FID:\{i\},\ HID:\{j\}"{}}]\ *\ len(data\_h)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ histograms\ =\ histograms\ +\ data\_h}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00477}00477\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00478}00478\ \ \ \ \ \ \ \ \ k\ =\ k\ +\ 1}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00479}00479\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00480}00480\ \ \ \ \ df\ =\ pd.DataFrame(\{\textcolor{stringliteral}{'Value'}:\ histograms,\ \textcolor{stringliteral}{'Category'}:\ categories\})}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00481}00481\ \ \ \ \ fig\ =\ px.histogram(df,\ x=\textcolor{stringliteral}{"{}Value"{}},\ color=\textcolor{stringliteral}{"{}Category"{}},\ nbins=1023,\ opacity=0.75)}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00482}00482\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00483}00483\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(self.datas\_fit\_xs)):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00484}00484\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(self.datas\_fit\_xs[i])):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00485}00485\ \ \ \ \ \ \ \ \ fig.add\_trace(}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ go.Scatter(}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ x=self.datas\_fit\_xs[i][j],\ y=self.datas\_fit\_ys[i][j],\ mode=\textcolor{stringliteral}{'lines'},\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ name=f\textcolor{stringliteral}{"{}FID:\{i\},\ HID:\{j\},\ (\{self.calib\_means[i]:3.2f\},\ \{self.calib\_sigmas[i]:3.2f\})"{}},\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ line=dict(color=\textcolor{stringliteral}{'black'},\ width=1.5),\ opacity=0.5))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00490}00490\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00491}00491\ \ \ \ \ fig.show()}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00492}00492\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00493}00493\ \ \ \textcolor{keyword}{def\ }draw\_gain\_curve(self):}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00494}00494\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00495}00495\ \textcolor{stringliteral}{\ \ \ \ @brief\ draw\ fitting\ result\ for\ list\ of\ mca\ data}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00496}00496\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00497}00497\ \textcolor{stringliteral}{\ \ \ \ More\ details:\ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00498}00498\ \textcolor{stringliteral}{\ \ \ \ this\ function\ should\ be\ executed\ after\ executing\ \`{}self.draw\_fitted\_datas()\`{},\ \`{}self.calculate\_Qmeas()\`{},\ \`{}self.calculate\_Gain()\`{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00499}00499\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00500}00500\ \textcolor{stringliteral}{\ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00501}00501\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00502}00502\ \ \ \ \ fig\ =\ go.Figure(}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00503}00503\ \ \ \ \ \ \ data\ =\ go.Scatter(}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00504}00504\ \ \ \ \ \ \ \ \ x=self.voltages,\ y=self.G,\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00505}00505\ \ \ \ \ \ \ \ \ error\_y=dict(type=\textcolor{stringliteral}{'data'},\ array=self.G\_err,\ thickness=2,\ width=5,\ visible=\textcolor{keyword}{True}),}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00506}00506\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{'fitted\ data\ plot'}))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00507}00507\ \ \ \ \ fig.update\_layout(title=\textcolor{stringliteral}{'Gain\ Curve'},\ yaxis\_title=\textcolor{stringliteral}{'Gain'},\ xaxis\_title=\textcolor{stringliteral}{'Voltage\ [V]'},\ title\_x=0.05,\ title\_font=dict(size=20))}
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00508}00508\ }
+\DoxyCodeLine{\Hypertarget{mcaanalysis_8py_source_l00509}00509\ \ \ \ \ fig.show()}
 
 \end{DoxyCode}

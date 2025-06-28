@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['qe_0',['Qe',['../classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer.html#ad0c1cd4358cfb4e03e7c689edcc8e9d0',1,'catmlib::analyser::mcaanalysis::TMultiChannelAnalyzer']]],
-  ['qmeas_1',['Qmeas',['../classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer.html#a26b5639e4fadf8b8f2a3303834bf0e9e',1,'catmlib::analyser::mcaanalysis::TMultiChannelAnalyzer']]],
-  ['qmeas_5ferr_2',['Qmeas_err',['../classcatmlib_1_1analyser_1_1mcaanalysis_1_1_t_multi_channel_analyzer.html#a22c6b320ff96ba0091cfbcc603951dfc',1,'catmlib::analyser::mcaanalysis::TMultiChannelAnalyzer']]]
+  ['simulate_5fpad_5fcharge_0',['simulate_pad_charge',['../tracksimulation_8py.html#ae0f6a34ec6bb7460df8f7778a339e143',1,'catmlib::simulator::tracksimulation']]],
+  ['str_5fto_5farray_1',['str_to_array',['../dataforming_8py.html#ab50e251c56edc37809af541134cce5be',1,'catmlib::util::dataforming']]]
 ];

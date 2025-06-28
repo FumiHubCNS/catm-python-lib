@@ -1,9 +1,10 @@
-##
+"""!
 # @file basepad.py
 # @version 1
 # @author Fumitaka ENDO
 # @date 2025-01-28T09:21:35+09:00
 # @brief Basic readout pad generation package 
+"""
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -12,49 +13,56 @@ plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
 
 class TBasePadShapeClass():
-  ##
-  # @class TBasePadShapeClass
-  # @brief Generate pad information
+  """!
+  @class TBasePadShapeClass
+  @brief Generate pad information
+  """
 
   def __init__(self):
-    ##
-    # @brief initialze object
-    # @param mapping label of axsis (0:x, 1:y, 2:z)
-    # @param center center position in pad
-    # @param polygon list of vertices
-    # @return None
+    """!
+    @brief initialze object
+    @param mapping label of axsis (0:x, 1:y, 2:z)
+    @param center center position in pad
+    @param polygon list of vertices
+    @return None
+    """
     self.mapping = {'x': 0, 'y': 1, 'z': 2}
     self.center = [0, 0, 0]
     self.polygon = []
 
   def set_center(self, x, y, z):
-    ##
-    # @brief set center position
-    # @return None
+    """!
+    @brief set center position
+    @return None
+    """
     self.center = [x, y, z]
 
   def add_polygon(self, position):
-    ##
-    # @brief add vertex positio to list(self.polygon)
-    # @return None
+    """!
+    @brief add vertex positio to list(self.polygon)
+    @return None
+    """
     self.polygon.append(position)
 
   def get_center(self):
-    ##
-    # @brief return center position
-    # @return self.center
+    """!
+    @brief return center position
+    @return self.center
+    """
     return self.center
 
   def get_polygon(self):
-    ##
-    # @brief return vertices list
-    # @return self.polygon
+    """!
+    @brief return vertices list
+    @return self.polygon
+    """
     return self.polygon
 
   def get_center_polygon_distance(self):
-    ##
-    # @brief caculate and return center position from vertices list
-    # @return three component list ([x, y, z])
+    """!
+    @brief caculate and return center position from vertices list
+    @return three component list ([x, y, z])
+    """
     distances = []
     
     for i in range(len(self.polygon)):
@@ -66,9 +74,10 @@ class TBasePadShapeClass():
     return distances
 
   def get_polygon_vertex_distance(self):
-    ##
-    # @brief caculate and return distance between each vertices
-    # @return distance list ([01, 12, 23, ...])
+    """!
+    @brief caculate and return distance between each vertices
+    @return distance list ([01, 12, 23, ...])
+    """
     distances = []
     for i in range(len(self.polygon)):
       for j in range(i+1, len(self.polygon)):
@@ -79,10 +88,11 @@ class TBasePadShapeClass():
     return distances
 
   def show_polygon(self, plane='xz'):
-    ##
-    # @brief plot polygon 
-    # @param plane Select projection plane by str (e.g. 'xz') 
-    # @return None
+    """!
+    @brief plot polygon 
+    @param plane Select projection plane by str (e.g. 'xz') 
+    @return None
+    """
     index1 = self.mapping.get(plane[0], 0)
     index2 = self.mapping.get(plane[1], 0)
 
@@ -100,20 +110,22 @@ class TBasePadShapeClass():
     plt.show()
 
 class TReadoutPadArray():
-  ##
-  # @class TReadoutPadArray
-  # @brief pad information array
+  """!
+  @class TReadoutPadArray
+  @brief pad information array
+  """
 
   def __init__(self):
-    ##
-    # @brief initialze object
-    # @param mapping label of axsis (0:x, 1:y, 2:z)
-    # @param basepadlist list of base pad information
-    # @param pads list of vertices
-    # @param ids list of id
-    # @param centers list of center
-    # @param charges  list of charge
-    # @return None
+    """!
+    @brief initialze object
+    @param mapping label of axsis (0:x, 1:y, 2:z)
+    @param basepadlist list of base pad information
+    @param pads list of vertices
+    @param ids list of id
+    @param centers list of center
+    @param charges  list of charge
+    @return None
+    """
     self.mapping = {'x': 0, 'y': 1, 'z': 2}
     self.basepadlist = []
     self.pads = []
@@ -122,11 +134,12 @@ class TReadoutPadArray():
     self.charges = []
 
   def rotate_x(self, position, degree):
-    ##
-    # @brief rotate position with x axis
-    # @param position origninal position
-    # @degree rotation angle [deg]
-    # @return converted position [x, y, z]
+    """!
+    @brief rotate position with x axis
+    @param position origninal position
+    @degree rotation angle [deg]
+    @return converted position [x, y, z]
+    """
     theta = 0.0174533*degree
     x = position[0]
     y = position[1] * np.cos(theta) - position[2] * np.sin(theta)
@@ -134,11 +147,12 @@ class TReadoutPadArray():
     return [x, y, z]
 
   def rotate_y(self, position, degree):
-    ##
-    # @brief rotate position with y axis
-    # @param position origninal position
-    # @degree rotation angle [deg]
-    # @return converted position [x, y, z]
+    """!
+    @brief rotate position with y axis
+    @param position origninal position
+    @degree rotation angle [deg]
+    @return converted position [x, y, z]
+    """
     theta = 0.0174533*degree
     x =  position[0] * np.cos(theta) + position[2] * np.sin(theta)
     y =  position[1]
@@ -146,11 +160,12 @@ class TReadoutPadArray():
     return [x, y, z]
 
   def rotate_z(self, position, degree):
-    ##
-    # @brief rotate position with z axis
-    # @param position origninal position
-    # @degree rotation angle [deg]
-    # @return converted position [x, y, z]
+    """!
+    @brief rotate position with z axis
+    @param position origninal position
+    @degree rotation angle [deg]
+    @return converted position [x, y, z]
+    """
     theta = 0.0174533*degree
     x = position[0] * np.cos(theta) - position[1] * np.sin(theta)
     y = position[0] * np.sin(theta) + position[1] * np.cos(theta)
@@ -158,22 +173,24 @@ class TReadoutPadArray():
     return [x, y, z]
 
   def add_basepad(self,baseinfo):
-    ##
-    # @brief add pad info (TBasePadShapeClass)
-    # @param baseinfo objerct of TBasePadShapeClass
-    # @return None
+    """!
+    @brief add pad info (TBasePadShapeClass)
+    @param baseinfo objerct of TBasePadShapeClass
+    @return None
+    """
     self.basepadlist.append(baseinfo)
 
   def add_pads(self, center, baseid, degX=0, degY=0, degZ=0, id=0):
-    ##
-    # @brief set pad with position and id
-    # @param center center new center postion for adding pad 
-    # @param center baseid id of base pad object
-    # @param center degX rotation angle by X
-    # @param center degY rotation angle by Y
-    # @param center degZ rotation angle by Z
-    # @param center label od each id
-    # @return None
+    """!
+    @brief set pad with position and id
+    @param center center new center postion for adding pad 
+    @param center baseid id of base pad object
+    @param center degX rotation angle by X
+    @param center degY rotation angle by Y
+    @param center degZ rotation angle by Z
+    @param center label od each id
+    @return None
+    """
     padshape = self.basepadlist[baseid]
     polygon_origin = padshape.get_polygon()
 
@@ -196,10 +213,11 @@ class TReadoutPadArray():
     self.charges.append(0)
 
   def show_pads(self, plane='xz'):
-    ##
+    """!
     # @brief plot polygon 
     # @param plane Select projection plane by str (e.g. 'xz') 
     # @return None
+    """
     index1 = self.mapping.get(plane[0], 0)
     index2 = self.mapping.get(plane[1], 0)
 
@@ -219,13 +237,14 @@ class TReadoutPadArray():
     plt.show()
 
 def generate_regular_n_polygon(n=3, length=3, theta=0, flag=True):
-    ##
-    # @brief generate regular n polygon 
-    # @param n number of vertex
-    # @param length length of daistance between each vertex
-    # @param theta rotation angle
-    # @param flag plot pad (default:True)
-    # @return object of TBasePadShapeClass
+  """!
+  @brief generate regular n polygon 
+  @param n number of vertex
+  @param length length of daistance between each vertex
+  @param theta rotation angle
+  @param flag plot pad (default:True)
+  @return object of TBasePadShapeClass
+  """
   base_padinfo = TBasePadShapeClass()
 
   if n<3:
@@ -247,13 +266,14 @@ def generate_regular_n_polygon(n=3, length=3, theta=0, flag=True):
     return base_padinfo
 
 def generate_oblong_4_polygon(longlength=4, shortlength=2, plane='yz', flag=True):
-    ##
-    # @brief oblong 4 polygon
-    # @param longlength length of long side
-    # @param shortlength length of short side
-    # @param plane projection plane
-    # @param flag plot pad (default:True)
-    # @return object of TBasePadShapeClass
+  """!
+  @brief oblong 4 polygon
+  @param longlength length of long side
+  @param shortlength length of short side
+  @param plane projection plane
+  @param flag plot pad (default:True)
+  @return object of TBasePadShapeClass
+  """
   base_padinfo = TBasePadShapeClass()
 
   if plane=='yz' or plane=='zy':

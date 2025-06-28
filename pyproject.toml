@@ -19,7 +19,10 @@ dependencies = [
 [project.scripts]
 catmview = "catmlib.util.catmviewer:check_catm_view"
 padview = "catmlib.readoutpad.catm:check_pad_view"
-
+generategif = "catmlib.util.gifgenerator:generate_gif"
+filecheck = "catmlib.util.dataforming:check_raed_file_function"
+checktrialpad = "catmlib.simulator.trialpad:check_pad_configuration"
+simtrack = "catmlib.simulator.tracksimulation:execute_simulataion"
 
 [build-system]
 requires = ["hatchling"]

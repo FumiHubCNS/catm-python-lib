@@ -131,13 +131,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="basepad_8py_source.html#l00019">19</a> of file <a class="el" href="basepad_8py_source.html">basepad.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>  <span class="keyword">def </span>__init__(self):</div>
-<div class="line"><span class="lineno">   20</span>    </div>
-<div class="line"><span class="lineno">   26</span>    self.mapping = {<span class="stringliteral">&#39;x&#39;</span>: 0, <span class="stringliteral">&#39;y&#39;</span>: 1, <span class="stringliteral">&#39;z&#39;</span>: 2}</div>
-<div class="line"><span class="lineno">   27</span>    self.center = [0, 0, 0]</div>
-<div class="line"><span class="lineno">   28</span>    self.polygon = []</div>
-<div class="line"><span class="lineno">   29</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -161,11 +155,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="basepad_8py_source.html#l00036">36</a> of file <a class="el" href="basepad_8py_source.html">basepad.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   36</span>  <span class="keyword">def </span>add_polygon(self, position):</div>
-<div class="line"><span class="lineno">   37</span>    </div>
-<div class="line"><span class="lineno">   40</span>    self.polygon.append(position)</div>
-<div class="line"><span class="lineno">   41</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="aa4c6a7af45586cb23af1bdb77ec1406b" name="aa4c6a7af45586cb23af1bdb77ec1406b"></a>
@@ -184,11 +174,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="basepad_8py_source.html#l00042">42</a> of file <a class="el" href="basepad_8py_source.html">basepad.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   42</span>  <span class="keyword">def </span>get_center(self):</div>
-<div class="line"><span class="lineno">   43</span>    </div>
-<div class="line"><span class="lineno">   46</span>    <span class="keywordflow">return</span> self.center</div>
-<div class="line"><span class="lineno">   47</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a34be30140c8b825ad17f8f892511db8c" name="a34be30140c8b825ad17f8f892511db8c"></a>
@@ -207,19 +193,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="basepad_8py_source.html#l00054">54</a> of file <a class="el" href="basepad_8py_source.html">basepad.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   54</span>  <span class="keyword">def </span>get_center_polygon_distance(self):</div>
-<div class="line"><span class="lineno">   55</span>    </div>
-<div class="line"><span class="lineno">   58</span>    distances = []</div>
-<div class="line"><span class="lineno">   59</span>    </div>
-<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.polygon)):</div>
-<div class="line"><span class="lineno">   61</span>      dx = self.center[0] - self.polygon[i][0]</div>
-<div class="line"><span class="lineno">   62</span>      dy = self.center[1] - self.polygon[i][1]</div>
-<div class="line"><span class="lineno">   63</span>      dz = self.center[2] - self.polygon[i][2]</div>
-<div class="line"><span class="lineno">   64</span>      distances.append( np.sqrt(dx**2 + dy**2 + dz**2) )</div>
-<div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">return</span> distances</div>
-<div class="line"><span class="lineno">   67</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a461992ec60819592e2a925a748f5c773" name="a461992ec60819592e2a925a748f5c773"></a>
@@ -238,11 +212,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="basepad_8py_source.html#l00048">48</a> of file <a class="el" href="basepad_8py_source.html">basepad.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   48</span>  <span class="keyword">def </span>get_polygon(self):</div>
-<div class="line"><span class="lineno">   49</span>    </div>
-<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">return</span> self.polygon</div>
-<div class="line"><span class="lineno">   53</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a9ec33d0f3953591f2df99d84f628b0dc" name="a9ec33d0f3953591f2df99d84f628b0dc"></a>
@@ -261,18 +231,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="basepad_8py_source.html#l00068">68</a> of file <a class="el" href="basepad_8py_source.html">basepad.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   68</span>  <span class="keyword">def </span>get_polygon_vertex_distance(self):</div>
-<div class="line"><span class="lineno">   69</span>    </div>
-<div class="line"><span class="lineno">   72</span>    distances = []</div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(self.polygon)):</div>
-<div class="line"><span class="lineno">   74</span>      <span class="keywordflow">for</span> j <span class="keywordflow">in</span> range(i+1, len(self.polygon)):</div>
-<div class="line"><span class="lineno">   75</span>        dx = self.polygon[i][0] - self.polygon[j][0]</div>
-<div class="line"><span class="lineno">   76</span>        dy = self.polygon[i][1] - self.polygon[j][1]</div>
-<div class="line"><span class="lineno">   77</span>        dz = self.polygon[i][2] - self.polygon[j][2]</div>
-<div class="line"><span class="lineno">   78</span>        distances.append( np.sqrt(dx**2 + dy**2 + dz**2) )</div>
-<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">return</span> distances</div>
-<div class="line"><span class="lineno">   80</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a526c471c964a7a71918d36f9f34a75b3" name="a526c471c964a7a71918d36f9f34a75b3"></a>
@@ -305,11 +264,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="basepad_8py_source.html#l00030">30</a> of file <a class="el" href="basepad_8py_source.html">basepad.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   30</span>  <span class="keyword">def </span>set_center(self, x, y, z):</div>
-<div class="line"><span class="lineno">   31</span>    </div>
-<div class="line"><span class="lineno">   34</span>    self.center = [x, y, z]</div>
-<div class="line"><span class="lineno">   35</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a7d50b27d01b461aa6b6fc811de2469ac" name="a7d50b27d01b461aa6b6fc811de2469ac"></a>
@@ -332,25 +287,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="basepad_8py_source.html#l00081">81</a> of file <a class="el" href="basepad_8py_source.html">basepad.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   81</span>  <span class="keyword">def </span>show_polygon(self, plane=&#39;xz&#39;):</div>
-<div class="line"><span class="lineno">   82</span>    </div>
-<div class="line"><span class="lineno">   86</span>    index1 = self.mapping.get(plane[0], 0)</div>
-<div class="line"><span class="lineno">   87</span>    index2 = self.mapping.get(plane[1], 0)</div>
-<div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>    xs = [vertex[index1] <span class="keywordflow">for</span> vertex <span class="keywordflow">in</span> self.polygon ]</div>
-<div class="line"><span class="lineno">   90</span>    ys = [vertex[index2] <span class="keywordflow">for</span> vertex <span class="keywordflow">in</span> self.polygon ]</div>
-<div class="line"><span class="lineno">   91</span> </div>
-<div class="line"><span class="lineno">   92</span>    fig=plt.figure(figsize=(6, 5))</div>
-<div class="line"><span class="lineno">   93</span>    ax = fig.add_subplot(111)</div>
-<div class="line"><span class="lineno">   94</span>    fig.patch.set_alpha(0.)</div>
-<div class="line"><span class="lineno">   95</span>    ax.fill(xs, ys, edgecolor=<span class="stringliteral">&#39;black&#39;</span>, facecolor=<span class="stringliteral">&#39;#d3d3d3&#39;</span>)</div>
-<div class="line"><span class="lineno">   96</span>    ax.set_aspect(<span class="stringliteral">&#39;equal&#39;</span>)</div>
-<div class="line"><span class="lineno">   97</span> </div>
-<div class="line"><span class="lineno">   98</span>    plt.xlabel(str(plane[0])+<span class="stringliteral">&quot;position [mm]&quot;</span>)</div>
-<div class="line"><span class="lineno">   99</span>    plt.ylabel(str(plane[1])+<span class="stringliteral">&quot;position [mm]&quot;</span>)</div>
-<div class="line"><span class="lineno">  100</span>    plt.show()</div>
-<div class="line"><span class="lineno">  101</span> </div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
@@ -432,7 +369,7 @@ Public Attributes</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="namespacecatmlib.html">catmlib</a></li><li class="navelem"><a href="namespacecatmlib_1_1readoutpad.html">readoutpad</a></li><li class="navelem"><a href="namespacecatmlib_1_1readoutpad_1_1basepad.html">basepad</a></li><li class="navelem"><a href="classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class.html">TBasePadShapeClass</a></li>
+    <li class="navelem"><b>catmlib</b></li><li class="navelem"><b>readoutpad</b></li><li class="navelem"><b>basepad</b></li><li class="navelem"><a href="classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class.html">TBasePadShapeClass</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>

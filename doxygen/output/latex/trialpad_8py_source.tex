@@ -1,0 +1,138 @@
+\doxysection{trialpad.\+py}
+\hypertarget{trialpad_8py_source}{}\label{trialpad_8py_source}\index{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/simulator/trialpad.py@{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/simulator/trialpad.py}}
+\mbox{\hyperlink{trialpad_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00001}00001\ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00002}00002\ \textcolor{stringliteral}{@file\ trialpad.py}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00003}00003\ \textcolor{stringliteral}{@version\ 1}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00004}00004\ \textcolor{stringliteral}{@author\ Fumitka\ ENDO}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00005}00005\ \textcolor{stringliteral}{@date\ 2025-\/06-\/28T15:53:53+09:00}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00006}00006\ \textcolor{stringliteral}{@brief\ trial\ pad\ configuration\ utillities}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00007}00007\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00008}00008\ \textcolor{keyword}{import}\ numpy\ \textcolor{keyword}{as}\ np}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00009}00009\ \textcolor{keyword}{import}\ \mbox{\hyperlink{namespacecatmlib_1_1readoutpad_1_1basepad}{catmlib.readoutpad.basepad}}\ \textcolor{keyword}{as}\ basepad}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00010}00010\ \textcolor{keyword}{import}\ argparse\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00012}00012\ \textcolor{keyword}{def\ }get\_original\_beamtpc\_pad\_array():}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00013}00013\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00014}00014\ \textcolor{stringliteral}{\ \ \ \ @brief\ get\ 22\ pads\ configuration\ considered\ before\ h445-\/1\ exp}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00015}00015\ \textcolor{stringliteral}{\ \ \ \ @return\ object\ of\ pad\ array\ (TReadoutPadArray)}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00016}00016\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00017}00017\ \ \ \ \ base\_padinfo\ =\ basepad.generate\_regular\_n\_polygon(3,\ 4.74,\ 90,\ \textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00019}00019\ \ \ \ \ pad\ =\ basepad.TReadoutPadArray()}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00020}00020\ \ \ \ \ pad.add\_basepad(base\_padinfo)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00021}00021\ \ \ \ \ pad\_distance\ =\ 5}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00022}00022\ \ \ \ \ gid\ =\ 0}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(11):}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00025}00025\ \ \ \ \ \ \ \ \ pad.add\_pads([i*pad\_distance/2,\ 0,\ pad\_distance/np.sqrt(3)/2*((i-\/1)\%2)],\ 0,\ 0,\ 180*((i-\/1)\%2),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(11):}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ pad.add\_pads([i*pad\_distance/2,\ 0,\ pad\_distance/np.sqrt(3)/2*((i)\%2)\ +\ np.sqrt(3)*pad\_distance/2],\ 0,\ 0,\ 180*((i)\%2),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{return}\ pad}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00035}00035\ \textcolor{keyword}{def\ }get\_beamtpc\_one\_fourth\_shift\_pad\_array():}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00036}00036\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00037}00037\ \textcolor{stringliteral}{\ \ \ \ @brief\ get\ 22\ pads\ configuration\ considered\ before\ h445-\/5\ exp}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00038}00038\ \textcolor{stringliteral}{\ \ \ \ @return\ object\ of\ pad\ array\ (TReadoutPadArray)}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00039}00039\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00040}00040\ \ \ \ \ base\_padinfo\ =\ basepad.generate\_regular\_n\_polygon(3,\ 4.74,\ 90,\ \textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00042}00042\ \ \ \ \ pad\ =\ basepad.TReadoutPadArray()}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00043}00043\ \ \ \ \ pad.add\_basepad(base\_padinfo)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00044}00044\ \ \ \ \ pad\_distance\ =\ 5}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00045}00045\ \ \ \ \ gid\ =\ 0}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(11):}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ pad.add\_pads([i*pad\_distance/2,\ 0,\ pad\_distance/np.sqrt(3)/2*((i-\/1)\%2)],\ 0,\ 0,\ 180*((i-\/1)\%2),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(11):}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ pad.add\_pads([(i+0.5)*pad\_distance/2,\ 0,\ pad\_distance/np.sqrt(3)/2*((i)\%2)\ +\ np.sqrt(3)*pad\_distance/2],\ 0,\ 0,\ 180*((i)\%2),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{return}\ pad}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00058}00058\ \textcolor{keyword}{def\ }get\_beamtpc\_60ch\_pad\_array():}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00059}00059\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00060}00060\ \textcolor{stringliteral}{\ \ \ \ @brief\ get\ 60\ pads\ configuration\ considered\ before\ h445-\/5\ exp}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00061}00061\ \textcolor{stringliteral}{\ \ \ \ @return\ object\ of\ pad\ array\ (TReadoutPadArray)}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00062}00062\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00063}00063\ \ \ \ \ base\_padinfo\ =\ basepad.generate\_regular\_n\_polygon(3,\ 2.75,\ 90,\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00065}00065\ \ \ \ \ pad\ =\ basepad.TReadoutPadArray()}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00066}00066\ \ \ \ \ pad.add\_basepad(base\_padinfo)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00067}00067\ \ \ \ \ pad\_distance\ =\ 3}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00068}00068\ \ \ \ \ gid\ =\ 0}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00070}00070\ \ \ \ \ nmax=21}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00071}00071\ \ \ \ \ offset\ =\ 15.75}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(nmax+1):}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\ >1:}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ pad.add\_pads([(i-\/0.5)*pad\_distance/2-\/offset,\ 0,\ pad\_distance/np.sqrt(3)/2*((i-\/1)\%2)],\ 0,\ 0,\ 180*((i-\/1)\%2),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(nmax):}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\ >0:}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ pad.add\_pads([((i+0))*pad\_distance/2-\/offset,\ 0,\ pad\_distance/np.sqrt(3)/2*((i)\%2)\ +\ np.sqrt(3)*pad\_distance/2],\ 0,\ 0,\ 180*((i)\%2),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(nmax):}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ i\ <\ nmax-\/1:}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ pad.add\_pads([(i+0.5)*pad\_distance/2-\/offset,\ 0,\ pad\_distance/np.sqrt(3)/2*((i-\/1)\%2)\ +\ 2*np.sqrt(3)*pad\_distance/2]\ ,\ 0,\ 0,\ 180*((i-\/1)\%2),\ 0,\ gid)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ pad.id\ =\ gid}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ gid\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{return}\ pad}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00091}00091\ \textcolor{keyword}{def\ }get\_trail\_beamtpc\_array(version=0):}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00092}00092\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00093}00093\ \textcolor{stringliteral}{\ \ \ \ @brief\ get\ trial\ pad\ configuration\ of\ beam\ tpc\ }}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00094}00094\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00095}00095\ \textcolor{stringliteral}{\ \ \ \ @param\ version\ select\ version}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00096}00096\ \textcolor{stringliteral}{\ \ \ \ @return\ object\ of\ pad\ array\ (TReadoutPadArray)}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00097}00097\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00098}00098\ \ \ \ \ \textcolor{keywordflow}{if}\ version\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ get\_beamtpc\_one\_fourth\_shift\_pad\_array()}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00100}00100\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{elif}\ version\ ==\ 1:}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ get\_beamtpc\_one\_fourth\_shift\_pad\_array()}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00103}00103\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{elif}\ version\ ==\ 2:}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ get\_beamtpc\_60ch\_pad\_array()}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00106}00106\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00107}00107\ \textcolor{keyword}{def\ }check\_pad\_configuration():}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00108}00108\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00109}00109\ \textcolor{stringliteral}{\ \ \ \ @brief\ plot\ trial\ pad\ configuration}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00110}00110\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00111}00111\ \textcolor{stringliteral}{\ \ \ \ CLI\ argument:}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00112}00112\ \textcolor{stringliteral}{\ \ \ \ @arg\ pad-\/type\ select\ trial\ pad\ type}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00113}00113\ \textcolor{stringliteral}{\ \ \ \ @arg\ pad-\/version\ select\ trail\ pad\ version}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00114}00114\ \textcolor{stringliteral}{\ \ \ \ @arg\ pad-\/plane\ select\ pad\ plane\ for\ ploting}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00115}00115\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00117}00117\ \ \ \ \ parser\ =\ argparse.ArgumentParser()}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00118}00118\ \ \ \ \ parser.add\_argument(\textcolor{stringliteral}{"{}-\/t"{}},\textcolor{stringliteral}{"{}-\/-\/pad-\/type"{}},\ help=\textcolor{stringliteral}{"{}select\ trial\ pad\ type"{}},\ type=str,\ default=\textcolor{stringliteral}{"{}beamtpc"{}})}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00119}00119\ \ \ \ \ parser.add\_argument(\textcolor{stringliteral}{"{}-\/tv"{}},\textcolor{stringliteral}{"{}-\/-\/pad-\/version"{}},\ help=\textcolor{stringliteral}{"{}select\ trail\ pad\ version"{}},\ type=int,\ default=0)\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00120}00120\ \ \ \ \ parser.add\_argument(\textcolor{stringliteral}{"{}-\/pp"{}},\textcolor{stringliteral}{"{}-\/-\/pad-\/plane"{}},\ help=\textcolor{stringliteral}{"{}select\ pad\ plane\ for\ ploting"{}},\ type=str,\ default=\textcolor{stringliteral}{"{}xz"{}})\ \ \ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00121}00121\ \ \ \ \ args\ =\ parser.parse\_args()}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00122}00122\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00123}00123\ \ \ \ \ pad\_type:\ str\ =\ args.pad\_type}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00124}00124\ \ \ \ \ pad\_version:\ int\ =\ args.pad\_version}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00125}00125\ \ \ \ \ pad\_plane:\ str\ =\ args.pad\_plane}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00127}00127\ \ \ \ \ \textcolor{keywordflow}{if}\ pad\_type\ ==\ \textcolor{stringliteral}{"{}beamtpc"{}}:}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ pad\ =\ get\_trail\_beamtpc\_array(pad\_version)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ pad.show\_pads(pad\_plane)}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00130}00130\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00131}00131\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{trialpad_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{'trial\ pad\ type\ dose\ not\ exist'})}
+
+\end{DoxyCode}

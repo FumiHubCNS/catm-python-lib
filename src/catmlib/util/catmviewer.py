@@ -1,9 +1,10 @@
-##
-# @file catmviewer.py
-# @version 1
-# @author Fumitaka ENDO
-# @date 2025-01-28T13:22:04+09:00
-# @brief analysis utilities related to CAT-M 
+"""!
+@file catmviewer.py
+@version 1
+@author Fumitaka ENDO
+@date 2025-01-28T13:22:04+09:00
+@brief analysis utilities related to CAT-M 
+"""
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
@@ -13,23 +14,25 @@ from matplotlib.gridspec import GridSpec
 
 
 def find_nearest_index(array, value):
-    ##
-    # @brief find index of nearest point
-    # @param array reference array for sorting index
-    # @param reference value
-    # @return index value
+    """!
+    @brief find index of nearest point
+    @param array reference array for sorting index
+    @param reference value
+    @return index value
+    """
     array = np.array(array)  
     index = np.abs(array - value).argmin() 
     return index
 
 def calculate_track_dipole_magnet_analytical_solution(v0=np.array([1,0,0]), x0=np.array([0,0,0]), omega=1, t=0):
-    ##
-    # @brief analytical solution for equation of moyion in uniform magnetic field
-    # @param v0 initial vector [m] (numpy.array([x,y,z]))
-    # @param x0 initial position [m] (numpy.array([x,y,z]))
-    # @param omega cyclotron frequency (qB/m [C][T][m]^-1) 
-    # @param t list of time, which you want to calculate the position
-    # @return list of 3 component : [x1,x2,..,x3],[y1,y2,..,y3], [z1,z2,..,z3]
+    """!
+    @brief analytical solution for equation of moyion in uniform magnetic field
+    @param v0 initial vector [m] (numpy.array([x,y,z]))
+    @param x0 initial position [m] (numpy.array([x,y,z]))
+    @param omega cyclotron frequency (qB/m [C][T][m]^-1) 
+    @param t list of time, which you want to calculate the position
+    @return list of 3 component : [x1,x2,..,x3],[y1,y2,..,y3], [z1,z2,..,z3]
+    """
     x = v0[0]/omega * np.sin( omega * t ) + v0[2]/omega * ( 1.0 - np.cos( omega * t ) ) + x0[0]
     y = v0[1] * t + x0[1]
     z = v0[2]/omega * np.sin( omega * t ) - v0[0]/omega * ( 1.0 - np.cos( omega * t ) ) + x0[2]
@@ -37,21 +40,23 @@ def calculate_track_dipole_magnet_analytical_solution(v0=np.array([1,0,0]), x0=n
     return x,y,z
 
 def calculate_unit_vector(v=np.array([-0.2, 0.01, 0.01])):
-    ##
-    # @brief calculate and return unit vector
-    # @param v vector (np.array([-x, y, z]))
-    # @return unit vector of input vector
+    """!
+    @brief calculate and return unit vector
+    @param v vector (np.array([-x, y, z]))
+    @return unit vector of input vector
+    """
     uv = v/np.linalg.norm(v)
     return uv
 
 def calculate_extrapolated_position(position, direction, target_value, direction_to_extrapolate=2):
-    ##
-    # @brief calculate and return extrapolated_position
-    # @param position reference position
-    # @param direction refarence vector
-    # @param target_value extrapolated value
-    # @param direction_to_extrapolate extrapolated axis
-    # @return extrapolated position (np.array([x, y, z]))
+    """!
+    @brief calculate and return extrapolated_position
+    @param position reference position
+    @param direction refarence vector
+    @param target_value extrapolated value
+    @param direction_to_extrapolate extrapolated axis
+    @return extrapolated position (np.array([x, y, z]))
+    """
     x0, y0, z0 = position
     vx, vy, vz = direction
 
@@ -91,28 +96,29 @@ def plot_3d_trajectory(x=[], y=[], z=[], u=[], v=[], w=[],
                        bid=None, rid=None, sid=None, 
                        anaflag=-1, showflag=True, savepath=None, user_colors=['#B844A0','#36797A','#36797A','#B844A0']
                        ):
-    ##
-    # @brief plot 3 disimensional trajectories
-    # @param x point data list : [[x1,x2,..x3],[x1,x2,..x3],[x1,x2,..x3]]
-    # @param y point data list : [[y1,y2,..y3],[y1,y2,..y3],[y1,y2,..y3]]
-    # @param z point data list : [[z1,z2,..z3],[z1,z2,..z3],[z1,z2,..z3]]
-    # @param u line data list : [[x1,x2,..x3],[x1,x2,..x3],[x1,x2,..x3]]
-    # @param v line data list : [[y1,y2,..y3],[y1,y2,..y3],[y1,y2,..y3]]
-    # @param w line data list : [[z1,z2,..z3],[z1,z2,..z3],[z1,z2,..z3]]
-    # @param x_lim draw range for X
-    # @param y_lim draw range for Y
-    # @param z_lim draw range for Z
-    # @param bpad beam tpc pad info (TReadoutPadArray)
-    # @param rpad recoil tpc pad info (TReadoutPadArray)
-    # @param spad silicon pad info (TReadoutPadArray)
-    # @param bid beam tpc hit id
-    # @param rid recoil tpc hit id
-    # @param sid silicon hit id 
-    # @param anaflag analysis flag (-1:tpc, 1:si)
-    # @param showflag draw flag (default : True) 
-    # @param savepath save path 
-    # @param user_colors color set 
-    # @return None
+    """!
+    @brief plot 3 disimensional trajectories
+    @param x point data list : [[x1,x2,..x3],[x1,x2,..x3],[x1,x2,..x3]]
+    @param y point data list : [[y1,y2,..y3],[y1,y2,..y3],[y1,y2,..y3]]
+    @param z point data list : [[z1,z2,..z3],[z1,z2,..z3],[z1,z2,..z3]]
+    @param u line data list : [[x1,x2,..x3],[x1,x2,..x3],[x1,x2,..x3]]
+    @param v line data list : [[y1,y2,..y3],[y1,y2,..y3],[y1,y2,..y3]]
+    @param w line data list : [[z1,z2,..z3],[z1,z2,..z3],[z1,z2,..z3]]
+    @param x_lim draw range for X
+    @param y_lim draw range for Y
+    @param z_lim draw range for Z
+    @param bpad beam tpc pad info (TReadoutPadArray)
+    @param rpad recoil tpc pad info (TReadoutPadArray)
+    @param spad silicon pad info (TReadoutPadArray)
+    @param bid beam tpc hit id
+    @param rid recoil tpc hit id
+    @param sid silicon hit id 
+    @param anaflag analysis flag (-1:tpc, 1:si)
+    @param showflag draw flag (default : True) 
+    @param savepath save path 
+    @param user_colors color set 
+    @return None
+    """
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(111, projection='3d')
   
@@ -217,28 +223,29 @@ def plot_2d_trajectory(x=[], y=[], z=[], u=[], v=[], w=[],
                               bid=None, rid=None, sid=None, 
                               anaflag=-1, showflag=True, savepath=None, user_colors=['#B844A0','#36797A','#36797A','#B844A0']
                               ):
-    ##
-    # @brief plot 3 disimensional trajectories
-    # @param x point data list : [[x1,x2,..x3],[x1,x2,..x3],[x1,x2,..x3]]
-    # @param y point data list : [[y1,y2,..y3],[y1,y2,..y3],[y1,y2,..y3]]
-    # @param z point data list : [[z1,z2,..z3],[z1,z2,..z3],[z1,z2,..z3]]
-    # @param u line data list : [[x1,x2,..x3],[x1,x2,..x3],[x1,x2,..x3]]
-    # @param v line data list : [[y1,y2,..y3],[y1,y2,..y3],[y1,y2,..y3]]
-    # @param w line data list : [[z1,z2,..z3],[z1,z2,..z3],[z1,z2,..z3]]
-    # @param x_lim draw range for X
-    # @param y_lim draw range for Y
-    # @param z_lim draw range for Z
-    # @param bpad beam tpc pad info (TReadoutPadArray)
-    # @param rpad recoil tpc pad info (TReadoutPadArray)
-    # @param spad silicon pad info (TReadoutPadArray)
-    # @param bid beam tpc hit id
-    # @param rid recoil tpc hit id
-    # @param sid silicon hit id 
-    # @param anaflag analysis flag (-1:tpc, 1:si)
-    # @param showflag draw flag (default : True) 
-    # @param savepath save path 
-    # @param user_colors color set 
-    # @return None
+    """!
+    @brief plot 3 disimensional trajectories
+    @param x point data list : [[x1,x2,..x3],[x1,x2,..x3],[x1,x2,..x3]]
+    @param y point data list : [[y1,y2,..y3],[y1,y2,..y3],[y1,y2,..y3]]
+    @param z point data list : [[z1,z2,..z3],[z1,z2,..z3],[z1,z2,..z3]]
+    @param u line data list : [[x1,x2,..x3],[x1,x2,..x3],[x1,x2,..x3]]
+    @param v line data list : [[y1,y2,..y3],[y1,y2,..y3],[y1,y2,..y3]]
+    @param w line data list : [[z1,z2,..z3],[z1,z2,..z3],[z1,z2,..z3]]
+    @param x_lim draw range for X
+    @param y_lim draw range for Y
+    @param z_lim draw range for Z
+    @param bpad beam tpc pad info (TReadoutPadArray)
+    @param rpad recoil tpc pad info (TReadoutPadArray)
+    @param spad silicon pad info (TReadoutPadArray)
+    @param bid beam tpc hit id
+    @param rid recoil tpc hit id
+    @param sid silicon hit id 
+    @param anaflag analysis flag (-1:tpc, 1:si)
+    @param showflag draw flag (default : True) 
+    @param savepath save path 
+    @param user_colors color set 
+    @return None
+    """
     fig = plt.figure(figsize=(12, 10))  
 
     gs = GridSpec(2, 3, height_ratios=[5, 0.375], width_ratios=[0.5, 2, 0.5]) 
@@ -387,23 +394,23 @@ def plot_2d_categories( x_lim=None, y_lim=None, z_lim=None,
                         legendFlag=False,
                         title_name="Map file checker (Cobo, AsAd, AGET, Channel), [-1] = all"
                         ):
-    ##
-    # @brief plot categories with 2 disimension 
-    # @param x_lim draw range for X
-    # @param y_lim draw range for Y
-    # @param z_lim draw range for Z
-    # @param bpad beam tpc pad info (TReadoutPadArray)
-    # @param rpad recoil tpc pad info (TReadoutPadArray)
-    # @param spad silicon pad info (TReadoutPadArray)
-    # @param bid beam tpc categories list ([ [1,2,...], [3,6...] ])
-    # @param rid recoil tpc categories list ([ [1,2,...], [3,6...] ])
-    # @param sid silicon hit categories list ([ [1,2,...], [3,6...] ])
-    # @param showflag draw flag (default : True) 
-    # @param savepath save path 
-    # @param user_colors color set 
-    # @param title_name plot title
-    # @return None
-
+    """!
+    @brief plot categories with 2 disimension 
+    @param x_lim draw range for X
+    @param y_lim draw range for Y
+    @param z_lim draw range for Z
+    @param bpad beam tpc pad info (TReadoutPadArray)
+    @param rpad recoil tpc pad info (TReadoutPadArray)
+    @param spad silicon pad info (TReadoutPadArray)
+    @param bid beam tpc categories list ([ [1,2,...], [3,6...] ])
+    @param rid recoil tpc categories list ([ [1,2,...], [3,6...] ])
+    @param sid silicon hit categories list ([ [1,2,...], [3,6...] ])
+    @param showflag draw flag (default : True) 
+    @param savepath save path 
+    @param user_colors color set 
+    @param title_name plot title
+    @return None
+    """
     fig = plt.figure(figsize=(12, 10))  
 
     gs = GridSpec(2, 3, height_ratios=[5, 0.375], width_ratios=[0.5, 2, 0.5]) 
@@ -559,7 +566,10 @@ def plot_2d_categories( x_lim=None, y_lim=None, z_lim=None,
     plt.close(fig) 
 
 def check_catm_view():
-    
+    """!
+    @brief plot catm readpad using matplotlib 
+    """
+  
     import catmlib.readoutpad.catm as catpad
       
     beamtpc = catpad.get_beam_tpc_array()

@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['pads_0',['pads',['../classcatmlib_1_1readoutpad_1_1basepad_1_1_t_readout_pad_array.html#a86a73c2836b32c4d528589c7be53eaa0',1,'catmlib::readoutpad::basepad::TReadoutPadArray']]],
-  ['parse_5fargs_1',['parse_args',['../namespacecatmlib_1_1util_1_1dataforming.html#ab28a38019689dd57733f2edd84b5f70b',1,'catmlib::util::dataforming']]],
-  ['plot_5f2d_5fcategories_2',['plot_2d_categories',['../namespacecatmlib_1_1util_1_1catmviewer.html#adf465cf60e276f34bc9b918feb84a8e7',1,'catmlib::util::catmviewer']]],
-  ['plot_5f2d_5ftrajectory_3',['plot_2d_trajectory',['../namespacecatmlib_1_1util_1_1catmviewer.html#ae9a0769a95857e7bf90e07bf923bf077',1,'catmlib::util::catmviewer']]],
-  ['plot_5f3d_5ftrajectory_4',['plot_3d_trajectory',['../namespacecatmlib_1_1util_1_1catmviewer.html#a707f32bd028f6ab1eb6d71239d55b8a2',1,'catmlib::util::catmviewer']]],
-  ['polygon_5',['polygon',['../classcatmlib_1_1readoutpad_1_1basepad_1_1_t_base_pad_shape_class.html#a19b5c0ec94f9e184d169814a1ba8b131',1,'catmlib::readoutpad::basepad::TBasePadShapeClass']]]
+  ['read_5fspe_5ffile_0',['read_spe_file',['../dataforming_8py.html#a13dbd95a6cac156a4ec8ada005783d80',1,'catmlib::util::dataforming']]],
+  ['read_5ftext_1',['read_text',['../xcfgreader_8py.html#a37aa79c252d86a2519a2417f868afae5',1,'catmlib::util::xcfgreader']]],
+  ['read_5ftoml_5ffile_2',['read_toml_file',['../dataforming_8py.html#a6b14984e65959eb3b214d080933d9882',1,'catmlib::util::dataforming']]]
 ];

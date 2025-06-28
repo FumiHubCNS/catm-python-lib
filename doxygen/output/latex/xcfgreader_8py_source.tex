@@ -1,0 +1,196 @@
+\doxysection{xcfgreader.\+py}
+\hypertarget{xcfgreader_8py_source}{}\label{xcfgreader_8py_source}\index{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/util/xcfgreader.py@{/Users/fendo/Work/Program/uv-\/python/catmlib/src/catmlib/util/xcfgreader.py}}
+\mbox{\hyperlink{xcfgreader_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00001}00001\ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00002}00002\ \textcolor{stringliteral}{@file\ xcfgreader.py}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00003}00003\ \textcolor{stringliteral}{@version\ 1}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00004}00004\ \textcolor{stringliteral}{@author\ Fumitaka\ ENDO}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00005}00005\ \textcolor{stringliteral}{@date\ 2025-\/06-\/28T04:42:00+09:00}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00006}00006\ \textcolor{stringliteral}{@brief\ reading\ utillities\ for\ configuration\ file\ of\ GET\ electronics}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00007}00007\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00008}00008\ \textcolor{keyword}{import}\ xml.etree.ElementTree\ \textcolor{keyword}{as}\ ET}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00009}00009\ \textcolor{keyword}{import}\ pandas\ \textcolor{keyword}{as}\ pd}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00010}00010\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00011}00011\ \textcolor{keyword}{import}\ numpy\ \textcolor{keyword}{as}\ np}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00012}00012\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00013}00013\ \textcolor{keyword}{from}\ collections\ \textcolor{keyword}{import}\ defaultdict}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00015}00015\ \textcolor{keyword}{def\ }classify\_indices(values):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00016}00016\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00017}00017\ \textcolor{stringliteral}{\ \ \ \ @brief\ Classify\ indices\ by\ values\ in\ a\ list.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00018}00018\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00019}00019\ \textcolor{stringliteral}{\ \ \ \ This\ function\ groups\ the\ indices\ of\ elements\ in\ the\ input\ list\ by\ their\ values.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00020}00020\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00021}00021\ \textcolor{stringliteral}{\ \ \ \ @param\ values\ A\ list\ of\ values\ to\ be\ classified.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00022}00022\ \textcolor{stringliteral}{\ \ \ \ @return\ A\ dictionary\ where\ each\ key\ is\ a\ unique\ value\ and\ the\ value\ is\ a\ list\ of\ indices\ where\ it\ occurs.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00023}00023\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00024}00024\ \ \ \ \ index\_dict\ =\ defaultdict(list)}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{for}\ idx,\ val\ \textcolor{keywordflow}{in}\ enumerate(values):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ index\_dict[val].append(idx)}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{return}\ dict(index\_dict)}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00029}00029\ \textcolor{keyword}{def\ }get\_tree(input\_path):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00030}00030\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00031}00031\ \textcolor{stringliteral}{\ \ \ \ @brief\ Parse\ an\ XML\ configuration\ file\ and\ return\ its\ root\ element.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00032}00032\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00033}00033\ \textcolor{stringliteral}{\ \ \ \ @param\ input\_path\ Path\ to\ the\ XML\ configuration\ file.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00034}00034\ \textcolor{stringliteral}{\ \ \ \ @return\ Root\ element\ of\ the\ parsed\ XML\ tree.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00035}00035\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00036}00036\ \ \ \ \ tree\ =\ ET.parse(input\_path)}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00037}00037\ \ \ \ \ root\ =\ tree.getroot()}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{return}\ root}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00040}00040\ \textcolor{keyword}{def\ }get\_node(root,\ node\_id\_name='CoBo'):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00041}00041\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00042}00042\ \textcolor{stringliteral}{\ \ \ \ @brief\ Retrieve\ a\ specific\ <Node>\ element\ by\ its\ ID\ from\ the\ XML\ tree.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00043}00043\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00044}00044\ \textcolor{stringliteral}{\ \ \ \ @param\ root\ Root\ element\ of\ the\ XML\ tree.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00045}00045\ \textcolor{stringliteral}{\ \ \ \ @param\ node\_id\_name\ ID\ attribute\ value\ of\ the\ desired\ Node\ element\ (default\ is\ 'CoBo').}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00046}00046\ \textcolor{stringliteral}{\ \ \ \ @return\ The\ Node\ element\ if\ found;\ otherwise,\ None.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00047}00047\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00048}00048\ \ \ \ \ root\ =\ get\_tree()}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00049}00049\ \ \ \ \ cobo\_node\ =\ root.find(f\textcolor{stringliteral}{"{}.//Node[@id='\{node\_id\_name\}']"{}})}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{return}\ cobo\_node}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00052}00052\ \textcolor{keyword}{def\ }get\_instance(node,\ instance\_id\_name='*'):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00053}00053\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00054}00054\ \textcolor{stringliteral}{\ \ \ \ @brief\ Retrieve\ a\ specific\ <Instance>\ element\ by\ its\ ID\ within\ a\ given\ <Node>.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00055}00055\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00056}00056\ \textcolor{stringliteral}{\ \ \ \ @param\ node\ The\ parent\ Node\ element.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00057}00057\ \textcolor{stringliteral}{\ \ \ \ @param\ instance\_id\_name\ ID\ attribute\ value\ of\ the\ desired\ Instance\ element\ (default\ is\ '*').}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00058}00058\ \textcolor{stringliteral}{\ \ \ \ @return\ The\ Instance\ element\ if\ found;\ otherwise,\ None.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00059}00059\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00060}00060\ \ \ \ \ instance\ =\ node.find(f\textcolor{stringliteral}{"{}.//Instance[@id='\{instance\_id\_name\}']"{}})}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{return}\ instance}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00063}00063\ \textcolor{keyword}{def\ }get\_block(instance,\ label\_name='AsAd',\ block\_name='0'\ ):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00064}00064\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00065}00065\ \textcolor{stringliteral}{\ \ \ \ @brief\ Retrieve\ a\ specific\ block\ element\ (e.g.,\ AsAd\ or\ Aget)\ by\ tag\ and\ ID\ within\ an\ Instance.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00066}00066\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00067}00067\ \textcolor{stringliteral}{\ \ \ \ @param\ instance\ The\ parent\ Instance\ element.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00068}00068\ \textcolor{stringliteral}{\ \ \ \ @param\ label\_name\ The\ tag\ name\ of\ the\ block\ to\ find\ (e.g.,\ 'AsAd',\ 'Aget').}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00069}00069\ \textcolor{stringliteral}{\ \ \ \ @param\ block\_name\ ID\ attribute\ of\ the\ block\ element\ to\ retrieve\ (default\ is\ '0').}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00070}00070\ \textcolor{stringliteral}{\ \ \ \ @return\ The\ block\ element\ if\ found;\ otherwise,\ None.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00071}00071\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00072}00072\ \ \ \ \ block\_data\ =\ instance.find(f\textcolor{stringliteral}{"{}.//\{label\_name\}[@id='\{block\_name\}']"{}})}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{return}\ block\_data}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00075}00075\ \textcolor{keyword}{def\ }print\_tree(element,\ indent=0,\ indent\_label=1):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00076}00076\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00077}00077\ \textcolor{stringliteral}{\ \ \ \ @brief\ Recursively\ print\ elements\ at\ a\ specified\ depth\ level\ in\ an\ XML\ tree.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00078}00078\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00079}00079\ \textcolor{stringliteral}{\ \ \ \ @param\ element\ The\ current\ element\ to\ print.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00080}00080\ \textcolor{stringliteral}{\ \ \ \ @param\ indent\ Current\ recursion\ depth\ (used\ internally).}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00081}00081\ \textcolor{stringliteral}{\ \ \ \ @param\ indent\_label\ Target\ depth\ level\ at\ which\ to\ print\ elements.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00082}00082\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{if}\ indent\ ==\ indent\_label:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\ \ "{}}\ *\ indent\ +\ f\textcolor{stringliteral}{"{}\{element.tag\}:\ \{element.attrib\}"{}})}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00085}00085\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00086}00086\ \ \ \ \ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ element:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ print\_tree(child,\ indent\ +\ 1,\ indent\_label)}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00089}00089\ \textcolor{keyword}{def\ }write\_text(input\_path,\ output\_path):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00090}00090\ \ \ \ \ root\ =\ get\_tree(input\_path)}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00091}00091\ \ \ \ \ cobo\_node\ =\ get\_node(root)}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00093}00093\ \ \ \ \ cobos\_list\ =\ [\textcolor{stringliteral}{'*'},\textcolor{stringliteral}{'0'},\textcolor{stringliteral}{'1'},\textcolor{stringliteral}{'2'},\textcolor{stringliteral}{'3'}]}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00094}00094\ \ \ \ \ asads\_list\ =\ [\textcolor{stringliteral}{'*'},\textcolor{stringliteral}{'0'},\textcolor{stringliteral}{'1'},\textcolor{stringliteral}{'2'},\textcolor{stringliteral}{'3'}]}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00095}00095\ \ \ \ \ agets\_list\ =\ [\textcolor{stringliteral}{'*'},\textcolor{stringliteral}{'0'},\textcolor{stringliteral}{'1'},\textcolor{stringliteral}{'2'},\textcolor{stringliteral}{'3'}]}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00097}00097\ \ \ \ \ threshold\_map\ =\ []}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(cobos\_list)):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ instance\ =\ get\_instance(cobo\_node,\ cobos\_list[i])}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ instance\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ cobo\_id\_block\ =\ instance.find(f\textcolor{stringliteral}{"{}./Module/coboId"{}})}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ cobo\_id\ =\ cobo\_id\_block.text\ \textcolor{keywordflow}{if}\ cobo\_id\_block\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}\ \textcolor{keywordflow}{else}\ -\/1}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(len(asads\_list)):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ asad\ =\ get\_block(instance,\textcolor{stringliteral}{'AsAd'},\ asads\_list[j])}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ asad\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k\ \textcolor{keywordflow}{in}\ range(len(agets\_list)):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aget\ =\ get\_block(asad,\textcolor{stringliteral}{'Aget'},\ agets\_list[k])}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ aget\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ global\_threshold\_block\ =\ aget.find(f\textcolor{stringliteral}{"{}./Global/Reg1/GlobalThresholdValue"{}})}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ global\_threshold\ =\ global\_threshold\_block.text\ \textcolor{keywordflow}{if}\ (global\_threshold\_block\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None})\ \textcolor{keywordflow}{else}\ -\/1}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ channels\ =\ aget.findall(\textcolor{stringliteral}{'channel'})}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ l\ \textcolor{keywordflow}{in}\ range(len(channels)):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lsb\_threshold\_block\ =\ channels[l].find(f\textcolor{stringliteral}{"{}./LSBThresholdValue"{}})}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lsb\_threshold\ =\ lsb\_threshold\_block.text\ \textcolor{keywordflow}{if}\ lsb\_threshold\_block\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}\ \textcolor{keywordflow}{else}\ -\/1}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ threshold\_map.append(\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cobos\_list[i],}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ asads\_list[j],\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ agets\_list[k],}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ channels[l].attrib.get(\textcolor{stringliteral}{"{}id"{}}),}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cobo\_id,}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ global\_threshold,}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lsb\_threshold}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00135}00135\ \ \ \ \ pd\_label\_name\ =\ [\textcolor{stringliteral}{'cobo'},\ \textcolor{stringliteral}{'asad'},\ \textcolor{stringliteral}{'aget'},\ \textcolor{stringliteral}{'channel'},\textcolor{stringliteral}{'coboId'},\textcolor{stringliteral}{'global\_threshold'},\textcolor{stringliteral}{'LSB\_threshold'}]}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00137}00137\ \ \ \ \ data\ =\ pd.DataFrame(threshold\_map,\ columns=pd\_label\_name)\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00138}00138\ \ \ \ \ data.to\_csv(output\_path,\ index=\textcolor{keyword}{False},\ sep=\textcolor{stringliteral}{'\(\backslash\)t'})}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00139}00139\ \ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00140}00140\ \textcolor{keyword}{def\ }read\_text(intput\_path=None):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00141}00141\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00142}00142\ \textcolor{stringliteral}{\ \ \ \ @brief\ Reads\ a\ tab-\/separated\ text\ file\ into\ a\ pandas\ DataFrame.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00143}00143\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00144}00144\ \textcolor{stringliteral}{\ \ \ \ @param\ intput\_path\ The\ path\ to\ the\ text\ file.\ If\ None,\ the\ function\ returns\ None.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00145}00145\ \textcolor{stringliteral}{\ \ \ \ @return\ A\ pandas\ DataFrame\ containing\ the\ loaded\ data,\ or\ None\ if\ no\ path\ is\ given.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00146}00146\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{if}\ intput\_path\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ data\ =\ pd.read\_csv(intput\_path,sep=\textcolor{stringliteral}{'\(\backslash\)t'})}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00150}00150\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00151}00151\ \textcolor{keyword}{def\ }get\_matching\_indices(data,\ cobo\_value,\ asad\_value,\ aget\_value,\ channel\_value):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00152}00152\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00153}00153\ \textcolor{stringliteral}{\ \ \ \ @brief\ Get\ indices\ of\ rows\ in\ a\ DataFrame\ that\ match\ specified\ values.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00154}00154\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00155}00155\ \textcolor{stringliteral}{\ \ \ \ Each\ parameter\ can\ be\ set\ to\ a\ specific\ value\ (non-\/negative)\ to\ filter,\ or\ a\ negative\ value\ to\ ignore\ the\ filter.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00156}00156\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00157}00157\ \textcolor{stringliteral}{\ \ \ \ @param\ data\ A\ pandas\ DataFrame\ that\ contains\ columns:\ \`{}cobos\`{},\ \`{}asads\`{},\ \`{}agets\`{},\ \`{}channels\`{}.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00158}00158\ \textcolor{stringliteral}{\ \ \ \ @param\ cobo\_value\ Integer.\ Cobo\ value\ to\ match\ (set\ <\ 0\ to\ ignore).}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00159}00159\ \textcolor{stringliteral}{\ \ \ \ @param\ asad\_value\ Integer.\ Asad\ value\ to\ match\ (set\ <\ 0\ to\ ignore).}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00160}00160\ \textcolor{stringliteral}{\ \ \ \ @param\ aget\_value\ Integer.\ Aget\ value\ to\ match\ (set\ <\ 0\ to\ ignore).}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00161}00161\ \textcolor{stringliteral}{\ \ \ \ @param\ channel\_value\ Integer.\ Channel\ value\ to\ match\ (set\ <\ 0\ to\ ignore).}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00162}00162\ \textcolor{stringliteral}{\ \ \ \ @return\ A\ list\ of\ indices\ in\ the\ DataFrame\ where\ all\ specified\ values\ match.}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00163}00163\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00164}00164\ \ \ \ \ matching\_indices\ =\ []}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00165}00165\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00166}00166\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(data.ids)):}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ cobo\_value\ >=\ 0:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ cobo\_flag\ =\ data.cobos[i]\ ==\ cobo\_value}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ cobo\_flag\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ asad\_value\ >=\ 0:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ asad\_flag\ =\ data.asads[i]\ ==\ asad\_value}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ asad\_flag\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ aget\_value\ >=\ 0:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ aget\_flag\ =\ data.agets[i]\ ==\ aget\_value}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ aget\_flag\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ channel\_value\ >=\ 0:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ chan\_flag\ =\ data.channels[i]\ ==\ channel\_value}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ chan\_flag\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ chan\_flag\ *\ aget\_flag\ *\ asad\_flag\ *\ cobo\_flag\ ==\ \textcolor{keyword}{True}:}
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ matching\_indices.append(i)\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{xcfgreader_8py_source_l00190}00190\ \ \ \ \ \textcolor{keywordflow}{return}\ matching\_indices}
+
+\end{DoxyCode}
