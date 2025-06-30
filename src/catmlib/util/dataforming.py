@@ -14,11 +14,6 @@ import pathlib
 
 this_file_path = pathlib.Path(__file__).parent
 
-def read_config(path):
-    with open(path, 'rb') as f:
-        config = tomllib.load(f)
-    return config
-
 def str_to_array(input_str):
     """!
     @brief convert string to float
