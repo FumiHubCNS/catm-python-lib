@@ -1,8 +1,8 @@
 """!
 @file dataforming.py
-@version 1
+@version 1.2
 @author Fumitaka ENDO
-@date 2025-01-28T13:59:12+09:00
+@date 2025-06-30T11:18:37+09:00
 @brief utilities load input data
 """
 import numpy as np
@@ -10,6 +10,14 @@ import tomllib
 import os
 import argparse 
 import pprint  
+import pathlib
+
+this_file_path = pathlib.Path(__file__).parent
+
+def read_config(path):
+    with open(path, 'rb') as f:
+        config = tomllib.load(f)
+    return config
 
 def str_to_array(input_str):
     """!
