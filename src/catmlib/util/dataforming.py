@@ -37,11 +37,11 @@ def load_numbers(file_path):
         numbers = [int(line.strip()) for line in f if line.strip().isdigit()] 
     return numbers
 
-def expand_environmental_variables(obj):
+def expand_environment_variables(obj):
     if isinstance(obj, dict):
-        return {k: expand_environmental_variables(v) for k, v in obj.items()}
+        return {k: expand_environment_variables(v) for k, v in obj.items()}
     elif isinstance(obj, list):
-        return [expand_environmental_variables(i) for i in obj]
+        return [expand_environment_variables(i) for i in obj]
     elif isinstance(obj, str):
         return os.path.expandvars(obj) 
     else:
