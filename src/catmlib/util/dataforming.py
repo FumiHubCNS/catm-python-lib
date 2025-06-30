@@ -1,8 +1,8 @@
 """!
 @file dataforming.py
-@version 1.2
+@version 1.3
 @author Fumitaka ENDO
-@date 2025-06-30T11:18:37+09:00
+@date 2025-06-30T22:00:22+09:00
 @brief utilities load input data
 """
 import numpy as np
@@ -36,6 +36,16 @@ def load_numbers(file_path):
     with open(file_path, 'r') as f:
         numbers = [int(line.strip()) for line in f if line.strip().isdigit()] 
     return numbers
+
+def expand_environmental_variables(obj):
+    if isinstance(obj, dict):
+        return {k: expand_environmental_variables(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [expand_environmental_variables(i) for i in obj]
+    elif isinstance(obj, str):
+        return os.path.expandvars(obj) 
+    else:
+        return obj
 
 def read_toml_file(file_path=None):
     """!
