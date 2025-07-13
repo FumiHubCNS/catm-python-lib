@@ -13,7 +13,10 @@ dependencies = [
     "numpy>=2.3.1",
     "pandas>=2.3.0",
     "plotly>=6.2.0",
+    "schemdraw>=0.20",
     "scipy>=1.16.0",
+    "PySpice @ git+https://github.com/PySpice-org/PySpice.git",
+    "networkx>=3.5",
 ]
 
 [project.scripts]
@@ -23,7 +26,12 @@ generategif = "catmlib.util.gifgenerator:generate_gif"
 filecheck = "catmlib.util.dataforming:check_raed_file_function"
 checktrialpad = "catmlib.simulator.trialpad:check_pad_configuration"
 simtrack = "catmlib.simulator.tracksimulation:execute_simulataion"
+calcvset = "catmlib.circuit.voltagesetting:main"
+
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true

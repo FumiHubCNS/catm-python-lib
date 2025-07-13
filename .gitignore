@@ -14,3 +14,7 @@ wheels/
 
 # Mac OS 
 .DS_Store
+
+# debug
+src/catmlib/devlop
+README.md

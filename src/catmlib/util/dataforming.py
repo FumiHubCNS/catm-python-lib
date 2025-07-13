@@ -1,8 +1,8 @@
 """!
 @file dataforming.py
-@version 1.3
+@version 1.4
 @author Fumitaka ENDO
-@date 2025-06-30T22:00:22+09:00
+@date 2025-07-10T08:08:26+09:00
 @brief utilities load input data
 """
 import numpy as np
@@ -11,6 +11,8 @@ import os
 import argparse 
 import pprint  
 import pathlib
+import re
+import math
 
 this_file_path = pathlib.Path(__file__).parent
 
@@ -65,6 +67,59 @@ def read_toml_file(file_path=None):
         print(f"File does not exist: {file_path}")
         return None
 
+def extract_filename_segment(filepath, extension='spe'):
+    """!
+    @brief extract filename 
+    @param filepath file path written by string 
+    @param extension extension of certain file
+    @return filename
+    """
+    filepath = filepath.strip()
+    match = re.search(r'([\\/])([^\\/]+\.'+str(extension)+')', filepath)
+
+    if match:
+        return match.group(2)  
+    else:
+        return filepath 
+
+def rebin_histogram(data, nbin):
+    """!
+    @brief rebein histogram  
+    @param data (y value)
+    @return smeared histogram ([float, float, ..., float])   
+    """
+    result = []
+    
+    for i in range(len(data)):
+        
+        if i == 0 :
+            val = data[i]
+            
+        elif math.floor( i / nbin ) == math.floor( ( i - 1 ) / nbin ):
+            val = val + data[i]
+            
+            if i+1 == len(data):
+                result.append(val)
+        
+        else:
+            result.append(val)
+            val = data[i]
+            
+            if i+1 == len(data):
+                result.append(val)
+
+    return result
+
+def transform_list(data, scale=1, offset=0):
+    """!
+    @brief transform list with scale and offset (new[i] =  scale * data[i] + offset )
+    @param data list data ([float, float, ..., float]) 
+    @param scale 1-st order term
+    @param offset 0-th order term
+    @return smeared histogram ([float, float, ..., float]) 
+    """
+    return [(scale * x) + offset for x in data]
+
 def read_spe_file(file_path):
     """!
     @brief read spe file (MCA data)
@@ -79,6 +134,13 @@ def read_spe_file(file_path):
     
     data_section = False
     for i, line in enumerate(lines):
+
+        if i == 3:
+            spe_filename = str(line)
+        
+        if i == 5: 
+            spe_datetime = str(line)
+
         if line.strip() == "$DATA:":
             data_section = True
             channel_count = int(lines[i + 1].split()[1])
@@ -92,7 +154,7 @@ def read_spe_file(file_path):
             y.append(int(lines[i].strip()))
             x.append(len(x))
 
-    return x, y
+    return x, y, extract_filename_segment(spe_filename,'spe'), spe_datetime
 
 def create_histogram_data_from_points(x, y):
     """!
