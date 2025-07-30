@@ -1,8 +1,8 @@
 """!
 # @file basepad.py
-# @version 1
+# @version 1.1
 # @author Fumitaka ENDO
-# @date 2025-01-28T09:21:35+09:00
+# @date 2025-07-30T10:42:16+09:00
 # @brief Basic readout pad generation package 
 """
 import matplotlib
@@ -212,10 +212,11 @@ class TReadoutPadArray():
     self.centers.append(np.mean(polygon_new, axis=0))
     self.charges.append(0)
 
-  def show_pads(self, plane='xz'):
+  def show_pads(self, plane='xz',ref=None):
     """!
     # @brief plot polygon 
     # @param plane Select projection plane by str (e.g. 'xz') 
+    # @param ref check listed id position (default is None)  
     # @return None
     """
     index1 = self.mapping.get(plane[0], 0)
@@ -228,7 +229,13 @@ class TReadoutPadArray():
     for i in range(len(self.pads)):
       xs = [vertex[index1] for vertex in self.pads[i] ]
       ys = [vertex[index2] for vertex in self.pads[i] ]
-      ax.fill(xs, ys, edgecolor='black', facecolor='#d3d3d3',lw=0.5)
+      if ref is None:
+        ax.fill(xs, ys, edgecolor='black', facecolor='#d3d3d3',lw=0.5)
+      else:
+        if self.ids[i] in ref:
+          ax.fill(xs, ys, edgecolor='black', facecolor="#33b5b1",lw=0.5)
+        else:
+          ax.fill(xs, ys, edgecolor='black', facecolor='#d3d3d3',lw=0.5)
 
     ax.set_aspect('equal')
 
