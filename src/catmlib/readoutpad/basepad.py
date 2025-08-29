@@ -212,7 +212,7 @@ class TReadoutPadArray():
     self.centers.append(np.mean(polygon_new, axis=0))
     self.charges.append(0)
 
-  def show_pads(self, plane='xz',ref=None):
+  def show_pads(self, plane='xz',ref=None, check_id=False, check_size=4):
     """!
     # @brief plot polygon 
     # @param plane Select projection plane by str (e.g. 'xz') 
@@ -229,6 +229,8 @@ class TReadoutPadArray():
     for i in range(len(self.pads)):
       xs = [vertex[index1] for vertex in self.pads[i] ]
       ys = [vertex[index2] for vertex in self.pads[i] ]
+      xg = self.centers[i][index1]
+      yg = self.centers[i][index2]
       if ref is None:
         ax.fill(xs, ys, edgecolor='black', facecolor='#d3d3d3',lw=0.5)
       else:
@@ -236,6 +238,9 @@ class TReadoutPadArray():
           ax.fill(xs, ys, edgecolor='black', facecolor="#33b5b1",lw=0.5)
         else:
           ax.fill(xs, ys, edgecolor='black', facecolor='#d3d3d3',lw=0.5)
+
+      if check_id:
+        ax.text(xg, yg, f"{self.ids[i]}", ha="center", va="center", fontsize=check_size, color="black")
 
     ax.set_aspect('equal')
 
