@@ -42,7 +42,14 @@ def get_color_list(values, cmap_name="viridis", fmt="hex"):
     else:
         raise ValueError("fmt must be 'hex' or 'rgb'")
 
-    return bins, colors
+    return list(bins), list(colors)
+
+def get_color_array(values,bins,colors):
+    color_array = []
+    for i in range(len(values)):
+        color_array.append(colors[bins.index(values[i])])
+    
+    return color_array
 
 
 def find_nearest_index(array, value):
