@@ -11,6 +11,38 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from matplotlib.gridspec import GridSpec
+from matplotlib.colors import to_hex
+
+def get_color_list(values, cmap_name="viridis", fmt="hex"):
+    """!
+    @brief Find the index of the nearest point.
+
+    This function searches an array and returns the index of the element
+    whose value is closest to the given reference value.
+
+    @param array   The reference array in which to search for the nearest element.
+    @param value   The reference value to compare against.
+    @return        The index of the element in the array that is nearest to the reference value.
+    """
+    if len(values) == 0:
+        return np.array([]), []
+
+    vmin = int(np.floor(np.min(values)))
+    vmax = int(np.ceil(np.max(values)))
+    bins = np.arange(vmin, vmax + 1)  # 刻み幅1
+
+    # bins の数で等間隔に色を切り出す
+    cmap = plt.get_cmap(cmap_name, len(bins))
+    rgba = [cmap(i) for i in range(len(bins))]  # 各要素は (r,g,b,a), 0-1
+
+    if fmt == "hex":
+        colors = [to_hex(c[:3]) for c in rgba]  # "#RRGGBB"
+    elif fmt == "rgb":
+        colors = [tuple(int(round(ch * 255)) for ch in c[:3]) for c in rgba]  # (R,G,B)
+    else:
+        raise ValueError("fmt must be 'hex' or 'rgb'")
+
+    return bins, colors
 
 
 def find_nearest_index(array, value):
