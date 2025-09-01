@@ -212,7 +212,7 @@ class TReadoutPadArray():
     self.centers.append(np.mean(polygon_new, axis=0))
     self.charges.append(0)
 
-  def show_pads(self, plane='xz', plot_type='hit', ref=None, color_map=None, check_id=False, check_data=None, check_size=4):
+  def show_pads(self, plane='xz', plot_type='hit', ref=None, color_map=None, check_id=False, check_data=None, check_size=4, savepath=None):
     """!
     # @brief plot polygon 
     # @param plane Select projection plane by str (e.g. 'xz') 
@@ -259,6 +259,12 @@ class TReadoutPadArray():
     plt.xlabel(str(plane[0])+" position [mm]")
     plt.ylabel(str(plane[1])+" position [mm]")
     plt.show()
+
+    if savepath:
+        fig.savefig(savepath)
+    
+    plt.close(fig) 
+
 
 def generate_regular_n_polygon(n=3, length=3, theta=0, flag=True):
   """!
