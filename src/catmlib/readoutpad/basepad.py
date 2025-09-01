@@ -258,10 +258,11 @@ class TReadoutPadArray():
 
     plt.xlabel(str(plane[0])+" position [mm]")
     plt.ylabel(str(plane[1])+" position [mm]")
-    plt.show()
 
     if savepath:
-        fig.savefig(savepath)
+      fig.savefig(savepath)
+    else:
+      plt.show()
     
     plt.close(fig) 
 
