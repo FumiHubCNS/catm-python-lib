@@ -47,7 +47,7 @@ def get_color_list(values, cmap_name="viridis", fmt="hex"):
 def get_color_array(values,bins,colors):
     color_array = []
     for i in range(len(values)):
-        color_array.append(colors[bins.index(values[i])])
+        color_array.append(colors[bins.index(int(values[i]))])
     
     return color_array
 
