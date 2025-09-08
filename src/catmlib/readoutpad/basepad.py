@@ -214,7 +214,8 @@ class TReadoutPadArray():
 
   def show_pads(self, plane='xz', plot_type='hit', ref=None, color_map=None, 
                 check_id=False, check_data=None, check_size=4, tracks=None, 
-                xrange=None, yrange=None, block_flag=True, pause_time=0.2, savepath=None ):
+                xrange=None, yrange=None, block_flag=True, pause_time=0.2, 
+                canvassize = [6,5], savepath=None ):
     """!
     # @brief plot polygon 
     # @param plane Select projection plane by str (e.g. 'xz') 
@@ -224,7 +225,7 @@ class TReadoutPadArray():
     index1 = self.mapping.get(plane[0], 0)
     index2 = self.mapping.get(plane[1], 0)
 
-    fig=plt.figure(figsize=(6, 5))
+    fig=plt.figure(figsize=(canvassize[0], canvassize[1]))
     ax = fig.add_subplot(111)
     fig.patch.set_alpha(0.)
 
