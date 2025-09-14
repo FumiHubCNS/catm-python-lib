@@ -279,7 +279,7 @@ class TReadoutPadArray():
       ax.set_ylim(yrange)
 
     if savepath:
-      fig.savefig(savepath)
+      fig.savefig(savepath, dpi=900)
     else:
       plt.show(block=block_flag)
       if block_flag is False:
