@@ -215,7 +215,7 @@ class TReadoutPadArray():
   def show_pads(self, plane='xz', plot_type='hit', ref=None, color_map=None, 
                 check_id=False, check_data=None, check_size=4, tracks=None, 
                 xrange=None, yrange=None, block_flag=True, pause_time=0.2, 
-                canvassize = [6,5], savepath=None ):
+                canvassize = [6,5], savepath=None, dpi=300 ):
     """!
     # @brief plot polygon 
     # @param plane Select projection plane by str (e.g. 'xz') 
@@ -279,7 +279,7 @@ class TReadoutPadArray():
       ax.set_ylim(yrange)
 
     if savepath:
-      fig.savefig(savepath, dpi=900)
+      fig.savefig(savepath, dpi=dpi)
     else:
       plt.show(block=block_flag)
       if block_flag is False:
